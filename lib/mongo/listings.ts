@@ -20,7 +20,7 @@ async () => {
   await setup();
 };
 
-export async function getMovies() {
+export async function getListings() {
   try {
     if (!listings) await setup();
     const result = await listings
@@ -30,6 +30,6 @@ export async function getMovies() {
       .toArray();
     return { listings: result };
   } catch (err) {
-    return { error: "Could not get movies" };
+    return { error: "Could not get listings" };
   }
 }
