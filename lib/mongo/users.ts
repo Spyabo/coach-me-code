@@ -20,7 +20,7 @@ async () => {
   await setup();
 };
 
-export async function getMovies() {
+export async function getUsers() {
   try {
     if (!users) await setup();
     const result = await users
@@ -30,6 +30,6 @@ export async function getMovies() {
       .toArray();
     return { users: result };
   } catch (err) {
-    return { error: "Could not get movies" };
+    return { error: "Could not get users" };
   }
 }
