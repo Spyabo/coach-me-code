@@ -63,3 +63,4 @@ export async function getListings(): Promise<{ listing: getListingsResponse[] } 
     return { error: "Could not get listings" };
   }
 }
+
