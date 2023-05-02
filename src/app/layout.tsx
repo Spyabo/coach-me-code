@@ -20,7 +20,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.className} h-full scroll-smooth antialiased`}
     >
-      <body className="flex h-full flex-col text-stone-700">
+      <body className="flex h-full flex-col">
         <ClerkProvider>
           <Navbar />
           <main className="grow">{children}</main>
