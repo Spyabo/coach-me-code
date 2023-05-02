@@ -1,4 +1,4 @@
-import { Collection, Db, MongoClient } from "mongodb";
+import { Collection, Db, MongoClient, ObjectId } from "mongodb";
 import clientPromise from ".";
 
 let client: MongoClient;
@@ -19,6 +19,18 @@ async function setup() {
 async () => {
   await setup();
 };
+
+export type listing = {
+  _id: ObjectId;
+  listing_title: string;
+  mentor_rating: string;
+  listing_image: string;
+  listing_description: string;
+  listing_review: string;
+  name: string;
+  token_rate: number;
+  programming_language: [];
+}
 
 export async function getListings() {
   try {
