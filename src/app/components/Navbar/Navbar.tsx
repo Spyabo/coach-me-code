@@ -1,6 +1,7 @@
 "use client";
 
 import { Transition } from "@headlessui/react";
+import Image from "next/image";
 import React, { useState } from "react";
 
 import { SignInButton, UserButton } from "@clerk/nextjs";
@@ -15,11 +16,14 @@ export default function Nav() {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
               <div className="flex-grow 1">
-                <img
-                  className="h-8 w-8"
-                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                  alt="Workflow"
-                />
+                <a href="/">
+                  <Image
+                    src="/code.svg"
+                    alt="Picture of the author"
+                    width={40}
+                    height={40}
+                  />
+                </a>
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
