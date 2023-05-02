@@ -3,6 +3,9 @@
 import { Transition } from "@headlessui/react";
 import React, { useState } from "react";
 
+import { SignInButton, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut } from "@clerk/nextjs/app-beta/client";
+
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -11,7 +14,7 @@ export default function Nav() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
-              <div className="flex-shrink-0">
+              <div className="flex-grow 1">
                 <img
                   className="h-8 w-8"
                   src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
@@ -56,6 +59,18 @@ export default function Nav() {
                   </a>
                 </div>
               </div>
+            </div>
+            <div className="flex justify-end">
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+              <SignedOut>
+                <SignInButton mode="modal">
+                  <button className="rounded border border-gray-400 px-3 py-0.5">
+                    Sign in
+                  </button>
+                </SignInButton>
+              </SignedOut>
             </div>
             <div className="-mr-2 flex md:hidden">
               <button
