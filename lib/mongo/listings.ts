@@ -23,7 +23,7 @@ async () => {
 export type listing = {
   _id: ObjectId;
   listing_title: string;
-  mentor_rating: string;
+  mentor_rating: number;
   listing_image: string;
   listing_description: string;
   listing_review: string;
@@ -35,7 +35,7 @@ export type listing = {
 export type getListingsResponse = {
   _id: string;
   listing_title: string;
-  mentor_rating: string;
+  mentor_rating: number;
   listing_image: string;
   listing_description: string;
   listing_review: string;
