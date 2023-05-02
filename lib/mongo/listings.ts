@@ -5,6 +5,30 @@ let client: MongoClient;
 let db: Db;
 let listings: Collection;
 
+export type listing = {
+  _id: ObjectId;
+  listing_title: string;
+  mentor_rating: number;
+  listing_image: string;
+  listing_description: string;
+  listing_review: string;
+  name: string;
+  token_rate: number;
+  programming_language: [];
+};
+
+export type getListingsResponse = {
+  _id: string;
+  listing_title: string;
+  mentor_rating: number;
+  listing_image: string;
+  listing_description: string;
+  listing_review: string;
+  name: string;
+  token_rate: number;
+  programming_language: [];
+};
+
 async function setup() {
   if (db) return;
   try {
@@ -20,31 +44,9 @@ async () => {
   await setup();
 };
 
-export type listing = {
-  _id: ObjectId;
-  listing_title: string;
-  mentor_rating: number;
-  listing_image: string;
-  listing_description: string;
-  listing_review: string;
-  name: string;
-  token_rate: number;
-  programming_language: [];
-}
-
-export type getListingsResponse = {
-  _id: string;
-  listing_title: string;
-  mentor_rating: number;
-  listing_image: string;
-  listing_description: string;
-  listing_review: string;
-  name: string;
-  token_rate: number;
-  programming_language: [];
-}
-
-export async function getListings(): Promise<{ listing: getListingsResponse[] } | { error: string }> {
+export async function getListings(): Promise<
+  { listing: getListingsResponse[] } | { error: string }
+> {
   try {
     if (!listings) await setup();
     const result = await listings.find().toArray();
@@ -58,7 +60,7 @@ export async function getListings(): Promise<{ listing: getListingsResponse[] } 
       listing_review: listing.listing_review,
       name: listing.name,
       token_rate: listing.token_rate,
-      programming_language: listing.programming_language
+      programming_language: listing.programming_language,
     }));
 
     return { listing: mappedResult };
