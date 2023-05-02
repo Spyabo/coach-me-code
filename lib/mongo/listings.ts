@@ -26,7 +26,6 @@ export type listing = {
   mentor_rating: number;
   listing_image: string;
   listing_description: string;
-  listing_review: string;
   name: string;
   token_rate: number;
   programming_language: [];
@@ -38,7 +37,6 @@ export type getListingsResponse = {
   mentor_rating: number;
   listing_image: string;
   listing_description: string;
-  listing_review: string;
   name: string;
   token_rate: number;
   programming_language: [];
@@ -55,7 +53,6 @@ export async function getListings(): Promise<{ listing: getListingsResponse[] } 
       mentor_rating: listing.mentor_rating,
       listing_image: listing.listing_image,
       listing_description: listing.listing_description,
-      listing_review: listing.listing_review,
       name: listing.name,
       token_rate: listing.token_rate,
       programming_language: listing.programming_language

@@ -22,8 +22,6 @@ export default async function ListingsPage() {
                                 <p>{data.programming_language}</p>
                                 <h4>Description</h4>
                                 <p>{data.listing_description}</p>
-                                <h4>Reviews</h4>
-                                <p>{data.listing_review}</p>
                                 <p>Cost: {data.token_rate} tokens</p>
                             </li>
                         </>
