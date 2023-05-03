@@ -6,9 +6,18 @@ import React, { useState } from "react";
 
 import { SignInButton, UserButton } from "@clerk/nextjs";
 import { SignedIn, SignedOut } from "@clerk/nextjs/app-beta/client";
+import { useUser } from "@clerk/nextjs";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
+  const {isSignedIn} = useUser();
+  const [walletDirection, setWalletDirection] = useState('');
+
+  const handleMoneyClick = () => {
+    if (isSignedIn) setWalletDirection('/wallet');
+    else if (!isSignedIn) setWalletDirection('/sign-in');
+  };
+
   return (
     <div>
       <div className="hidden md:block"></div>
@@ -45,7 +54,8 @@ export default function Nav() {
                   </a>
 
                   <a
-                    href="/wallet"
+                    onClick={handleMoneyClick}
+                    href={`${walletDirection}`}
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
                     Money
@@ -60,7 +70,7 @@ export default function Nav() {
               </SignedIn>
               <SignedOut>
                 <SignInButton mode="modal">
-                  <button className="rounded border border-gray-400 px-3 py-0.5 text-yellow-50">
+                  <button className="rounded border border-gray-400 px-3 py-0.5 text-yellow-50" >
                     Sign in
                   </button>
                 </SignInButton>
