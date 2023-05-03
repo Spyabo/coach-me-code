@@ -29,7 +29,7 @@ export type listing = {
   name: string;
   token_rate: number;
   programming_language: [];
-}
+};
 
 export type getListingsResponse = {
   _id: string;
@@ -40,9 +40,11 @@ export type getListingsResponse = {
   name: string;
   token_rate: number;
   programming_language: [];
-}
+};
 
-export async function getListings(): Promise<{ listing: getListingsResponse[] } | { error: string }> {
+export async function getListings(): Promise<
+  { listings: getListingsResponse[] } | { error: string }
+> {
   try {
     if (!listings) await setup();
     const result = await listings.find().toArray();
@@ -55,12 +57,11 @@ export async function getListings(): Promise<{ listing: getListingsResponse[] } 
       listing_description: listing.listing_description,
       name: listing.name,
       token_rate: listing.token_rate,
-      programming_language: listing.programming_language
+      programming_language: listing.programming_language,
     }));
 
-    return { listing: mappedResult };
+    return { listings: mappedResult };
   } catch (err) {
     return { error: "Could not get listings" };
   }
 }
-
