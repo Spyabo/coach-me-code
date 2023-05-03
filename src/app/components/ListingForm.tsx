@@ -8,7 +8,7 @@ export default function ListingForm() {
   const [programmingLanguages, setProgrammingLanguages] = useState("");
   const [listingTokens, setListingTokens] = useState("");
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     const formData = {
       listingTitle,
@@ -16,13 +16,8 @@ export default function ListingForm() {
       programmingLanguages,
       listingTokens,
     };
-    console.log(formData);
-    // const res = await fetch('/api/listings', {
-    //   method: 'POST',
-    //   body: formData,
-    // });
-    // const data = await res.json();
-    // console.log(data);
+
+    // Send the form data to the Mongo server function in lib
   };
 
   return (
