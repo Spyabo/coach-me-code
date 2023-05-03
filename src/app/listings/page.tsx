@@ -1,12 +1,16 @@
 import { getListings, getListingsResponse } from "@lib/mongo/listings";
+import ListingSortBy from "../components/listing-sort_by/listing-sort_by";
+
 
 export default async function ListingsPage() {
+
   const { listings } = await getListings();
 
   return (
     <div className="container mx-auto">
       <h1 className="text-xl">Listings</h1>
       <ul className="flex-auto flex-col gap-9">
+        <ListingSortBy />
         {listings.map((data: getListingsResponse) => {
           return (
             <>
