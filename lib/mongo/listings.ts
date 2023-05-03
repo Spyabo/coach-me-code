@@ -5,30 +5,6 @@ let client: MongoClient;
 let db: Db;
 let listings: Collection;
 
-export type listing = {
-  _id: ObjectId;
-  listing_title: string;
-  mentor_rating: number;
-  listing_image: string;
-  listing_description: string;
-  listing_review: string;
-  name: string;
-  token_rate: number;
-  programming_language: [];
-};
-
-export type getListingsResponse = {
-  _id: string;
-  listing_title: string;
-  mentor_rating: number;
-  listing_image: string;
-  listing_description: string;
-  listing_review: string;
-  name: string;
-  token_rate: number;
-  programming_language: [];
-};
-
 async function setup() {
   if (db) return;
   try {
@@ -44,8 +20,30 @@ async () => {
   await setup();
 };
 
+export type listing = {
+  _id: ObjectId;
+  listing_title: string;
+  mentor_rating: number;
+  listing_image: string;
+  listing_description: string;
+  name: string;
+  token_rate: number;
+  programming_language: [];
+};
+
+export type getListingsResponse = {
+  _id: string;
+  listing_title: string;
+  mentor_rating: number;
+  listing_image: string;
+  listing_description: string;
+  name: string;
+  token_rate: number;
+  programming_language: [];
+};
+
 export async function getListings(): Promise<
-  { listing: getListingsResponse[] } | { error: string }
+  { listings: getListingsResponse[] } | { error: string }
 > {
   try {
     if (!listings) await setup();
@@ -57,13 +55,12 @@ export async function getListings(): Promise<
       mentor_rating: listing.mentor_rating,
       listing_image: listing.listing_image,
       listing_description: listing.listing_description,
-      listing_review: listing.listing_review,
       name: listing.name,
       token_rate: listing.token_rate,
       programming_language: listing.programming_language,
     }));
 
-    return { listing: mappedResult };
+    return { listings: mappedResult };
   } catch (err) {
     return { error: "Could not get listings" };
   }
