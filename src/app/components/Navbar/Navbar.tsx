@@ -69,7 +69,9 @@ export default function Nav() {
             <div className="flex justify-end">
               <SignedIn>
                 <UserButton />{" "}
-                <div>Hello {user?.emailAddresses[0].toString()}!</div>
+                <div className="px-2 flex justify-center items-center">
+                  {user?.firstName}
+                </div>
               </SignedIn>
               <SignedOut>
                 <SignInButton mode="modal">
