@@ -4,12 +4,13 @@ import { Transition } from "@headlessui/react";
 import Image from "next/image";
 import React, { useState } from "react";
 
-import { SignInButton, UserButton } from "@clerk/nextjs";
+import { SignInButton, UserButton, useUser } from "@clerk/nextjs";
 import { SignedIn, SignedOut } from "@clerk/nextjs/app-beta/client";
 import { useUser } from "@clerk/nextjs";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useUser();
   const {isSignedIn} = useUser();
   const [walletDirection, setWalletDirection] = useState('');
 
@@ -64,9 +65,12 @@ export default function Nav() {
                 </div>
               </div>
             </div>
-            <div className="flex justify-center gap-4">
-            <SignedIn>
-                <UserButton />
+            <div className="flex justify-end gap-4">
+              <SignedIn>
+                <UserButton />{" "}
+                <div className="px-2 flex justify-center items-center">
+                  {user?.firstName}
+                </div>
               </SignedIn>
               <SignedOut>
                 <SignInButton mode="modal" redirectUrl="/listings">
