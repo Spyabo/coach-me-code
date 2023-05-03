@@ -38,7 +38,7 @@ export default function Nav() {
                 <div className="ml-10 flex items-baseline space-x-4">
 
                   <a
-                    href="#"
+                    href="/listings"
                     className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
                     Listings
