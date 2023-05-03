@@ -69,7 +69,7 @@ export default function Nav() {
                 <UserButton />
               </SignedIn>
               <SignedOut>
-                <SignInButton mode="modal">
+                <SignInButton mode="modal" redirectUrl="/listings">
                   <button className="rounded border border-gray-400 px-3 py-0.5">
                     Sign in
                   </button>
