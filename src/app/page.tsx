@@ -11,9 +11,11 @@ export default function Landing() {
           Find the right <span className="text-blue-500">mentor</span> for you
           today
         </h2>
-        <button className="bg-orange-500 text-white text-lg font-bold py-3 px-6 rounded-full mt-6 hover:bg-orange-600 transition-colors duration-300 ease-in-out">
-          Join us
-        </button>
+        <a href="/sign-up">
+          <button className="bg-orange-500 text-white text-lg font-bold py-3 px-6 rounded-full mt-6 hover:bg-orange-600 transition-colors duration-300 ease-in-out">
+            Join us
+          </button>
+        </a>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
