@@ -4,11 +4,13 @@ import { Transition } from "@headlessui/react";
 import Image from "next/image";
 import React, { useState } from "react";
 
-import { SignInButton, UserButton } from "@clerk/nextjs";
+import { SignInButton, UserButton, useUser } from "@clerk/nextjs";
 import { SignedIn, SignedOut } from "@clerk/nextjs/app-beta/client";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useUser();
+
   return (
     <div>
       <nav className="bg-gray-800">
@@ -66,7 +68,8 @@ export default function Nav() {
             </div>
             <div className="flex justify-end">
               <SignedIn>
-                <UserButton />
+                <UserButton />{" "}
+                <div>Hello {user?.emailAddresses[0].toString()}!</div>
               </SignedIn>
               <SignedOut>
                 <SignInButton mode="modal">
