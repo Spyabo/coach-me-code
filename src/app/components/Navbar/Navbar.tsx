@@ -127,7 +127,7 @@ export default function Nav() {
                   Coach Me Code
                 </h1>
                 <a
-                  href="#"
+                  href="/listings"
                   className="hover:bg-yellow-100 hover:text-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Listings
