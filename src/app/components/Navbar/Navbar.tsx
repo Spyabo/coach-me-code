@@ -60,7 +60,7 @@ export default function Nav() {
                 </div>
               </div>
             </div>
-            <div className="flex justify-end gap-4">
+            <div className="flex justify-end gap-4 text-white">
               <SignedIn>
                 <UserButton />{" "}
                 <div className="px-2 flex justify-center items-center">
