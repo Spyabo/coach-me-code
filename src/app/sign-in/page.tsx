@@ -6,7 +6,7 @@ export default function Page({ searchParams }: any) {
     <section className="py-24 flex justify-center bg-neutral-50 h-full">
       <div className="container">
         <div className="flex justify-center">
-          <SignIn signUpUrl="/sign-up" redirectUrl={redirectUrl || "/"} />
+          <SignIn signUpUrl="/sign-up" redirectUrl={redirectUrl || "/listings"} />
         </div>
       </div>
     </section>
