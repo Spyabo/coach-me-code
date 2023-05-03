@@ -5,21 +5,6 @@ let client: MongoClient;
 let db: Db;
 let users: Collection;
 
-async function setup() {
-  if (db) return;
-  try {
-    client = await clientPromise;
-    db = client.db("data");
-    users = db.collection("users");
-  } catch (err) {
-    throw new Error("Could not connect to MongoDB");
-  }
-}
-
-async () => {
-  await setup();
-};
-
 export type user = {
   _id: ObjectId;
   name: string;
@@ -42,6 +27,21 @@ export type getUsersResponse = {
   listing_ids: [];
   order_ids: [];
   tokens: number;
+};
+
+async function setup() {
+  if (db) return;
+  try {
+    client = await clientPromise;
+    db = client.db("data");
+    users = db.collection("users");
+  } catch (err) {
+    throw new Error("Could not connect to MongoDB");
+  }
+}
+
+async () => {
+  await setup();
 };
 
 export async function getUsers(): Promise<

@@ -6,14 +6,24 @@ import React, { useState } from "react";
 
 import { SignInButton, UserButton } from "@clerk/nextjs";
 import { SignedIn, SignedOut } from "@clerk/nextjs/app-beta/client";
+import { useUser } from "@clerk/nextjs";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
+  const {isSignedIn} = useUser();
+  const [walletDirection, setWalletDirection] = useState('');
+
+  const handleMoneyClick = () => {
+    if (isSignedIn) setWalletDirection('/wallet');
+    else if (!isSignedIn) setWalletDirection('/sign-in');
+  };
+
   return (
     <div>
-      <nav className="bg-gray-800">
+      <div className="hidden md:block"></div>
+      <nav className="bg-gray-800 shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-16 py-4 md:py-0">
             <div className="flex items-center">
               <div className="flex-grow 1">
                 <a href="/">
@@ -25,57 +35,46 @@ export default function Nav() {
                   />
                 </a>
               </div>
+              <div className="flex flex-wrap ">
+                  <h1 className="text-white text-3xl font-bold md:pt-0 pl-6 justify-center hidden sm:block">
+                    Coach Me Code
+                  </h1>
+              </div>
+
+
               <div className="hidden md:block">
+
                 <div className="ml-10 flex items-baseline space-x-4">
+
                   <a
-                    href="#"
+                    href="/listings"
                     className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
-                    Dashboard
+                    Listings
                   </a>
 
                   <a
-                    href="#"
+                    onClick={handleMoneyClick}
+                    href={`${walletDirection}`}
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
-                    Team
+                    Money
                   </a>
 
-                  <a
-                    href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Projects
-                  </a>
-
-                  <a
-                    href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Calendar
-                  </a>
-
-                  <a
-                    href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Reports
-                  </a>
                 </div>
               </div>
             </div>
-            <div className="flex justify-end">
-              <SignedIn>
+            <div className="flex justify-center gap-4">
+            <SignedIn>
                 <UserButton />
               </SignedIn>
               <SignedOut>
                 <SignInButton mode="modal" redirectUrl="/listings">
-                  <button className="rounded border border-gray-400 px-3 py-0.5">
+                  <button className="rounded border border-gray-400 px-3 py-0.5 text-yellow-50">
                     Sign in
                   </button>
                 </SignInButton>
               </SignedOut>
-            </div>
             <div className="-mr-2 flex md:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
@@ -120,59 +119,38 @@ export default function Nav() {
                 )}
               </button>
             </div>
+            </div>
           </div>
         </div>
 
         <Transition
-          show={isOpen}
-          enter="transition ease-out duration-100 transform"
-          enterFrom="opacity-0 scale-95"
-          enterTo="opacity-100 scale-100"
-          leave="transition ease-in duration-75 transform"
-          leaveFrom="opacity-100 scale-100"
-          leaveTo="opacity-0 scale-95"
+  show={isOpen}
+  enter="transition ease-out duration-100 transform"
+  enterFrom="opacity-0 scale-95"
+  enterTo="opacity-100 scale-100"
+  leave="transition ease-in duration-75 transform"
+  leaveFrom="opacity-100 scale-100"
+  leaveTo="opacity-0 scale-95"
+>
+  {(ref) => (
+    <div className="md:hidden" id="mobile-menu">
+      <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+      <h1 className="text-white text-2xl font-bold pt-4 md:pt-0 md:text-3xl">
+                    Coach Me Code
+                  </h1>
+        <a
+          href="#"
+          className="hover:bg-yellow-100 hover:text-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
         >
-          {(ref) => (
-            <div className="md:hidden" id="mobile-menu">
-              <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a
-                  href="#"
-                  className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Dashboard
-                </a>
+          Listings
+        </a>
+        
 
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Team
-                </a>
+      </div>
+    </div>
+  )}
+</Transition>
 
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Projects
-                </a>
-
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Calendar
-                </a>
-
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Reports
-                </a>
-              </div>
-            </div>
-          )}
-        </Transition>
       </nav>
     </div>
   );
