@@ -9,8 +9,10 @@ export default function Clerk() {
       <SignedIn>
         <div className="flex justify-center items-center">
           {user?.firstName}
-        </div>{" "}
-        <UserButton />
+        </div>
+        <div className="flex justify-center items-center">
+          <UserButton />
+        </div>
       </SignedIn>
       <SignedOut>
         <SignInButton mode="modal" redirectUrl="/listings">
