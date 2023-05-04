@@ -22,8 +22,8 @@ export default function ListingForm() {
     console.log(formData);
     // const formJSON = JSON.stringify(formData);
     // Send the form data to the Mongo server function in lib fix since can't be "use client"
-    const res = await postListing(formData);
-    console.log(res);
+    //const res = await postListing(formData);
+    //console.log(res);
   };
 
   return (
