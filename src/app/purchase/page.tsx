@@ -17,10 +17,12 @@ export default function Page() {
             <p className="font-bold">Listing price</p>
             <p>50</p>
             </div>
-              <button className="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded">Order now</button>
+            <div className="flex flex-row justify-center">
+              <button className="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded-full">Order now</button>
+              </div>
           </div>
         </div>
            
     </div>
-  );
+  )
 }
