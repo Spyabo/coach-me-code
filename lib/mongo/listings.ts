@@ -1,5 +1,6 @@
-import { Collection, Db, MongoClient, ObjectId } from "mongodb";
+import { Collection, Db, MongoClient } from "mongodb";
 import clientPromise from ".";
+import { getListingsResponse, listing } from "../types/listings";
 
 let client: MongoClient;
 let db: Db;
@@ -22,28 +23,6 @@ async () => {
   await setup();
 };
 
-export type listing = {
-  _id: ObjectId;
-  listing_title: string;
-  mentor_rating: number;
-  listing_image: string;
-  listing_description: string;
-  name: string;
-  token_rate: number;
-  programming_language: [];
-};
-
-export type getListingsResponse = {
-  _id: string;
-  listing_title: string;
-  mentor_rating: number;
-  listing_image: string;
-  listing_description: string;
-  name: string;
-  token_rate: number;
-  programming_language: [];
-};
-
 export async function getListings(): Promise<
   { listings: getListingsResponse[] } | { error: string }
 > {
@@ -59,7 +38,7 @@ export async function getListings(): Promise<
       listing_description: listing.listing_description,
       name: listing.name,
       token_rate: listing.token_rate,
-      programming_language: listing.programming_language,
+      programming_languages: listing.programming_language,
     }));
 
     return { listings: mappedResult };
@@ -68,24 +47,12 @@ export async function getListings(): Promise<
   }
 }
 
-export async function getListingById(
-  id: string
-): Promise<listing | { error: string }> {
+export async function postListing(formData: listing){
   try {
     if (!listings) await setup();
-    const result = await listings.findOne({ _id: new ObjectId(id) });
-    if (!result) return { error: "Listing not found" };
-    return {
-      _id: result._id,
-      listing_title: result.listing_title,
-      mentor_rating: result.mentor_rating,
-      listing_image: result.listing_image,
-      listing_description: result.listing_description,
-      name: result.name,
-      token_rate: result.token_rate,
-      programming_language: result.programming_language,
-    };
+    const result = await listings.insertOne(formData);
+    return { _id: result.insertedId.toString() };
   } catch (err) {
-    return { error: "Could not get listing" };
+    return { error: "Could not post listing" };
   }
 }
