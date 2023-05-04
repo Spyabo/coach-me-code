@@ -65,3 +65,25 @@ export async function getListings(): Promise<
     return { error: "Could not get listings" };
   }
 }
+
+export async function getListingById(
+  id: string
+): Promise<listing | { error: string }> {
+  try {
+    if (!listings) await setup();
+    const result = await listings.findOne({ _id: new ObjectId(id) });
+    if (!result) return { error: "Listing not found" };
+    return {
+      _id: result._id,
+      listing_title: result.listing_title,
+      mentor_rating: result.mentor_rating,
+      listing_image: result.listing_image,
+      listing_description: result.listing_description,
+      name: result.name,
+      token_rate: result.token_rate,
+      programming_language: result.programming_language,
+    };
+  } catch (err) {
+    return { error: "Could not get listing" };
+  }
+}

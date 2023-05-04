@@ -1,5 +1,4 @@
 import { getListings, getListingsResponse } from "@lib/mongo/listings";
-
 export default async function ListingsPage() {
   const { listings } = await getListings();
 
@@ -22,11 +21,11 @@ export default async function ListingsPage() {
                 <h4>Description</h4>
                 <p>{data.listing_description}</p>
                 <p>Cost: {data.token_rate} tokens</p>
-              </li>
+              </li >
             </>
           );
         })}
       </ul>
-    </div>
+    </div >
   );
 }
