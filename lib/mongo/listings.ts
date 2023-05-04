@@ -27,7 +27,7 @@ export type listing = {
   listing_description: string;
   name: string;
   token_rate: number;
-  programming_language: [];
+  programming_languages: [];
 };
 
 export type getListingsResponse = {
@@ -38,7 +38,7 @@ export type getListingsResponse = {
   listing_description: string;
   name: string;
   token_rate: number;
-  programming_language: [];
+  programming_languages: [];
 };
 
 export async function getListings(): Promise<
@@ -56,7 +56,7 @@ export async function getListings(): Promise<
       listing_description: listing.listing_description,
       name: listing.name,
       token_rate: listing.token_rate,
-      programming_language: listing.programming_language,
+      programming_languages: listing.programming_language,
     }));
 
     return { listings: mappedResult };
