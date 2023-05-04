@@ -13,7 +13,7 @@ export default async function ListingsPage() {
             <h1 className="text-xl">Listings</h1>
 
           </div>
-          <div>
+          <div className="basis-1/3">
             <ListingFilterBy sort_by={listings} value={"programming_language"} />
           </div>
 
