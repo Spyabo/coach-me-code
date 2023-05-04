@@ -1,4 +1,3 @@
-import { getListings } from "@lib/mongo/listings";
 import { getListingsResponse } from "@lib/types/listings";
 import Link from "next/link";
 import ListingFilterBy from "../components/listing-filterBy/listing-filterBy";
