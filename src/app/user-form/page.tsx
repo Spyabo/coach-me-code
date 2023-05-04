@@ -12,7 +12,7 @@ console.log(user)
 
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
-  const [phoneNumber, setPhoneNumber] = useState(user.phoneNumbers[0] ); 
+  const [phoneNumber, setPhoneNumber] = useState(); 
   const [emailAddress, setEmailAddress] = useState(user.emailAddresses[0]); 
   const [yearsExperience, setYearsExperience] = useState(); 
   const [programmingLanguages, setProgrammingLanguages] = useState(""); 
@@ -28,7 +28,8 @@ console.log(user)
         programmingLanguages
     }
 
-    console.log(newUser)
+
+  
   };
 
   return (
