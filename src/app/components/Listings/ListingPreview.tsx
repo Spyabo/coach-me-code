@@ -1,9 +1,7 @@
-"use client";
-
 import { getListings, getListingsResponse } from "@lib/mongo/listings";
 
-export default function ListingPreview() {
-    const { listings } = getListings();
+export default async function ListingPreview() {
+    const { listings } = await getListings();
 
     return (
         <div className="container mx-auto">

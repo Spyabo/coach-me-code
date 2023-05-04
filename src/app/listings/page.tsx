@@ -4,6 +4,7 @@ export default async function ListingsPage() {
 
   return (
     <div>
+      { /* @ts-ignore */}
       <ListingPreview />
     </div>
   );
