@@ -4,8 +4,8 @@ import Link from "next/link";
 import ListingFilterBy from "../components/listing-filterBy/listing-filterBy";
 
 export default async function ListingsPage() {
-
-  const { listings }: { listings: getListingsResponse[] } = await getListings();
+  const res = await fetch("http://localhost:3000/api/listings")
+  const { listings }: { listings: getListingsResponse[] } = await res.json()
 
   return (
     <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
