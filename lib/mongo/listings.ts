@@ -5,12 +5,14 @@ let client: MongoClient;
 let db: Db;
 let listings: Collection;
 
-async function setup() {
+async function setup(sort = {}) {
   if (db) return;
   try {
     client = await clientPromise;
     db = client.db("data");
-    listings = db.collection("listings");
+
+
+    listings = db.collection("listings")
   } catch (err) {
     throw new Error("Could not connect to MongoDB");
   }
