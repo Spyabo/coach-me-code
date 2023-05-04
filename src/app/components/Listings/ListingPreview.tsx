@@ -1,5 +1,6 @@
 import { getListings } from "@lib/mongo/listings";
 import { getListingsResponse } from "@lib/types/listings";
+import Link from 'next/link';
 
 export default async function ListingPreview() {
     const { listings } = await getListings();
@@ -18,10 +19,11 @@ export default async function ListingPreview() {
                             <p>{data.name}</p>
                             <p>{data.mentor_rating / 10}</p>
                             <p>{data.token_rate} tokens</p>
-
-                            <button className="bg-orange-500 text-white text-lg font-bold py-3 px-6 rounded-full mt-6 hover:bg-orange-600 transition-colors duration-300 ease-in-out">
-                                View more
-                            </button>
+                            <Link href={`/listings/${data._id}`}>
+                                <button className="bg-orange-500 text-white text-lg font-bold py-3 px-6 rounded-full mt-6 hover:bg-orange-600 transition-colors duration-300 ease-in-out">
+                                    View more
+                                </button>
+                            </Link>
                         </li>
                     );
                 })}
