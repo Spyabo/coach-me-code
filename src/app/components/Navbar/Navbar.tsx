@@ -24,24 +24,23 @@ export default function Nav() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 py-4 md:py-0">
             <div className="flex items-center">
-              <div className="flex-grow 1">
-                <a href="/">
-                  <Image
-                    src="/code.svg"
-                    alt="Picture of the author"
-                    width={40}
-                    height={40}
-                  />
-                </a>
-              </div>
-              <div className="flex flex-wrap ">
-                <a href="/">
-                  <h1 className="text-white text-3xl font-bold md:pt-0 pl-6 justify-center hidden sm:block">
-                    Coach Me Code
-                  </h1>
-                </a>
-              </div>
-
+              <a href="/">
+                <div className="flex items-center">
+                  <div className="flex-grow 1">
+                    <Image
+                      src="/code.svg"
+                      alt="Picture of the author"
+                      width={40}
+                      height={40}
+                    />
+                  </div>
+                  <div className="flex flex-wrap ">
+                    <h1 className="text-white text-3xl font-bold md:pt-0 pl-6 justify-center hidden sm:block">
+                      Coach Me Code
+                    </h1>
+                  </div>
+                </div>
+              </a>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
                   <a
@@ -110,7 +109,6 @@ export default function Nav() {
             </div>
           </div>
         </div>
-
         <Transition
           show={isOpen}
           enter="transition ease-out duration-100 transform"
