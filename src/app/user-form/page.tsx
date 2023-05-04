@@ -1,33 +1,49 @@
 "use client";
 import { useAuth, useUser } from "@clerk/nextjs";
-import { useState } from 'react'
+import { useState } from 'react';
 
 export default function UserForm() {
   const { isLoaded, isSignedIn, user } = useUser();
-  console.log(user);
-
+ 
+console.log(user)
   if (!isLoaded || !isSignedIn) {
     return null;
   }
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const []
+  const [firstName, setFirstName] = useState(user.firstName);
+  const [lastName, setLastName] = useState(user.lastName);
+  const [phoneNumber, setPhoneNumber] = useState(user.phoneNumbers[0] ); 
+  const [emailAddress, setEmailAddress] = useState(user.emailAddresses[0]); 
+  const [yearsExperience, setYearsExperience] = useState(); 
+  const [programmingLanguages, setProgrammingLanguages] = useState(""); 
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    const newUser = {
+        firstName, 
+        lastName, 
+        phoneNumber,
+        emailAddress,
+        yearsExperience,
+        programmingLanguages
+    }
+
+    console.log(newUser)
   };
 
   return (
-    <form onSubmit={handleSubmit} className="m-4">
-      <div className="space-y-12">
-        <div className="border-b border-gray-900/10 pb-12">
+   
+    <form onSubmit={handleSubmit} className="m-8">
+     
+        <div className="border-b border-gray-900/10 pb-12 ">
+            <div className="header flex flex-col items-center">
           <h1 className="text-base font-semibold leading-7 text-gray-900">
-            Set up you profile
+            Nearly there! 
           </h1>
           <p className="mt-1 text-sm leading-6 text-gray-600">
             You just need to complete the below form:
           </p>
+          </div>
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-4">
               <label
@@ -43,7 +59,9 @@ export default function UserForm() {
                     type="text"
                     name="firstName"
                     id="firstName"
-                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" value={firstName}
+                  onChange={(event) => setFirstName(event.target.value)}
+                  required
                   />
                 </div>
               </div>
@@ -62,7 +80,30 @@ export default function UserForm() {
                     type="text"
                     name="lastName"
                     id="lastName"
-                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" value={lastName}
+                  onChange={(event) => setLastName(event.target.value)}
+                  required
+                  />
+                </div>
+              </div>
+            </div>
+                  <div className="sm:col-span-4">
+              <label
+                htmlFor="lastName"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Email address
+              </label>
+              <div className="mt-2">
+                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                  <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm"></span>
+                  <input
+                    type="text"
+                    name="lastName"
+                    id="lastName"
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" value={emailAddress}
+                  onChange={(event) => setEmailAddress(event.target.value)}
+                  required
                   />
                 </div>
               </div>
@@ -81,7 +122,9 @@ export default function UserForm() {
                     type="text"
                     name="phoneNumber"
                     id="phoneNumber"
-                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" value={phoneNumber}
+                  onChange={(event) => setPhoneNumber(event.target.value)}
+                  required
                   />
                 </div>
               </div>
@@ -100,7 +143,9 @@ export default function UserForm() {
                     type="text"
                     name="yearsExperience"
                     id="yearsExperience"
-                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" value={yearsExperience}
+                  onChange={(event) => setYearsExperience(event.target.value)}
+                  required
                   />
                 </div>
               </div>
@@ -120,13 +165,15 @@ export default function UserForm() {
                     name="programmingLanguages"
                     id="programmingLanguages"
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    placeholder="HTML, Javascript, PHP..." value={programmingLanguages}
+                  onChange={(event) => setProgrammingLanguages(event.target.value)}
+                  required
                   />
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
       <div className="mt-6 flex items-center justify-center gap-x-6">
         <button
           type="button"
