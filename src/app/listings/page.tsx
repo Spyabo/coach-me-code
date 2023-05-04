@@ -1,6 +1,5 @@
 import { getListings, getListingsResponse } from "@lib/mongo/listings";
-import ListingSortBy from "../components/listing-sort_by/listing-sort_by";
-
+import ListingFilterBy from "../components/listing-filterBy/listing-filterBy";
 
 export default async function ListingsPage() {
 
@@ -8,9 +7,17 @@ export default async function ListingsPage() {
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-xl">Listings</h1>
       <ul className="flex-auto flex-col gap-9">
-        <ListingSortBy />
+        <div className="flex flex-nowrap space-x-4">
+          <div>
+            <h1 className="text-xl">Listings</h1>
+
+          </div>
+          <div>
+            <ListingFilterBy sort_by={listings} value={"programming_language"} />
+          </div>
+
+        </div>
         {listings.map((data: getListingsResponse) => {
           return (
             <>
