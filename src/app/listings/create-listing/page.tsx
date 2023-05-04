@@ -1,4 +1,4 @@
-import ListingForm from "@/app/components/ListingForm";
+import ListingForm from "@/app/components/Listings/ListingForm";
 
 export default async function Page() {
   return (

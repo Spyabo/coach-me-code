@@ -4,12 +4,11 @@ import { Transition } from "@headlessui/react";
 import Image from "next/image";
 import React, { useState } from "react";
 
-import { SignInButton, UserButton, useUser } from "@clerk/nextjs";
-import { SignedIn, SignedOut } from "@clerk/nextjs/app-beta/client";
+import { useUser } from "@clerk/nextjs";
+import Clerk from "../Clerk";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useUser();
   const { isSignedIn } = useUser();
   const [walletDirection, setWalletDirection] = useState("");
 
@@ -22,25 +21,26 @@ export default function Nav() {
     <div>
       <div className="hidden md:block"></div>
       <nav className="bg-gray-800 shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  text-white">
           <div className="flex items-center justify-between h-16 py-4 md:py-0">
             <div className="flex items-center">
-              <div className="flex-grow 1">
-                <a href="/">
-                  <Image
-                    src="/code.svg"
-                    alt="Picture of the author"
-                    width={40}
-                    height={40}
-                  />
-                </a>
-              </div>
-              <div className="flex flex-wrap ">
-                <h1 className="text-white text-3xl font-bold md:pt-0 pl-6 justify-center hidden sm:block">
-                  Coach Me Code
-                </h1>
-              </div>
-
+              <a href="/">
+                <div className="flex items-center">
+                  <div className="flex-grow 1">
+                    <Image
+                      src="/code.svg"
+                      alt="Picture of the author"
+                      width={40}
+                      height={40}
+                    />
+                  </div>
+                  <div className="flex flex-wrap ">
+                    <h1 className="text-white text-3xl font-bold md:pt-0 pl-6 justify-center hidden sm:block">
+                      Coach Me Code
+                    </h1>
+                  </div>
+                </div>
+              </a>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
                   <a
@@ -61,19 +61,7 @@ export default function Nav() {
               </div>
             </div>
             <div className="flex justify-end gap-4">
-              <SignedIn>
-                <UserButton />{" "}
-                <div className="px-2 flex justify-center items-center">
-                  {user?.firstName}
-                </div>
-              </SignedIn>
-              <SignedOut>
-                <SignInButton mode="modal" redirectUrl="/listings">
-                  <button className="rounded border border-gray-400 px-3 py-0.5 text-yellow-50">
-                    Sign in
-                  </button>
-                </SignInButton>
-              </SignedOut>
+              <Clerk />
               <div className="-mr-2 flex md:hidden">
                 <button
                   onClick={() => setIsOpen(!isOpen)}
@@ -121,7 +109,6 @@ export default function Nav() {
             </div>
           </div>
         </div>
-
         <Transition
           show={isOpen}
           enter="transition ease-out duration-100 transform"
@@ -138,7 +125,7 @@ export default function Nav() {
                   Coach Me Code
                 </h1>
                 <a
-                  href="#"
+                  href="/listings"
                   className="hover:bg-yellow-100 hover:text-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Listings
