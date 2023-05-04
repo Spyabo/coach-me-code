@@ -1,24 +1,18 @@
 "use client";
 
-import { Fragment, useState } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
+import { getListingsResponse } from '@lib/types/listings';
+import { Fragment, useState } from 'react';
 
 
-export default function ListingFilterBy({ sort_by, value }) {
-    const sort_byArray = sort_by.map(item => item[`${value}`]);
-    const newSort_byArr = [];
-    for (let item of sort_byArray) {
-        for (let element of item) {
-            newSort_byArr.push(element);
-        }
-    };
-    const newArr = [...new Set(newSort_byArr)];
-
-    const [selected, setSelected] = useState(newArr[0])
+export default function ListingFilterBy({ listingArray, sort_by }: { listingArray: getListingsResponse[], sort_by: keyof getListingsResponse }) {
+    const values: (string | number)[] = listingArray.map(listingObj => listingObj[sort_by]).flat();
+    const uniqueValues = [...new Set(values)];
+    const [selected, setSelected] = useState("Filter By");
 
     return (
         <div className="justify-center w-40">
-            <h2>{`${value}`}</h2>
+            <h2>{`${sort_by}`}</h2>
             <Listbox value={selected} onChange={setSelected}>
                 <div className="relative mt-1">
                     <Listbox.Button className="relative w-full cursor-default rounded-lg bg-cyan-900 py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
@@ -33,7 +27,7 @@ export default function ListingFilterBy({ sort_by, value }) {
                         leaveTo="opacity-0"
                     >
                         <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-cyan-900 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                            {newArr.map((language, languageIdx) => (
+                            {uniqueValues.map((language, languageIdx) => (
                                 <Listbox.Option
                                     key={languageIdx}
                                     className={({ active }) =>
