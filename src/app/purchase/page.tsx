@@ -21,8 +21,7 @@ export default function Page() {
               <button className="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded-full">Order now</button>
               </div>
           </div>
-        </div>
-           
+        </div> 
     </div>
   )
 }
