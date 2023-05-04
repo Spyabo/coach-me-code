@@ -1,6 +1,6 @@
 import { Collection, Db, MongoClient } from "mongodb";
 import clientPromise from ".";
-import { getListingsResponse } from "../types/listings";
+import { getListingsResponse, listing } from "../types/listings";
 
 let client: MongoClient;
 let db: Db;
@@ -42,5 +42,15 @@ export async function getListings(): Promise<
     return { listings: mappedResult };
   } catch (err) {
     return { error: "Could not get listings" };
+  }
+}
+
+export async function postListing(formData: listing){
+  try {
+    if (!listings) await setup();
+    const result = await listings.insertOne(formData);
+    return { _id: result.insertedId.toString() };
+  } catch (err) {
+    return { error: "Could not post listing" };
   }
 }
