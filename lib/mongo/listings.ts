@@ -1,5 +1,6 @@
-import { Collection, Db, MongoClient, ObjectId } from "mongodb";
+import { Collection, Db, MongoClient } from "mongodb";
 import clientPromise from ".";
+import { getListingsResponse } from "../types/listings";
 
 let client: MongoClient;
 let db: Db;
@@ -18,27 +19,6 @@ async function setup() {
 
 async () => {
   await setup();
-};
-
-export type listing = {
-  listing_title: string;
-  mentor_rating: number;
-  listing_image: string;
-  listing_description: string;
-  name: string;
-  token_rate: number;
-  programming_languages: [];
-};
-
-export type getListingsResponse = {
-  _id: string;
-  listing_title: string;
-  mentor_rating: number;
-  listing_image: string;
-  listing_description: string;
-  name: string;
-  token_rate: number;
-  programming_languages: [];
 };
 
 export async function getListings(): Promise<
@@ -62,15 +42,5 @@ export async function getListings(): Promise<
     return { listings: mappedResult };
   } catch (err) {
     return { error: "Could not get listings" };
-  }
-}
-
-export async function postListing(formData: listing){
-  try {
-    if (!listings) await setup();
-    const result = await listings.insertOne(formData);
-    return { _id: result.insertedId.toString() };
-  } catch (err) {
-    return { error: "Could not post listing" };
   }
 }
