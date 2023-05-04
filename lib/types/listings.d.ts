@@ -21,7 +21,7 @@ export type getListingsResponse = {
   programming_languages: string[];
 };
 
-export type postListing = {
+export type postListingType = {
   listing_title: string;
   listing_description: string;
   programming_languages: string[];
