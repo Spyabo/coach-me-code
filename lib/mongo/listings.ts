@@ -21,7 +21,6 @@ async () => {
 };
 
 export type listing = {
-  _id: ObjectId;
   listing_title: string;
   mentor_rating: number;
   listing_image: string;
@@ -63,5 +62,15 @@ export async function getListings(): Promise<
     return { listings: mappedResult };
   } catch (err) {
     return { error: "Could not get listings" };
+  }
+}
+
+export async function postListing(formData: listing){
+  try {
+    if (!listings) await setup();
+    const result = await listings.insertOne(formData);
+    return { _id: result.insertedId.toString() };
+  } catch (err) {
+    return { error: "Could not post listing" };
   }
 }
