@@ -5,14 +5,14 @@ import ListingFilterBy from "../components/listing-filterBy/listing-filterBy";
 
 export default async function ListingsPage() {
 
-  const { listings } = await getListings();
+  const { listings }: { listings: getListingsResponse[] } = await getListings();
 
   return (
     <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <header>
         <h1 className="text-2xl font-bold my-4">Explore the available services...</h1>
       </header>
-      {/* <ListingFilterBy sort_by={listings} value={"programming_language"} /> */}
+      <ListingFilterBy listingArray={listings} sort_by={"programming_languages"} />
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-2">
         {listings.map((data: getListingsResponse) => {
           return (
