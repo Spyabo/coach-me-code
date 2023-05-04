@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default async function ListingPreview() {
     const { listings } = await getListings();
-
+    //make dummy
     return (
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <header>
