@@ -7,7 +7,7 @@ export default async function ListingByIDPage({ params }: { params: { id: string
     const listing: listing = await getListingById(params.id);
 
     return (
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Head>
                 <title>{listing.listing_title} | Code Mentor</title>
             </Head>

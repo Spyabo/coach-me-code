@@ -6,7 +6,7 @@ function BackButton() {
     return (
         <button
             onClick={() => router.back()}
-            className="text-gray-600 mt-4 hover:text-gray-800 focus:outline-none focus:text-gray-800"
+            className="bg-orange-500 text-white text-lg font-bold py-3 px-6 rounded-full mt-6 hover:bg-orange-600 transition-colors duration-300 ease-in-out"
         >
             ← Back
         </button>
