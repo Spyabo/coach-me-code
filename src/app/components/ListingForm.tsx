@@ -143,7 +143,7 @@ export default function ListingForm() {
               </p>
               <div className="mt-2">
                 <input
-                  type="text"
+                  type="number"
                   name="token-rate"
                   id="token-rate"
                   autoComplete="token-rate"
