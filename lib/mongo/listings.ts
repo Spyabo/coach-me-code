@@ -1,4 +1,4 @@
-import { Collection, Db, MongoClient } from "mongodb";
+import { Collection, Db, MongoClient, ObjectId } from "mongodb";
 import clientPromise from ".";
 import { getListingsResponse, listing } from "../types/listings";
 
@@ -52,5 +52,27 @@ export async function postListing(formData: listing){
     return { _id: result.insertedId.toString() };
   } catch (err) {
     return { error: "Could not post listing" };
+  }
+}
+
+export async function getListingById(
+  id: string
+): Promise<getListingsResponse | { error: string }> {
+  try {
+    if (!listings) await setup();
+    const result = await listings.findOne({ _id: new ObjectId(id) });
+    if (!result) return { error: "Listing not found" };
+    return {
+      _id: result._id.toString(),
+      listing_title: result.listing_title,
+      mentor_rating: result.mentor_rating,
+      listing_image: result.listing_image,
+      listing_description: result.listing_description,
+      name: result.name,
+      token_rate: result.token_rate,
+      programming_languages: result.programming_language,
+    };
+  } catch (err) {
+    return { error: "Could not get listing" };
   }
 }
