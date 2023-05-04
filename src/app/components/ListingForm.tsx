@@ -1,5 +1,8 @@
 "use client";
 
+import { postListing } from "@lib/mongo/listings";
+import { postListingType } from "@lib/types/listings";
+import stringToArray from "@lib/utils/stringToArray";
 import { useState } from "react";
 
 export default function ListingForm() {
@@ -10,14 +13,17 @@ export default function ListingForm() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const formData = {
-      listingTitle,
-      listingDescription,
-      programmingLanguages,
-      listingTokens,
+    const formData: postListingType = {
+      listing_title: listingTitle,
+      listing_description: listingDescription,
+      programming_languages: stringToArray(programmingLanguages),
+      token_rate: parseInt(listingTokens)
     };
-
-    // Send the form data to the Mongo server function in lib
+    console.log(formData);
+    // const formJSON = JSON.stringify(formData);
+    // Send the form data to the Mongo server function in lib fix since can't be "use client"
+    const res = await postListing(formData);
+    console.log(res);
   };
 
   return (
@@ -54,7 +60,6 @@ export default function ListingForm() {
                 </div>
               </div>
             </div>
-
             <div className="col-span-full">
               <label
                 htmlFor="description"
