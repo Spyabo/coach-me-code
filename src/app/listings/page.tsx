@@ -1,4 +1,5 @@
-import { getListings, getListingsResponse } from "@lib/mongo/listings";
+import { getListings } from "@lib/mongo/listings";
+import { getListingsResponse } from "@lib/types/listings";
 
 export default async function ListingsPage() {
   const { listings } = await getListings();
@@ -18,7 +19,7 @@ export default async function ListingsPage() {
                   <img src={data.listing_image} alt={data.listing_title} />
                 </p>
                 <h4>Language/s:</h4>
-                <p>{data.programming_language}</p>
+                <p>{data.programming_languages}</p>
                 <h4>Description</h4>
                 <p>{data.listing_description}</p>
                 <p>Cost: {data.token_rate} tokens</p>
