@@ -12,7 +12,7 @@ export default async function ListingsPage() {
       <header>
         <h1 className="text-2xl font-bold my-4">Explore the available services...</h1>
       </header>
-      <ListingFilterBy sort_by={listings} value={"programming_language"} />
+      {/* <ListingFilterBy sort_by={listings} value={"programming_language"} /> */}
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-2">
         {listings.map((data: getListingsResponse) => {
           return (
