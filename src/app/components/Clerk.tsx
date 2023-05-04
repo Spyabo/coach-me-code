@@ -7,13 +7,15 @@ export default function Clerk() {
   return (
     <>
       <SignedIn>
-        <UserButton />{" "}
-        <div className="px-2 flex justify-center items-center">
+        <div className="flex justify-center items-center">
           {user?.firstName}
+        </div>
+        <div className="flex justify-center items-center">
+          <UserButton />
         </div>
       </SignedIn>
       <SignedOut>
-        <SignInButton mode="modal" redirectUrl="/listings">
+        <SignInButton mode="modal" redirectUrl="/welcome">
           <button className="rounded border border-gray-400 px-3 py-0.5 text-yellow-50">
             Sign in
           </button>
