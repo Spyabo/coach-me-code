@@ -25,10 +25,11 @@ export async function getUsers(): Promise<
 > {
   try {
     if (!users) await setup();
-    const result = await users.find().limit(3).toArray();
+    const result = await users.find().toArray();
 
     const mappedResult: getUsersResponse[] = result.map((user) => ({
       _id: user._id.toString(),
+      clerkAuth: user.clerkAuth,
       name: user.name,
       email: user.email,
       phone: user.phone,
