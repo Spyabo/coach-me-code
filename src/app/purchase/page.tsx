@@ -5,16 +5,15 @@ import ShadCalendar from "../components/Calendar/ShadCalendar";
 export default function Page() {
   return (
     <div className="m-10 flex justify-center flex-row">
-      <div className="flex  bg-white rounded max-w-md p-0">
-        <div className="text-black">
+      <div className="flex  bg-white rounded max-w-md p-6">
+        <div className="text-black ">
           <Calendar />
         </div>
-        <div className="px-6 py-6 text-gray-700 text-base">
+        {/* <div className="px-6 py-6 text-gray-700 text-base">
           <p className="text-black">Pick a time</p>
           <DateTime />
-        </div>
+        </div> */}
       </div>
-      <ShadCalendar />
 
 
       <div className="m-10 max-w-md rounded overflow-hidden shadow-lg flex flex-row bg-white ">

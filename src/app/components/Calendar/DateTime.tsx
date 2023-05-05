@@ -17,14 +17,15 @@ export default function DateTime() {
     // today = hh + ":" + m; //or YYYY-MM-DDThh:mm
     // document.getElementById("datefield").setAttribute("min", "max", today);
 
-    // useState
+    const [time, setTime] = useState();
 
     return (
         <>
             {/* <label htmlFor="appt">Choose a time for your meeting:</label> */}
 
             <input type="time" id="appt" name="appt"
-                min="09:00" max="18:00" required />
+                min="09:00" max="18:00" required
+            />
 
             {/* <small>Office hours are 9am to 6pm</small> */}
 

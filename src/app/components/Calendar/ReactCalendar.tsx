@@ -11,6 +11,8 @@ export default function Calendar() {
     if (selected) {
         footer = <p>You picked {format(selected, 'PP')}.</p>;
     }
+
+    console.log(selected, "<==selected")
     return (
         <DayPicker
             mode="single"
