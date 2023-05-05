@@ -8,7 +8,7 @@ import { useState } from "react";
 export default function ListingForm() {
   const [listingTitle, setListingTitle] = useState("");
   const [listingDescription, setListingDescription] = useState("");
-  const [listingImage, setListingImage] = useState(undefined);
+  const [listingImage, setListingImage] = useState("");
   const [programmingLanguages, setProgrammingLanguages] = useState("");
   const [listingTokens, setListingTokens] = useState("");
   const { user, isSignedIn, isLoaded } = useUser();
