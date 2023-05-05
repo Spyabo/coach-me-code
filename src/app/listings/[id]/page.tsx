@@ -1,9 +1,8 @@
 import BackButton from "@/app/components/BackButton";
 import { getListingById } from "@lib/mongo/listings";
 import { listing } from "@lib/types/listings";
-import { stringToArray } from "@lib/utils/stringToArray";
+import stringToArray from "@lib/utils/stringToArray";
 import Head from "next/head";
-import stringToArray from '../../../../lib/utils/stringToArray';
 
 export default async function ListingByIDPage({ params }: { params: { id: string } }) {
     const listing: listing = await getListingById(params.id);
