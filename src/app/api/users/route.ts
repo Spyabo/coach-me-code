@@ -1,4 +1,5 @@
-import { getUsers, getUsersResponse } from "@lib/mongo/users";
+import { getUsers } from "@lib/mongo/users";
+import { getUsersResponse } from "@lib/types/users";
 import { NextResponse } from "next/server";
 
 export async function GET() {
