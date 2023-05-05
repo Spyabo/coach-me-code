@@ -1,4 +1,4 @@
-import { getUsers, patchTokens } from "@lib/mongo/users";
+import { patchTokens } from "@lib/mongo/users";
 import { tokenRequest } from "@lib/types/users";
 import { NextResponse } from "next/server";
 
