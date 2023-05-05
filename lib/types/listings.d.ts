@@ -1,5 +1,3 @@
-import { postListing } from "@lib/mongo/listings";
-
 export type listing = {
   listing_title: string;
   mentor_rating: number;
