@@ -19,11 +19,16 @@ export default function ListingForm() {
       programming_languages: stringToArray(programmingLanguages),
       token_rate: parseInt(listingTokens)
     };
-    console.log(formData);
-    // const formJSON = JSON.stringify(formData);
     // Send the form data to the Mongo server function in lib fix since can't be "use client"
-    //const res = await postListing(formData);
-    //console.log(res);
+    const res = await fetch("http://localhost:3000/api/listings", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    const { result } = await res.json();
+    console.log(result);
   };
 
   return (
