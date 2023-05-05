@@ -56,7 +56,7 @@ export default function UserForm() {
                 type="text"
                 name="firstName"
                 id="firstName"
-                className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" value={firstName}
+                className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" value={firstName || ""}
                 onChange={(event) => setFirstName(event.target.value)}
                 required
               />
@@ -77,7 +77,7 @@ export default function UserForm() {
                 type="text"
                 name="lastName"
                 id="lastName"
-                className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" value={lastName}
+                className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" value={lastName || ""}
                 onChange={(event) => setLastName(event.target.value)}
                 required
               />
