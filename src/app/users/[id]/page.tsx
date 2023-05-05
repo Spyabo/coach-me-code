@@ -5,4 +5,10 @@ export default async function UserById({ params }: {
     params: { id: string }
 }) {
     const user: user = await getUsersById(params.id);
+    return (
+        <>
+            <div>Hello, {params.id}</div>
+            <p>{user.email}</p>
+        </>
+    )
 }
