@@ -54,7 +54,7 @@ export async function patchTokens(
     const { _id, tokens } = request;
 
     const result = await users.updateOne(
-      { _id: new ObjectId(_id) },
+      { clerkAuth: _id },
       { $set: { tokens } }
     );
 
