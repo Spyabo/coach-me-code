@@ -1,6 +1,6 @@
 export type user = {
   _id: ObjectId;
-  clerkAuth: string;
+  clerk_id: string;
   name: string;
   email?: string;
   phone?: string;
@@ -13,7 +13,7 @@ export type user = {
 
 export type getUsersResponse = {
   _id: string;
-  clerkAuth: string;
+  clerk_id: string;
   name: string;
   email?: string;
   phone?: string;
@@ -25,6 +25,5 @@ export type getUsersResponse = {
 };
 
 export type tokenRequest = {
-  _id: string;
   tokens: number;
 };
