@@ -1,19 +1,29 @@
 "use client";
 
-import { postListingType } from "@lib/types/listings";
+import { useUser } from "@clerk/nextjs";
+import { listing } from "@lib/types/listings";
 import stringToArray from "@lib/utils/stringToArray";
 import { useState } from "react";
 
 export default function ListingForm() {
   const [listingTitle, setListingTitle] = useState("");
   const [listingDescription, setListingDescription] = useState("");
+  const [listingImage, setListingImage] = useState(undefined);
   const [programmingLanguages, setProgrammingLanguages] = useState("");
   const [listingTokens, setListingTokens] = useState("");
+  const { user, isSignedIn, isLoaded } = useUser();
+
+  if (!isLoaded || !isSignedIn) {
+    return null
+  }
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const formData: postListingType = {
+    const formData: listing = {
+      clerk_id: user.id,
+      mentor_name: user.fullName!,
       listing_title: listingTitle,
+      listing_image: listingImage,
       listing_description: listingDescription,
       programming_languages: stringToArray(programmingLanguages),
       token_rate: parseInt(listingTokens)
