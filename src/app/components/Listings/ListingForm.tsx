@@ -38,6 +38,12 @@ export default function ListingForm() {
     })
     const { result } = await res.json();
     console.log(result);
+
+    setListingTitle("");
+    setListingDescription("");
+    setListingImage("");
+    setProgrammingLanguages("");
+    setListingTokens("");
   };
 
   return (
