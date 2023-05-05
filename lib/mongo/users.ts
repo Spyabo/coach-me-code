@@ -1,6 +1,7 @@
 import { Collection, Db, MongoClient, ObjectId } from "mongodb";
 import clientPromise from ".";
-import { getUsersResponse, user } from "@lib/types/users";
+import { getUsersResponse, tokenRequest, user } from "@lib/types/users";
+import { NextRequest, NextResponse } from "next/server";
 let client: MongoClient;
 let db: Db;
 let users: Collection;
@@ -29,7 +30,7 @@ export async function getUsers(): Promise<
 
     const mappedResult: getUsersResponse[] = result.map((user) => ({
       _id: user._id.toString(),
-      clerkAuth: user.clerkAuth,
+      clerk_id: user.clerk_id,
       name: user.name,
       email: user.email,
       phone: user.phone,
@@ -45,6 +46,32 @@ export async function getUsers(): Promise<
     return { error: "Could not get users" };
   }
 }
+
+export async function patchTokens(
+  request: tokenRequest,
+  clerkID: string
+): Promise<{ success: boolean } | { error: string }> {
+  try {
+    if (!users) await setup();
+
+    const result = await users.updateOne(
+      { clerk_id: clerkID },
+      { $inc: { tokens: request.tokens } }
+    );
+
+    if (result.modifiedCount === 1) {
+      return { success: true };
+    } else if (result.modifiedCount === 0) {
+      return { error: "No matching document found to update" };
+    } else {
+      return {
+        error: "Multiple documents found - please check the query criteria",
+      };
+    }
+  } catch (err) {
+    return { error: "Could not update tokens" };
+  }
+
 
 export async function getUsersById(id: string) {
     try{
