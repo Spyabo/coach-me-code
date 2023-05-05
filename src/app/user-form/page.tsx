@@ -25,7 +25,9 @@ console.log(user)
         phoneNumber,
         emailAddress,
         yearsExperience,
-        programmingLanguages
+        programmingLanguages, 
+        tokens: 100,
+        reviews: []
     }
 
 
@@ -36,8 +38,8 @@ console.log(user)
    
     <form onSubmit={handleSubmit} className="m-8">
      
-        <div className="border-b border-gray-900/10 pb-12 ">
-            <div className="header flex flex-col items-center">
+        <div className="border-b">
+            <div className="header flex flex-col my-8">
           <h1 className="text-base font-semibold leading-7 text-gray-900">
             Nearly there! 
           </h1>
@@ -45,7 +47,7 @@ console.log(user)
             You just need to complete the below form:
           </p>
           </div>
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        
             <div className="sm:col-span-4">
               <label
                 htmlFor="firstName"
@@ -173,7 +175,7 @@ console.log(user)
                 </div>
               </div>
             </div>
-          </div>
+      
         </div>
       <div className="mt-6 flex items-center justify-center gap-x-6">
         <button
