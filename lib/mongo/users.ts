@@ -25,10 +25,11 @@ export async function getUsers(): Promise<
 > {
   try {
     if (!users) await setup();
-    const result = await users.find().limit(3).toArray();
+    const result = await users.find().toArray();
 
     const mappedResult: getUsersResponse[] = result.map((user) => ({
       _id: user._id.toString(),
+      clerkAuth: user.clerkAuth,
       name: user.name,
       email: user.email,
       phone: user.phone,
@@ -43,4 +44,26 @@ export async function getUsers(): Promise<
   } catch (err) {
     return { error: "Could not get users" };
   }
+}
+
+export async function getUsersById(id: string) {
+    try{
+      if (!users) await setup();
+      const result = await users.findOne({ _id: new ObjectId(id)})
+      if(!result) return {error: "User not found"}
+      return {
+        _id: result._id.toString(),
+        clerkAuth: result.clerkAuth,
+        name: result.name,
+        email: result.email,
+        phone: result.phone,
+        years_of_experience: result.years_of_experience,
+        programming_languages: result.programming_languages,
+        listing_ids: result.listing_ids,
+        order_ids: result.order_ids,
+        tokens: result.tokens,
+      }
+    }catch(err){
+      return {error: "Could not get user"}
+    }
 }
