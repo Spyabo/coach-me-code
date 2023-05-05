@@ -1,6 +1,6 @@
 import { Collection, Db, MongoClient, ObjectId } from "mongodb";
 import clientPromise from ".";
-import { getUsersResponse, user } from "@lib/types/users";
+import { getUsersResponse, tokenRequest, user } from "@lib/types/users";
 let client: MongoClient;
 let db: Db;
 let users: Collection;
@@ -42,5 +42,28 @@ export async function getUsers(): Promise<
     return { users: mappedResult };
   } catch (err) {
     return { error: "Could not get users" };
+  }
+}
+
+export async function patchTokens(
+  request: tokenRequest
+): Promise<{ success: boolean } | { error: string }> {
+  try {
+    if (!users) await setup();
+
+    const { _id, tokens } = request;
+
+    const result = await users.updateOne(
+      { _id: new ObjectId(_id) },
+      { $set: { tokens } }
+    );
+
+    if (result.modifiedCount === 1) {
+      return { success: true };
+    } else {
+      return { error: "Could not update tokens" };
+    }
+  } catch (err) {
+    return { error: "Could not update tokens" };
   }
 }
