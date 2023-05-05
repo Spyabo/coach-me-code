@@ -44,3 +44,12 @@ export async function getUsers(): Promise<
     return { error: "Could not get users" };
   }
 }
+
+export async function getUsersById(id: string) {
+    try{
+      if (!users) await setup();
+      const result = await users.findOne({ _id: new ObjectId})
+    }catch(err){
+      return {error: "Could not get user"}
+    }
+}
