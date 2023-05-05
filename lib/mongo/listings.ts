@@ -1,4 +1,4 @@
-import { getListingsResponse } from '@lib/types/listings';
+import { getListingsResponse, listing } from '@lib/types/listings';
 import { Collection, Db, MongoClient, ObjectId } from "mongodb";
 import { NextRequest } from "next/server";
 import clientPromise from ".";
@@ -47,10 +47,9 @@ export async function getListings(): Promise<
   }
 }
 
-export async function postListing(formData: NextRequest){
+export async function postListing(newListing: listing){
   try {
     if (!listings) await setup();
-    const newListing = await formData.json();
     const result = await listings.insertOne(newListing);
     return { _id: result.insertedId.toString(), ...newListing };
   } catch (err) {
