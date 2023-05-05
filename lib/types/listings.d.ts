@@ -1,4 +1,4 @@
-import { postListing } from "@lib/mongo/listings";
+import { postListing } from "@lib/mongo/listings"; //why is this import here?
 
 export type listing = {
   listing_title: string;
