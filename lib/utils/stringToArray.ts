@@ -1,3 +1,3 @@
 export default function stringToArray(str: string) {
-    return str.trim().split(/[^a-zA-Z]+/);
+    return str ? str.trim().split(/[^a-zA-Z]+/) : [];
 }
