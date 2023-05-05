@@ -11,6 +11,8 @@ export default function ListingForm() {
   const [listingImage, setListingImage] = useState("");
   const [programmingLanguages, setProgrammingLanguages] = useState("");
   const [listingTokens, setListingTokens] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
   const { user, isSignedIn, isLoaded } = useUser();
 
   if (!isLoaded || !isSignedIn) {
@@ -29,85 +31,109 @@ export default function ListingForm() {
       token_rate: parseInt(listingTokens)
     };
     // Send the form data to the Mongo server function in lib fix since can't be "use client"
-    const res = await fetch("http://localhost:3000/api/listings", {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    const { result } = await res.json();
-    console.log(result);
+    try {
+      const res = await fetch("http://localhost:3000/api/listings", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      const { result } = await res.json();
+      console.log(result);
 
-    setListingTitle("");
-    setListingDescription("");
-    setListingImage("");
-    setProgrammingLanguages("");
-    setListingTokens("");
+      setListingTitle("");
+      setListingDescription("");
+      setListingImage("");
+      setProgrammingLanguages("");
+      setListingTokens("");
+      setSubmitted(true);
+    } catch (error) {
+      setError(true);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="space-y-12">
-        <div className="border-b border-gray-900/10 pb-12">
-          <h1 className="text-base font-semibold leading-7 text-gray-900">
-            Create a new listing
-          </h1>
-          <p className="mt-1 text-sm leading-6 text-gray-600">
-            This will allow you to create a new listing
-          </p>
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div className="sm:col-span-4">
-              <label
-                htmlFor="listingTitle"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Listing Title
-              </label>
-              <div className="mt-2">
-                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                  <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm"></span>
-                  <input
-                    type="text"
-                    name="listingTitle"
-                    id="listingTitle"
-                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    value={listingTitle}
-                    onChange={(event) => setListingTitle(event.target.value)}
-                    placeholder="Listing Title"
-                    autoComplete="off"
-                    required
-                  />
+    <>
+      {error && <div className=" px-5 pb-5" >
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+          <strong className="font-bold">Holy smokes!</strong>{" "}
+          <span className="block sm:inline">Listing not created, please try again.</span>
+          <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
+            <svg className="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
+          </span>
+        </div>
+      </div>}
+      {submitted && <div className=" px-5 pb-5" >
+        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+          <strong className="font-bold">Holy guacamole!</strong>{" "}
+          <span className="block sm:inline">Listing has been created.</span>
+          <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
+            <svg className="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
+          </span>
+        </div>
+      </div>}
+      <form onSubmit={handleSubmit}>
+        <div className="space-y-12">
+          <div className="border-b border-gray-900/10 pb-12">
+            <h1 className="text-base font-semibold leading-7 text-gray-900">
+              Create a new listing
+            </h1>
+            <p className="mt-1 text-sm leading-6 text-gray-600">
+              This will allow you to create a new listing
+            </p>
+            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="listingTitle"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Listing Title
+                </label>
+                <div className="mt-2">
+                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                    <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm"></span>
+                    <input
+                      type="text"
+                      name="listingTitle"
+                      id="listingTitle"
+                      className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      value={listingTitle}
+                      onChange={(event) => setListingTitle(event.target.value)}
+                      placeholder="Listing Title"
+                      autoComplete="off"
+                      required
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col-span-full">
-              <label
-                htmlFor="description"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Description
-              </label>
-              <div className="mt-2">
-                <textarea
-                  id="description"
-                  name="description"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  value={listingDescription}
-                  onChange={(event) =>
-                    setListingDescription(event.target.value)
-                  }
-                  placeholder="Listing Description"
-                  required
-                ></textarea>
+              <div className="col-span-full">
+                <label
+                  htmlFor="description"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Description
+                </label>
+                <div className="mt-2">
+                  <textarea
+                    id="description"
+                    name="description"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    value={listingDescription}
+                    onChange={(event) =>
+                      setListingDescription(event.target.value)
+                    }
+                    placeholder="Listing Description"
+                    required
+                  ></textarea>
+                </div>
+                <p className="mt-3 text-sm leading-6 text-gray-600">
+                  Write a few sentences about the service you would like to
+                  provide.
+                </p>
               </div>
-              <p className="mt-3 text-sm leading-6 text-gray-600">
-                Write a few sentences about the service you would like to
-                provide.
-              </p>
-            </div>
 
-            {/* <div className="col-span-full">
+              {/* <div className="col-span-full">
             <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">Cover photo</label>
             <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
               <div className="text-center">
@@ -125,80 +151,81 @@ export default function ListingForm() {
               </div>
             </div>
           </div> */}
-          </div>
-        </div>
-
-        <div className="border-b border-gray-900/10 pb-12">
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="programming-languages"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Programming Languages
-              </label>
-              <p className="mt-3 text-sm leading-6 text-gray-600">
-                List all of the languages you are offering within this service
-              </p>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="programming-languages"
-                  id="programming-languages"
-                  autoComplete="programming-languages"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  placeholder="HTML, Javascript, PHP..."
-                  value={programmingLanguages}
-                  onChange={(event) =>
-                    setProgrammingLanguages(event.target.value)
-                  }
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="token-rate"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Token Rate
-              </label>
-              <p className="mt-3 text-sm leading-6 text-gray-600">
-                What is the token rate per hour for this service?
-              </p>
-              <div className="mt-2">
-                <input
-                  type="number"
-                  name="token-rate"
-                  id="token-rate"
-                  autoComplete="off"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  placeholder="50"
-                  value={listingTokens}
-                  onChange={(event) => setListingTokens(event.target.value)}
-                  required
-                />
-              </div>
             </div>
           </div>
+
+          <div className="border-b border-gray-900/10 pb-12">
+            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="programming-languages"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Programming Languages
+                </label>
+                <p className="mt-3 text-sm leading-6 text-gray-600">
+                  List all of the languages you are offering within this service
+                </p>
+                <div className="mt-2">
+                  <input
+                    type="text"
+                    name="programming-languages"
+                    id="programming-languages"
+                    autoComplete="programming-languages"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    placeholder="HTML, Javascript, PHP..."
+                    value={programmingLanguages}
+                    onChange={(event) =>
+                      setProgrammingLanguages(event.target.value)
+                    }
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="token-rate"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Token Rate
+                </label>
+                <p className="mt-3 text-sm leading-6 text-gray-600">
+                  What is the token rate per hour for this service?
+                </p>
+                <div className="mt-2">
+                  <input
+                    type="number"
+                    name="token-rate"
+                    id="token-rate"
+                    autoComplete="off"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    placeholder="50"
+                    value={listingTokens}
+                    onChange={(event) => setListingTokens(event.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="mt-6 flex items-center justify-end gap-x-6">
-        <button
-          type="button"
-          className="text-sm font-semibold leading-6 text-gray-900"
-        >
-          Cancel
-        </button>
-        <button
-          type="submit"
-          className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          onSubmit={handleSubmit}
-        >
-          Post Listing
-        </button>
-      </div>
-    </form>
+        <div className="mt-6 flex items-center justify-end gap-x-6">
+          <button
+            type="button"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            onSubmit={handleSubmit}
+          >
+            Post Listing
+          </button>
+        </div>
+      </form>
+    </>
   );
 }
