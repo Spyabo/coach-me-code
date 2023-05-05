@@ -1,6 +1,5 @@
 "use client";
 
-import { postListing } from "@lib/mongo/listings";
 import { postListingType } from "@lib/types/listings";
 import stringToArray from "@lib/utils/stringToArray";
 import { useState } from "react";
