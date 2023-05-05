@@ -16,7 +16,6 @@ export default function UserForm() {
     return null;
   }
 
-  console.log(user)
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const newUser = {
@@ -32,7 +31,7 @@ export default function UserForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="m-8">
+    <form onSubmit={handleSubmit} className="flex justify-center items-center flex-col m-8">
       <div className="border-b">
         <div className="header flex flex-col my-8">
           <h1 className="text-base font-semibold leading-7 text-gray-900">
