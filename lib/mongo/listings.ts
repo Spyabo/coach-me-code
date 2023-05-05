@@ -38,7 +38,7 @@ export async function getListings(): Promise<
       listing_description: listing.listing_description,
       listing_rating: listing.mentor_rating,
       token_rate: listing.token_rate,
-      programming_languages: listing.programming_language,
+      programming_languages: listing.programming_languages,
     }));
 
     return { listings: mappedResult };
@@ -67,13 +67,14 @@ export async function getListingById(
     if (!result) return { error: "Listing not found" };
     return {
       _id: result._id.toString(),
+      clerk_id: result.clerk_id,
+      mentor_name: result.mentor_name,
       listing_title: result.listing_title,
-      mentor_rating: result.mentor_rating,
       listing_image: result.listing_image,
       listing_description: result.listing_description,
-      name: result.name,
+      listing_rating: result.listing_rating,
       token_rate: result.token_rate,
-      programming_languages: result.programming_language,
+      programming_languages: result.programming_languages,
     };
   } catch (err) {
     return { error: "Could not get listing" };
