@@ -1,7 +1,9 @@
 import BackButton from "@/app/components/BackButton";
 import { getListingById } from "@lib/mongo/listings";
 import { listing } from "@lib/types/listings";
+import { stringToArray } from "@lib/utils/stringToArray";
 import Head from "next/head";
+import stringToArray from '../../../../lib/utils/stringToArray';
 
 export default async function ListingByIDPage({ params }: { params: { id: string } }) {
     const listing: listing = await getListingById(params.id);
@@ -31,7 +33,7 @@ export default async function ListingByIDPage({ params }: { params: { id: string
                                 <strong>Rating:</strong> {listing.mentor_rating / 10}
                             </li>
                             <li>
-                                <strong>Language/s:</strong> {listing.programming_languages.join(", ")}
+                                <strong>Language/s:</strong> {stringToArray(listing.programming_languages)}
                             </li>
                             <li>
                                 <strong>Cost:</strong> {listing.token_rate} tokens
