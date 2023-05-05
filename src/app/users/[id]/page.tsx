@@ -6,6 +6,7 @@ export default async function UserById({ params }: {
     params: { id: string }
 }) {
     const user: user = await getUsersById(params.id);
+
     return (
         <div className="bg-white rounded-lg shadow-lg h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ul>
