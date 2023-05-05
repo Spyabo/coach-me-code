@@ -59,6 +59,7 @@ export default function ListingForm() {
                     value={listingTitle}
                     onChange={(event) => setListingTitle(event.target.value)}
                     placeholder="Listing Title"
+                    autoComplete="off"
                     required
                   />
                 </div>
