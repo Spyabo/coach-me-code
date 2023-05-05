@@ -1,6 +1,7 @@
 import { getListings, postListing } from "@lib/mongo/listings";
 import { getListingsResponse } from "@lib/types/listings";
 import { NextRequest, NextResponse } from "next/server";
+import { listing } from '../../../../lib/types/listings';
 
 export async function GET() {
   try {
@@ -17,7 +18,7 @@ export async function GET() {
 
 export async function POST(formData: NextRequest) {
   try {
-    const newListing = await formData.json();
+    const newListing: listing = await formData.json();
     const result = await postListing(newListing);
     if ("error" in result) {
       throw new Error(result.error);
