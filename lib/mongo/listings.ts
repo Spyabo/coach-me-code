@@ -31,11 +31,12 @@ export async function getListings(): Promise<
 
     const mappedResult: getListingsResponse[] = result.map((listing) => ({
       _id: listing._id.toString(),
+      clerk_id: listing.clerk_id,
+      mentor_name: listing.mentor_name,
       listing_title: listing.listing_title,
-      mentor_rating: listing.mentor_rating,
       listing_image: listing.listing_image,
       listing_description: listing.listing_description,
-      name: listing.name,
+      listing_rating: listing.mentor_rating,
       token_rate: listing.token_rate,
       programming_languages: listing.programming_language,
     }));
