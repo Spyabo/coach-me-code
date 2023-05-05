@@ -1,5 +1,6 @@
 import DateTime from "../components/Calendar/DateTime";
-import Calendar from "../components/Calendar/Calendar";
+import Calendar from "../components/Calendar/ReactCalendar";
+import ShadCalendar from "../components/Calendar/ShadCalendar";
 
 export default function Page() {
   return (
@@ -13,6 +14,7 @@ export default function Page() {
           <DateTime />
         </div>
       </div>
+      <ShadCalendar />
 
 
       <div className="m-10 max-w-md rounded overflow-hidden shadow-lg flex flex-row bg-white ">
