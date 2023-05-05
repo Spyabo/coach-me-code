@@ -1,20 +1,21 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-import { useAuth, useUser } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 import { useState } from 'react';
 
 export default function UserForm() {
   const { isLoaded, isSignedIn, user } = useUser();
 
-  const [firstName, setFirstName] = useState(user?.firstName);
-  const [lastName, setLastName] = useState(user?.lastName);
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [emailAddress, setEmailAddress] = useState(user?.emailAddresses[0]);
-  const [yearsExperience, setYearsExperience] = useState("");
-  const [programmingLanguages, setProgrammingLanguages] = useState("");
-
   if (!isLoaded || !isSignedIn) {
     return null;
   }
+
+  const [firstName, setFirstName] = useState(user?.firstName);
+  const [lastName, setLastName] = useState(user?.lastName);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [emailAddress, setEmailAddress] = useState(user?.primaryEmailAddress?.emailAddress);
+  const [yearsExperience, setYearsExperience] = useState("");
+  const [programmingLanguages, setProgrammingLanguages] = useState("");
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
