@@ -1,6 +1,7 @@
+import { getListingsResponse, listing } from '@lib/types/listings';
 import { Collection, Db, MongoClient, ObjectId } from "mongodb";
+import { NextRequest } from "next/server";
 import clientPromise from ".";
-import { getListingsResponse, listing } from "../types/listings";
 
 let client: MongoClient;
 let db: Db;
@@ -30,13 +31,14 @@ export async function getListings(): Promise<
 
     const mappedResult: getListingsResponse[] = result.map((listing) => ({
       _id: listing._id.toString(),
+      clerk_id: listing.clerk_id,
+      mentor_name: listing.mentor_name,
       listing_title: listing.listing_title,
-      mentor_rating: listing.mentor_rating,
       listing_image: listing.listing_image,
       listing_description: listing.listing_description,
-      name: listing.name,
+      listing_rating: listing.mentor_rating,
       token_rate: listing.token_rate,
-      programming_languages: listing.programming_language,
+      programming_languages: listing.programming_languages,
     }));
 
     return { listings: mappedResult };
@@ -45,11 +47,11 @@ export async function getListings(): Promise<
   }
 }
 
-export async function postListing(formData: listing){
+export async function postListing(newListing: listing){
   try {
     if (!listings) await setup();
-    const result = await listings.insertOne(formData);
-    return { _id: result.insertedId.toString() };
+    const result = await listings.insertOne(newListing);
+    return { _id: result.insertedId.toString(), ...newListing };
   } catch (err) {
     return { error: "Could not post listing" };
   }
@@ -64,13 +66,14 @@ export async function getListingById(
     if (!result) return { error: "Listing not found" };
     return {
       _id: result._id.toString(),
+      clerk_id: result.clerk_id,
+      mentor_name: result.mentor_name,
       listing_title: result.listing_title,
-      mentor_rating: result.mentor_rating,
       listing_image: result.listing_image,
       listing_description: result.listing_description,
-      name: result.name,
+      listing_rating: result.listing_rating,
       token_rate: result.token_rate,
-      programming_languages: result.programming_language,
+      programming_languages: result.programming_languages,
     };
   } catch (err) {
     return { error: "Could not get listing" };

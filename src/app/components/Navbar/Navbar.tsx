@@ -49,7 +49,12 @@ export default function Nav() {
                   >
                     Listings
                   </a>
-
+                  <a
+                    href="/listings/create-listing"
+                    className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Create Listing
+                  </a>
                   <a
                     onClick={handleMoneyClick}
                     href={`${walletDirection}`}
