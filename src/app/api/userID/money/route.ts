@@ -4,10 +4,6 @@ import { NextResponse } from "next/server";
 
 export async function PATCH({ _id, tokens }: tokenRequest) {
   try {
-    if (tokens <= 0 || tokens > 50) {
-      throw new Error("Invalid tokens value");
-    }
-
     const result = await patchTokens({
       _id,
       tokens,
