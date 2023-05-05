@@ -30,7 +30,7 @@ export default async function ListingByIDPage({ params }: { params: { id: string
                                 <strong>Rating:</strong> {listing.mentor_rating / 10}
                             </li>
                             <li>
-                                <strong>Language/s:</strong> {stringToArray(listing.programming_languages)}
+                                <strong>Language/s:</strong> {stringToArray(listing.programming_languages.toString())}
                             </li>
                             <li>
                                 <strong>Cost:</strong> {listing.token_rate} tokens
