@@ -17,7 +17,8 @@ export async function GET() {
 
 export async function POST(formData: NextRequest) {
   try {
-    const result = await postListing(formData);
+    const newListing = await formData.json();
+    const result = await postListing(newListing);
     if ("error" in result) {
       throw new Error(result.error);
     }
