@@ -21,3 +21,8 @@ export type user = {
     order_ids: [];
     tokens: number;
   };
+
+  export type tokenRequest =  {
+    _id: string;
+  tokens: number;
+  } 
