@@ -1,5 +1,5 @@
 import { getUsers } from "@lib/mongo/users";
-import { getUsersResponse } from "@lib/types/users";
+import { getUsersResponse, tokenRequest } from "@lib/types/users";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -9,7 +9,7 @@ export async function GET() {
       throw new Error(result.error);
     }
     const users: getUsersResponse[] = result.users;
-    return NextResponse.json(users);
+    return NextResponse.json({ users });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
