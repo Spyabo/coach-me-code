@@ -1,7 +1,6 @@
 import { getListings, postListing } from "@lib/mongo/listings";
-import { getListingsResponse } from "@lib/types/listings";
+import { getListingsResponse, listing } from "@lib/types/listings";
 import { NextRequest, NextResponse } from "next/server";
-import { listing } from '../../../../lib/types/listings';
 
 export async function GET() {
   try {
