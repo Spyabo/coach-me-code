@@ -1,11 +1,11 @@
-import Calendar from "../components/Calendar/ReactCalendar";
+import ReactCalendar from "../components/Calendar/ReactCalendar";
 
 export default function Page() {
   return (
     <div className="m-10 flex justify-center flex-row">
       <div className="flex  bg-white rounded max-w-md p-6">
         <div className="text-black ">
-          <Calendar />
+          <ReactCalendar />
         </div>
       </div>
 

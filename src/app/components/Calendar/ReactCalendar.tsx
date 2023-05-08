@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import { useState } from "react";
 import { DayPicker } from "react-day-picker";
 
-export default function Calendar() {
+export default function ReactCalendar() {
   const [selected, setSelected] = useState<Date>();
 
   let footer = <p>Please pick a day.</p>;
