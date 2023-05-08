@@ -12,6 +12,10 @@ export default function ReactCalendar() {
   if (selected) {
     footer = <p>You picked {format(selected, "PP")}.</p>;
   }
+  let footer2 = <p>Please pick a day.</p>;
+  if (date) {
+    footer2 = <p>You picked {format(date!, "PP")}.</p>;
+  }
 
   return (
     <>
@@ -26,6 +30,7 @@ export default function ReactCalendar() {
         selected={date}
         onSelect={setDate}
         className="rounded-md border"
+        footer={footer2}
       />
     </>
   );
