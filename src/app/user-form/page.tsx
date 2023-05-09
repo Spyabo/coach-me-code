@@ -46,6 +46,13 @@ export default function UserForm() {
     } catch (error) {
       console.log(error);
     }
+
+    setFirstName("");
+    setLastName("");
+    setPhoneNumber("");
+    setEmailAddress("");
+    setYearsExperience("");
+    setProgrammingLanguages("");
   };
 
   return (
