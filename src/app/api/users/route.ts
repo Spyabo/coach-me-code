@@ -1,4 +1,9 @@
-import { getUsers, postUser } from "@lib/mongo/users";
+import {
+  getUserByClerkId,
+  getUsers,
+  patchUser,
+  postUser,
+} from "@lib/mongo/users";
 import { getUsersResponse, tokenRequest, userType } from "@lib/types/users";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -18,7 +23,13 @@ export async function GET() {
 export async function PUT(user: NextRequest) {
   try {
     const newUser: userType = await user.json();
-    const result = await postUser(newUser);
+    const checkUser = await getUserByClerkId(newUser.clerk_id);
+    let result: getUsersResponse | { error: string } | {} = {};
+    if ("error" in checkUser) {
+      result = await postUser(newUser);
+    } else {
+      result = await patchUser(checkUser._id, newUser);
+    }
     if ("error" in result) {
       throw new Error(result.error);
     }
