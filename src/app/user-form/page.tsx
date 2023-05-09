@@ -28,7 +28,10 @@ export default function UserForm() {
       email: emailAddress,
       phone: phoneNumber,
       years_of_experience: parseInt(yearsExperience),
-      programming_languages: stringToArray(programmingLanguages)
+      programming_languages: stringToArray(programmingLanguages),
+      listing_ids: [],
+      order_ids: [],
+      tokens: 0
     }
     try {
       const res = await fetch("http://localhost:3000/api/users", {
