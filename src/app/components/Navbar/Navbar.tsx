@@ -20,7 +20,7 @@ export default function Nav() {
   return (
     <div>
       <div className="hidden md:block"></div>
-      <nav className="bg-gray-800 shadow">
+      <nav className="bg-purple-600 shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  text-white">
           <div className="flex items-center justify-between h-16 py-4 md:py-0">
             <div className="flex items-center">
