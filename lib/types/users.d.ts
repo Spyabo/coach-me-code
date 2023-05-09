@@ -5,7 +5,6 @@ export type userType = {
   phone?: string;
   years_of_experience: number;
   programming_languages: string[];
-  tokens: number;
 };
 
 export type getUsersResponse = {
