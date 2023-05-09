@@ -57,6 +57,19 @@ export async function postUser(newUser: userType) {
   }
 }
 
+export async function patchUser(id: string, newUser: userType) {
+  try {
+    if (!users) await setup();
+    const result = await users.updateOne(
+      { _id: new ObjectId(id) },
+      { $set: newUser }
+    );
+    return { modifiedCount: result.modifiedCount };
+  } catch (err) {
+    return { error: "Could not patch user" };
+  }
+}
+
 export async function patchTokens(
   request: tokenRequest,
   clerkID: string
@@ -106,10 +119,10 @@ export async function getUsersById(id: string) {
 }
 
 export async function getUserByClerkId(clerk_id: string) {
-  try{
+  try {
     if (!users) await setup();
-    const result = await users.findOne({ clerk_id})
-    if(!result) return {error: "User not found"}
+    const result = await users.findOne({ clerk_id });
+    if (!result) return { error: "User not found" };
     return {
       _id: result._id.toString(),
       clerkAuth: result.clerkAuth,
@@ -121,8 +134,8 @@ export async function getUserByClerkId(clerk_id: string) {
       listing_ids: result.listing_ids,
       order_ids: result.order_ids,
       tokens: result.tokens,
-    }
-  }catch(err){
-    return {error: "Could not get user"}
+    };
+  } catch (err) {
+    return { error: "Could not get user" };
   }
 }
