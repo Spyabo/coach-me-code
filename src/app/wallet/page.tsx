@@ -1,14 +1,15 @@
 'use client'
 import { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
+import { useRouter } from "next/navigation";
 export default function money() {
   const [tokensToAdd, setTokensToAdd] = useState<number>(0);
   const { user } = useUser();
+  const router = useRouter();
 
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     const response = await fetch(`/api/money/${user?.id}`, {
       method: "PATCH",
       headers: {
@@ -17,7 +18,7 @@ export default function money() {
       body: JSON.stringify({ tokens: tokensToAdd }),
     });
     const data = await response.json();
-    console.log(data)
+    router.push('/listings');
   }
 
   return (
