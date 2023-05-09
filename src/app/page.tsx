@@ -24,7 +24,7 @@ export default function Landing() {
             Coach Me Code grants you access to a variety of courses, with all of the tools you need to reach your goals.
           </p>
           <Image
-            src="/mentors.jpg"
+            src="/landing-1.svg"
             alt="Mentors"
             width={400}
             height={300}
@@ -39,7 +39,7 @@ export default function Landing() {
             Coach others to gain confidence in your skills and experience. It's also something nice to add to you resume as a mentor.
           </p>
           <Image
-            src="/services.jpg"
+            src="/landing-2.svg"
             alt="Services"
             width={400}
             height={300}
