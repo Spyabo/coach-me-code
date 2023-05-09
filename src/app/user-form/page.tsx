@@ -21,7 +21,7 @@ export default function UserForm() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const fullName = firstName?.concat(lastName!).trim();
+    const fullName = `${firstName} ${lastName}`.trim();
     const newUser: userType = {
       clerk_id: user.id,
       name: fullName!,
