@@ -20,7 +20,7 @@ export default function Nav() {
   return (
     <div>
       <div className="hidden md:block"></div>
-      <nav className="bg-purple-800 text-white fixed top-0 w-full py-1">
+      <nav className="bg-purple-800 text-white fixed top-0 w-full py-1 mb-5">
         <div className="max-w-7xl mx-auto lg:px-7  text-white">
           <div className="flex items-center justify-between h-16 md:px-6 px-6">
             <div className="flex items-center justify-center">
@@ -125,12 +125,25 @@ export default function Nav() {
         >
           {(ref) => (
             <div className="md:hidden" id="mobile-menu">
-              <div ref={ref} className="px-2 pb-3 space-y-1 sm:px-3">
+              <div ref={ref} className="px-2 pb-3 space-y-1 sm:px-3 flex flex-col">
                 <a
                   href="/listings"
-                  className="hover:bg-yellow-100 hover:text-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+                  className="hover:bg-purple-600 text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Listings
+                </a>
+                <a
+                  href="/listings/create-listing"
+                  className="hover:bg-purple-600 text-white block px-3 py-2 rounded-md text-base font-medium"
+                >
+                  Create Listing
+                </a>
+                <a
+                  onClick={handleMoneyClick}
+                  href={`${walletDirection}`}
+                  className="hover:bg-purple-600 text-white block px-3 py-2 rounded-md text-base font-medium"
+                >
+                  Money
                 </a>
               </div>
             </div>
