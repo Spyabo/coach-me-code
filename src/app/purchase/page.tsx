@@ -11,7 +11,6 @@ export default function Page() {
         <div className="px-6 py-6 text-gray-700 text-base">
           <h1 className="font-bold text-xl mb-2">Order Summary</h1>
           <p>Listing title</p>
-          <img src="" alt="" />
           <p>Listing description. Lorem ipsum dolor sit amet, consectetur</p>
           <div className="flex flex-row justify-between py-2">
             <p className="font-bold">Token Balance</p>
