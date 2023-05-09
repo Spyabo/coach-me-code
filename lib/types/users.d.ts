@@ -14,7 +14,7 @@ export type getUsersResponse = {
   email?: string;
   phone?: string;
   years_of_experience: number;
-  programming_languages: [];
+  programming_languages: string[];
   listing_ids: [];
   order_ids: [];
   tokens: number;
