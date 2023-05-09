@@ -19,7 +19,7 @@ export default function Nav() {
 
   return (
     <div>
-      <nav className="bg-purple-800 text-white fixed top-0 w-full py-1 mb-5">
+      <nav className="bg-purple-800 text-white fixed top-0 w-full mb-5">
         <div className="max-w-7xl mx-auto lg:px-7  text-white">
           <div className="flex items-center justify-between h-16 md:px-6 px-6">
             <div className="flex items-center justify-center">
