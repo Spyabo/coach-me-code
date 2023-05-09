@@ -36,7 +36,7 @@ export default async function ListingByIDPage({ params }: { params: { id: string
                                 <strong>Cost:</strong> {listing.token_rate} tokens
                             </li>
                         </ul>
-                        <button className="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded font-bold">
+                        <button className="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded">
                             Book Now
                         </button>
                     </div>
