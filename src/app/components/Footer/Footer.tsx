@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer className="z-10 py-8 x-10 px-10 text-white bg-purple-800">
-      <div className="container">
+      <div className="container max-w-7xl mx-auto lg:px-7 ">
         <h5 className="text-lg">Coach Me Code</h5>
         <p className="mt-4 text-sm text-stone-500">
           &copy; {new Date().getFullYear()} Riff Raffs.
