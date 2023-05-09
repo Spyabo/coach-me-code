@@ -1,9 +1,24 @@
 'use client'
 import { useState } from "react";
-
+import { useUser } from "@clerk/clerk-react";
 export default function money() {
   const [tokensToAdd, setTokensToAdd] = useState<number>(0);
+  const { user } = useUser();
 
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const response = await fetch(`/api/money/${user?.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ tokens: tokensToAdd }),
+    });
+    const data = await response.json();
+    console.log(data)
+  }
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col py-12 sm:px-6 lg:px-8">
@@ -13,7 +28,7 @@ export default function money() {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6" >
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="tokensToAdd" className="block text-sm font-medium text-gray-700">
                 Tokens to add
