@@ -8,7 +8,7 @@ export default function Page() {
 
   return (
     <div className="flex justify-center md:flex-row m-10 py-6 gap-6 ">
-      <div className=" bg-white rounded max-w-md p-6">
+      <div className=" bg-white rounded max-w-md p-6 shadow-lg">
         <ReactCalendar date={date} setDate={setDate} />
       </div>
 
