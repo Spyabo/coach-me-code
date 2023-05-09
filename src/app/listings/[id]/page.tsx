@@ -3,6 +3,7 @@ import { getListingById } from "@lib/mongo/listings";
 import { getListingsResponse } from "@lib/types/listings";
 import stringToArray from "@lib/utils/stringToArray";
 import Head from "next/head";
+import Link from "next/link";
 
 export default async function ListingByIDPage({ params }: { params: { id: string } }) {
     const listing: getListingsResponse = await getListingById(params.id);
@@ -36,13 +37,15 @@ export default async function ListingByIDPage({ params }: { params: { id: string
                                 <strong>Cost:</strong> {listing.token_rate} tokens
                             </li>
                         </ul>
-                        <button className="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded">
-                            Book Now
-                        </button>
+                        <Link href={`/listings/${params.id}/purchase`}>
+                            <button className="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded">
+                                Book Now
+                            </button>
+                        </Link>
                     </div>
                 </div>
                 <BackButton />
             </div>
-        </div>
+        </div >
     );
 };
