@@ -24,7 +24,7 @@ export default function Landing() {
             Coach Me Code grants you access to a variety of courses, with all of the tools you need to reach your goals.
           </p>
           <Image
-            src="/mentors.jpg"
+            src="/landing-1.svg"
             alt="Mentors"
             width={400}
             height={300}
@@ -39,7 +39,7 @@ export default function Landing() {
             Coach others to gain confidence in your skills and experience. It's also something nice to add to you resume as a mentor.
           </p>
           <Image
-            src="/services.jpg"
+            src="/landing-2.svg"
             alt="Services"
             width={400}
             height={300}
@@ -67,10 +67,12 @@ export default function Landing() {
         </h3>
         <div className="flex flex-col md:flex-row gap-8 justify-center">
           <div className="flex flex-col items-center">
-            <img
-              src="/images/card1.png"
-              alt="Card 1"
-              className="w-64 h-64 object-cover rounded-lg shadow-lg mb-4"
+            <Image
+              src="/course-access.svg"
+              alt="Services"
+              width={400}
+              height={300}
+              className="rounded-lg"
             />
             <h4 className="text-lg font-bold text-gray-800 mb-2">
               Unlimited Course Access
@@ -80,10 +82,12 @@ export default function Landing() {
             </p>
           </div>
           <div className="flex flex-col items-center">
-            <img
-              src="/images/card2.png"
-              alt="Card 2"
-              className="w-64 h-64 object-cover rounded-lg shadow-lg mb-4"
+            <Image
+              src="/skills-dev.svg"
+              alt="Services"
+              width={400}
+              height={300}
+              className="rounded-lg"
             />
             <h4 className="text-lg font-bold text-gray-800 mb-2">
               Skills Development
@@ -93,10 +97,12 @@ export default function Landing() {
             </p>
           </div>
           <div className="flex flex-col items-center">
-            <img
-              src="/images/card3.png"
-              alt="Card 3"
-              className="w-64 h-64 object-cover rounded-lg shadow-lg mb-4"
+            <Image
+              src="/community.svg"
+              alt="Services"
+              width={400}
+              height={300}
+              className="rounded-lg"
             />
             <h4 className="text-lg font-bold text-gray-800 mb-2">Community</h4>
             <p className="text-gray-600 text-sm text-center">
