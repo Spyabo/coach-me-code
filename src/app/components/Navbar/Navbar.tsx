@@ -28,10 +28,10 @@ export default function Nav() {
                 <div className="flex items-center">
                   <div className="flex-grow 1">
                     <Image
-                      src="/code.svg"
+                      src="/logo.svg"
                       alt="Picture of the author"
-                      width={40}
-                      height={40}
+                      width={60}
+                      height={60}
                     />
                   </div>
                   <div className="flex flex-wrap ">
