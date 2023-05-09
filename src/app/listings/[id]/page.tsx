@@ -1,11 +1,11 @@
 import BackButton from "@/app/components/BackButton";
 import { getListingById } from "@lib/mongo/listings";
-import { listing } from "@lib/types/listings";
+import { getListingsResponse } from "@lib/types/listings";
 import stringToArray from "@lib/utils/stringToArray";
 import Head from "next/head";
 
 export default async function ListingByIDPage({ params }: { params: { id: string } }) {
-    const listing: listing = await getListingById(params.id);
+    const listing: getListingsResponse = await getListingById(params.id);
 
     return (
         <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,10 +24,10 @@ export default async function ListingByIDPage({ params }: { params: { id: string
                         <h2 className="text-xl mb-4 font-bold">Details</h2>
                         <ul className="text-gray-700">
                             <li>
-                                <strong>Mentor:</strong> {listing.name}
+                                <strong>Mentor:</strong> {listing.mentor_name}
                             </li>
                             <li>
-                                <strong>Rating:</strong> {listing.mentor_rating / 10}
+                                <strong>Rating:</strong> {listing.listing_rating / 10}
                             </li>
                             <li>
                                 <strong>Language/s:</strong> {stringToArray(listing.programming_languages?.toString())}
