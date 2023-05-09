@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Inter } from "next/font/google";
 import Image from "next/image";
 
@@ -5,25 +6,22 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Landing() {
   return (
-    <main className="flex flex-col items-center gap-8 p-6 md:p-24 mt-50 md:mt-15">
-      <div className="bg-blue-100 px-8 py-10 rounded-lg text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 leading-tight md:leading-snug">
-          Find the right <span className="text-blue-500">mentor</span> for you
-          today
-        </h2>
+    <main className="flex flex-col items-center gap-8 p-6 mt-50 md:mt-15">
+      <div className="bg-gray-100 px-8 py-10 rounded-lg text-center">
+        <h1 className="text-3xl md:text-2xl font-bold text-gray-800 leading-tight md:leading-snug mb-2">
+          Coach Me Code - Your one stop place to learn, collaborate and grow!
+        </h1>
         <a href="/sign-up">
-          <button className="bg-orange-500 text-white text-lg font-bold py-3 px-6 rounded-full mt-6 hover:bg-orange-600 transition-colors duration-300 ease-in-out">
+          <button className="bg-orange-500 text-white text-lg text-center font-bold py-3 px-6 rounded-full mt-6 hover:bg-orange-600 transition-colors duration-300 ease-in-out">
             Join us
           </button>
         </a>
       </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex flex-col justify-center items-center bg-white shadow-lg rounded-lg p-8">
-          <h3 className="text-3xl font-bold text-gray-800 mb-4">Mentors</h3>
-          <p className="text-gray-600 text-lg mb-6">
-            Our experienced mentors are here to help guide you towards achieving
-            your goals.
+          <h3 className="text-3xl font-bold text-gray-800 mb-2 ">Learning has never been easier</h3>
+          <p className="text-gray-600 text-lg">
+            Coach Me Code grants you access to a variety of courses, with all of the tools you need to reach your goals.
           </p>
           <Image
             src="/mentors.jpg"
@@ -34,6 +32,12 @@ export default function Landing() {
           />
         </div>
         <div className="flex flex-col justify-center items-center bg-white shadow-lg rounded-lg p-8">
+          <h3 className="text-3xl font-bold text-gray-800 mt-4 mb-2">
+            List your own courses
+          </h3>
+          <p className="text-gray-600 text-lg">
+            Coach others to gain confidence in your skills and experience. It's also something nice to add to you resume as a mentor.
+          </p>
           <Image
             src="/services.jpg"
             alt="Services"
@@ -41,12 +45,6 @@ export default function Landing() {
             height={300}
             className="rounded-lg"
           />
-          <h3 className="text-3xl font-bold text-gray-800 mt-4 mb-2">
-            Our Services
-          </h3>
-          <p className="text-gray-600 text-lg">
-            We offer a range of services to help you on your journey to success.
-          </p>
         </div>
       </div>
 
@@ -55,10 +53,9 @@ export default function Landing() {
           Token System
         </h3>
         <p className="text-gray-600 text-lg mb-8">
-          Our mentorship program uses a token system to provide additional
+          Our flagship platform uses a token system to provide
           benefits to our members. Members can earn tokens by participating in
-          mentorship sessions, attending events, and completing other program
-          requirements. These tokens can be redeemed for various rewards, such
+          coaching sessions, attending events, and workshops. These tokens can be redeemed for various rewards, such
           as exclusive workshops, coaching sessions, and networking
           opportunities.
         </p>
@@ -76,13 +73,10 @@ export default function Landing() {
               className="w-64 h-64 object-cover rounded-lg shadow-lg mb-4"
             />
             <h4 className="text-lg font-bold text-gray-800 mb-2">
-              Mentorship Program
+              Unlimited Course Access
             </h4>
             <p className="text-gray-600 text-sm text-center">
-              Our mentorship program provides personalized guidance and support
-              from experienced professionals in the tech industry. Our mentors
-              are carefully selected and trained to ensure that you receive the
-              best possible guidance and advice.
+              Browse through a range of courses and book you session at a time that's right for you. You'll never feel alone on your coding journey again. Coaching sessions are available 24/7 and are tailored to your needs. Simply book a session with the course provider and get started.
             </p>
           </div>
           <div className="flex flex-col items-center">
@@ -95,10 +89,7 @@ export default function Landing() {
               Skills Development
             </h4>
             <p className="text-gray-600 text-sm text-center">
-              We offer a variety of workshops, tutorials, and courses to help
-              you develop your skills and stay up-to-date with the latest trends
-              in tech. Our content is created and curated by industry experts
-              and is designed to be practical and relevant to your needs.
+              This platform is designed to help you develop your skills and stay up-to-date with the latest trends in tech. Courses are up to date with industry standards and are designed to be practical and relevant to your needs.
             </p>
           </div>
           <div className="flex flex-col items-center">
@@ -109,7 +100,7 @@ export default function Landing() {
             />
             <h4 className="text-lg font-bold text-gray-800 mb-2">Community</h4>
             <p className="text-gray-600 text-sm text-center">
-              Our community is made up of like-minded individuals who share a
+              This is the place to find like-minded individuals who share a
               passion for technology and a desire to learn and grow. You'll have
               access to a supportive network of peers and mentors who can help
               you achieve your goals and advance your career.
