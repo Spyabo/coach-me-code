@@ -1,5 +1,5 @@
 {
-  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": false, // required
   "editor.formatOnType": false, // required
   "editor.formatOnSave": true, // optional
@@ -8,8 +8,7 @@
   "vs-code-prettier-eslint.prettierLast": "false",
   "[typescriptreact]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
-  } // set as "true" to run 'prettier' last not first
-  ,
+  }, // set as "true" to run 'prettier' last not first
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "[typescript]": {
