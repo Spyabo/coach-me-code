@@ -1,7 +1,7 @@
+import { getUsersResponse, tokenRequest, user, userType } from "@lib/types/users";
 import { Collection, Db, MongoClient, ObjectId } from "mongodb";
-import clientPromise from ".";
-import { getUsersResponse, tokenRequest, user } from "@lib/types/users";
 import { NextRequest, NextResponse } from "next/server";
+import clientPromise from ".";
 let client: MongoClient;
 let db: Db;
 let users: Collection;
@@ -44,6 +44,16 @@ export async function getUsers(): Promise<
     return { users: mappedResult };
   } catch (err) {
     return { error: "Could not get users" };
+  }
+}
+
+export async function postUser(newUser: userType) {
+  try {
+    if (!user) await setup();
+    const result = await user.insertOne(newUser);
+    return { _id: result.insertedId.toString(), ...newUser };
+  } catch (err) {
+    return { error: "Could not post user" };
   }
 }
 
