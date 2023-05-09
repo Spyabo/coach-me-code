@@ -7,11 +7,11 @@ export default async function ListingsPage() {
   const { listings }: { listings: getListingsResponse[] } = await res.json()
 
   return (
-    <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="container max-w-7xl mx-auto sm:px-6 lg:px- mt-20">
       <header>
         <h1 className="text-2xl font-bold my-4">Explore the available services...</h1>
       </header>
-      <ListingFilterBy listingArray={listings} sort_by={"programming_languages"} />
+      {/* <ListingFilterBy listingArray={listings} sort_by={"programming_languages"} /> */}
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-2">
         {listings.map((data: getListingsResponse) => {
           return (
