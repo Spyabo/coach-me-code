@@ -1,9 +1,4 @@
-import {
-  getUsersResponse,
-  tokenRequest,
-  user,
-  userType,
-} from "@lib/types/users";
+import { getUsersResponse, tokenRequest, userType } from "@lib/types/users";
 import { Collection, Db, MongoClient, ObjectId } from "mongodb";
 import { NextRequest, NextResponse } from "next/server";
 import clientPromise from ".";
@@ -54,8 +49,8 @@ export async function getUsers(): Promise<
 
 export async function postUser(newUser: userType) {
   try {
-    if (!user) await setup();
-    const result = await user.insertOne(newUser);
+    if (!users) await setup();
+    const result = await users.insertOne(newUser);
     return { _id: result.insertedId.toString(), ...newUser };
   } catch (err) {
     return { error: "Could not post user" };
