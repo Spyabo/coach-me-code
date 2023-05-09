@@ -1,11 +1,7 @@
-"use client";
 import { format } from "date-fns";
-import { useState } from "react";
 import { Calendar } from "./calendar";
 
-export default function ReactCalendar() {
-  const [date, setDate] = useState<Date | undefined>(new Date())
-
+export default function ReactCalendar({ date, setDate }: { date: Date | undefined; setDate: any }) {
   let dateSelected = <p>Please pick a day.</p>;
 
   if (date) {
