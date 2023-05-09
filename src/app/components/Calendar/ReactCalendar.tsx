@@ -1,22 +1,24 @@
 "use client";
 import { format } from "date-fns";
 import { useState } from "react";
-import { DayPicker } from "react-day-picker";
+import { Calendar } from "./calendar";
 
-export default function Calendar() {
-  const [selected, setSelected] = useState<Date>();
+export default function ReactCalendar() {
+  const [date, setDate] = useState<Date | undefined>(new Date())
 
-  let footer = <p>Please pick a day.</p>;
-  if (selected) {
-    footer = <p>You picked {format(selected, "PP")}.</p>;
+  let dateSelected = <p>Please pick a day.</p>;
+
+  if (date) {
+    dateSelected = <p>You picked {format(date!, "PP")}.</p>;
   }
 
   return (
-    <DayPicker
+    <Calendar
       mode="single"
-      selected={selected}
-      onSelect={setSelected}
-      footer={footer}
+      selected={date}
+      onSelect={setDate}
+      className="rounded-md border"
+      footer={dateSelected}
     />
   );
 }
