@@ -1,10 +1,15 @@
+"use client"
+import format from "date-fns/format";
+import { useState } from "react";
 import ReactCalendar from "../components/Calendar/ReactCalendar";
 
 export default function Page() {
+  const [date, setDate] = useState<Date | undefined>(new Date())
+
   return (
     <div className="flex flex-col justify-center md:flex-row m-10 py-6 gap-6 ">
       <div className=" bg-white rounded max-w-md p-6">
-        <ReactCalendar />
+        <ReactCalendar date={date} setDate={setDate} />
       </div>
 
       <div className="flex justify-center max-w-md rounded shadow-lg bg-white ">
@@ -16,9 +21,13 @@ export default function Page() {
             <p className="font-bold">Token Balance</p>
             <p>50</p>
           </div>
-          <div className="flex flex-row justify-between py-4">
+          <div className="flex flex-row justify-between">
             <p className="font-bold">Listing price</p>
             <p>50</p>
+          </div>
+          <div className="flex flex-row justify-between">
+            <p className="font-bold">Date:</p>
+            <p>{date ? format(date!, "PP") : "Please pick a day"}</p>
           </div>
           <div className="flex flex-row justify-center">
             <button className="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded-full">
