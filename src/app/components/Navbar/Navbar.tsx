@@ -4,18 +4,12 @@ import { Transition } from "@headlessui/react";
 import Image from "next/image";
 import React, { useState } from "react";
 
-import { useUser } from "@clerk/nextjs";
+import { SignedIn, useUser } from "@clerk/nextjs";
 import Clerk from "../Clerk";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
-  const { isSignedIn } = useUser();
-  const [walletDirection, setWalletDirection] = useState("");
-
-  const handleMoneyClick = () => {
-    if (isSignedIn) setWalletDirection("/wallet");
-    else if (!isSignedIn) setWalletDirection("/sign-in");
-  };
+  const { user } = useUser();
 
   return (
     <div>
@@ -54,13 +48,14 @@ export default function Nav() {
                   >
                     Create Listing
                   </a>
-                  <a
-                    onClick={handleMoneyClick}
-                    href={`${walletDirection}`}
-                    className="text-white hover:bg-purple-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Wallet
-                  </a>
+                  <SignedIn>
+                    <a
+                      href={`/wallet/${user?.id}`}
+                      className="text-white hover:bg-purple-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Wallet
+                    </a>
+                  </SignedIn>
                 </div>
               </div>
             </div>

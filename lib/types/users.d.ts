@@ -1,11 +1,10 @@
-export type user = {
-  _id: ObjectId;
+export type userType = {
   clerk_id: string;
   name: string;
   email?: string;
   phone?: string;
   years_of_experience: number;
-  programming_languages: [];
+  programming_languages: string[];
   listing_ids: [];
   order_ids: [];
   tokens: number;
@@ -18,7 +17,7 @@ export type getUsersResponse = {
   email?: string;
   phone?: string;
   years_of_experience: number;
-  programming_languages: [];
+  programming_languages: string[];
   listing_ids: [];
   order_ids: [];
   tokens: number;

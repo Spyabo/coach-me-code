@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import { useUser } from "@clerk/nextjs";
+import { userType } from '@lib/types/users';
+import stringToArray from "@lib/utils/stringToArray";
 import { useState } from 'react';
 
 export default function UserForm() {
@@ -19,16 +21,38 @@ export default function UserForm() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const newUser = {
-      firstName,
-      lastName,
-      phoneNumber,
-      emailAddress,
-      yearsExperience,
-      programmingLanguages,
-      tokens: 100,
-      reviews: []
+    const fullName = `${firstName} ${lastName}`.trim();
+    const newUser: userType = {
+      clerk_id: user.id,
+      name: fullName!,
+      email: emailAddress,
+      phone: phoneNumber,
+      years_of_experience: parseInt(yearsExperience),
+      programming_languages: stringToArray(programmingLanguages),
+      listing_ids: [],
+      order_ids: [],
+      tokens: 0
     }
+    try {
+      const res = await fetch("http://localhost:3000/api/users", {
+        method: "PUT",
+        body: JSON.stringify(newUser),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      const { result } = await res.json();
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+
+    setFirstName("");
+    setLastName("");
+    setPhoneNumber("");
+    setEmailAddress("");
+    setYearsExperience("");
+    setProgrammingLanguages("");
   };
 
   return (
@@ -116,12 +140,12 @@ export default function UserForm() {
             <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
               <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm"></span>
               <input
-                type="text"
+                type="tel"
                 name="phoneNumber"
                 id="phoneNumber"
                 className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" value={phoneNumber}
                 onChange={(event) => setPhoneNumber(event.target.value)}
-                required
+                autoComplete="off"
               />
             </div>
           </div>
@@ -142,6 +166,7 @@ export default function UserForm() {
                 id="yearsExperience"
                 className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" value={yearsExperience}
                 onChange={(event) => setYearsExperience(event.target.value)}
+                autoComplete="off"
                 required
               />
             </div>
@@ -164,6 +189,7 @@ export default function UserForm() {
                 className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                 placeholder="HTML, Javascript, PHP..." value={programmingLanguages}
                 onChange={(event) => setProgrammingLanguages(event.target.value)}
+                autoComplete="off"
                 required
               />
             </div>

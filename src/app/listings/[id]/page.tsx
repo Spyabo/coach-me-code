@@ -1,11 +1,12 @@
 import BackButton from "@/app/components/BackButton";
 import { getListingById } from "@lib/mongo/listings";
-import { listing } from "@lib/types/listings";
+import { getListingsResponse } from "@lib/types/listings";
 import stringToArray from "@lib/utils/stringToArray";
 import Head from "next/head";
+import Link from "next/link";
 
 export default async function ListingByIDPage({ params }: { params: { id: string } }) {
-    const listing: listing = await getListingById(params.id);
+    const listing: getListingsResponse = await getListingById(params.id);
 
     return (
         <div className="bg-white rounded-lg shadow-lg max-w-7xl mx-auto sm:px-6 lg:px-7 mt-20">
@@ -27,7 +28,7 @@ export default async function ListingByIDPage({ params }: { params: { id: string
                                 <strong>Mentor:</strong> {listing.mentor_name}
                             </li>
                             <li>
-                                <strong>Rating:</strong> {listing.listing_rating}
+                                <strong>Rating:</strong> {listing.listing_rating / 10}
                             </li>
                             <li>
                                 <strong>Language/s:</strong> {stringToArray(listing.programming_languages?.toString())}
@@ -36,13 +37,15 @@ export default async function ListingByIDPage({ params }: { params: { id: string
                                 <strong>Cost:</strong> {listing.token_rate} tokens
                             </li>
                         </ul>
-                        <button className="mt-6 bg-red-500 hover:bg-purple-700 text-white py-3 px-6 rounded font-bold">
-                            Book Now
-                        </button>
+                        <Link href={`/listings/${params.id}/purchase`}>
+                            <button className="mt-6 bg-red-500 hover:bg-purple-700 text-white py-3 px-6 rounded font-bold">
+                                Book Now
+                            </button>
+                        </Link>
                     </div>
                 </div>
                 <BackButton />
             </div>
-        </div>
+        </div >
     );
 };

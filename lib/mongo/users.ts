@@ -1,7 +1,7 @@
+import { getUsersResponse, tokenRequest, userType } from "@lib/types/users";
 import { Collection, Db, MongoClient, ObjectId } from "mongodb";
-import clientPromise from ".";
-import { getUsersResponse, tokenRequest, user } from "@lib/types/users";
 import { NextRequest, NextResponse } from "next/server";
+import clientPromise from ".";
 let client: MongoClient;
 let db: Db;
 let users: Collection;
@@ -47,6 +47,29 @@ export async function getUsers(): Promise<
   }
 }
 
+export async function postUser(newUser: userType) {
+  try {
+    if (!users) await setup();
+    const result = await users.insertOne(newUser);
+    return { _id: result.insertedId.toString(), ...newUser };
+  } catch (err) {
+    return { error: "Could not post user" };
+  }
+}
+
+export async function patchUser(id: string, newUser: userType) {
+  try {
+    if (!users) await setup();
+    const result = await users.updateOne(
+      { _id: new ObjectId(id) },
+      { $set: newUser }
+    );
+    return { modifiedCount: result.modifiedCount };
+  } catch (err) {
+    return { error: "Could not patch user" };
+  }
+}
+
 export async function patchTokens(
   request: tokenRequest,
   clerkID: string
@@ -71,26 +94,48 @@ export async function patchTokens(
   } catch (err) {
     return { error: "Could not update tokens" };
   }
-
+}
 
 export async function getUsersById(id: string) {
-    try{
-      if (!users) await setup();
-      const result = await users.findOne({ _id: new ObjectId(id)})
-      if(!result) return {error: "User not found"}
-      return {
-        _id: result._id.toString(),
-        clerkAuth: result.clerkAuth,
-        name: result.name,
-        email: result.email,
-        phone: result.phone,
-        years_of_experience: result.years_of_experience,
-        programming_languages: result.programming_languages,
-        listing_ids: result.listing_ids,
-        order_ids: result.order_ids,
-        tokens: result.tokens,
-      }
-    }catch(err){
-      return {error: "Could not get user"}
-    }
+  try {
+    if (!users) await setup();
+    const result = await users.findOne({ _id: new ObjectId(id) });
+    if (!result) return { error: "User not found" };
+    return {
+      _id: result._id.toString(),
+      clerkAuth: result.clerkAuth,
+      name: result.name,
+      email: result.email,
+      phone: result.phone,
+      years_of_experience: result.years_of_experience,
+      programming_languages: result.programming_languages,
+      listing_ids: result.listing_ids,
+      order_ids: result.order_ids,
+      tokens: result.tokens,
+    };
+  } catch (err) {
+    return { error: "Could not get user" };
+  }
+}
+
+export async function getUserByClerkId(clerk_id: string) {
+  try {
+    if (!users) await setup();
+    const result = await users.findOne({ clerk_id });
+    if (!result) return { error: "User not found" };
+    return {
+      _id: result._id.toString(),
+      clerkAuth: result.clerkAuth,
+      name: result.name,
+      email: result.email,
+      phone: result.phone,
+      years_of_experience: result.years_of_experience,
+      programming_languages: result.programming_languages,
+      listing_ids: result.listing_ids,
+      order_ids: result.order_ids,
+      tokens: result.tokens,
+    };
+  } catch (err) {
+    return { error: "Could not get user" };
+  }
 }
