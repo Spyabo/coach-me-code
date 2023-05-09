@@ -2,14 +2,12 @@ import ReactCalendar from "../components/Calendar/ReactCalendar";
 
 export default function Page() {
   return (
-    <div className="m-10 flex justify-center flex-row">
-      <div className="flex  bg-white rounded max-w-md p-6">
-        <div className="text-black ">
-          <ReactCalendar />
-        </div>
+    <div className="flex flex-col justify-center md:flex-row m-10 py-6 gap-6 ">
+      <div className=" bg-white rounded max-w-md p-6">
+        <ReactCalendar />
       </div>
 
-      <div className="m-10 max-w-md rounded overflow-hidden shadow-lg flex flex-row bg-white ">
+      <div className="flex justify-center max-w-md rounded shadow-lg bg-white ">
         <div className="px-6 py-6 text-gray-700 text-base">
           <h1 className="font-bold text-xl mb-2">Order Summary</h1>
           <p>Listing title</p>
