@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import { useUser } from "@clerk/nextjs";
-import { clerkClient } from "@clerk/nextjs/app-beta";
 import { userType } from '@lib/types/users';
 import stringToArray from "@lib/utils/stringToArray";
 import { useState } from 'react';
