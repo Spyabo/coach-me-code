@@ -70,7 +70,7 @@ export async function patchTokens(
     }
   } catch (err) {
     return { error: "Could not update tokens" };
-  }
+  }}
 
 
 export async function getUsersById(id: string) {
@@ -93,4 +93,26 @@ export async function getUsersById(id: string) {
     }catch(err){
       return {error: "Could not get user"}
     }
+}
+
+export async function getUserByClerkId(clerk_id: string) {
+  try{
+    if (!users) await setup();
+    const result = await users.findOne({ clerk_id})
+    if(!result) return {error: "User not found"}
+    return {
+      _id: result._id.toString(),
+      clerkAuth: result.clerkAuth,
+      name: result.name,
+      email: result.email,
+      phone: result.phone,
+      years_of_experience: result.years_of_experience,
+      programming_languages: result.programming_languages,
+      listing_ids: result.listing_ids,
+      order_ids: result.order_ids,
+      tokens: result.tokens,
+    }
+  }catch(err){
+    return {error: "Could not get user"}
+  }
 }
