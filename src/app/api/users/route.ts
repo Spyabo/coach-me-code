@@ -15,7 +15,7 @@ export async function GET() {
   }
 }
 
-export async function POST(user: NextRequest) {
+export async function PUT(user: NextRequest) {
   try {
     const newUser: userType = await user.json();
     const result = await postUser(newUser);
