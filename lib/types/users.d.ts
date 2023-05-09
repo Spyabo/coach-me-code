@@ -1,5 +1,4 @@
 export type user = {
-  _id: ObjectId;
   clerk_id: string;
   name: string;
   email?: string;
