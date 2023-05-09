@@ -35,7 +35,7 @@ export default function Nav() {
                     />
                   </div>
                   <div className="flex flex-wrap ">
-                    <h1 className="text-white text-2xl font-bold md:pt-0 pl-6 justify-center lg:text-3xl ">
+                    <h1 className="text-white text-1xl md:text-2xl font-bold md:pt-0 justify-center lg:text-3xl hidden lg:block md:block ">
                       Coach Me Code
                     </h1>
                   </div>
