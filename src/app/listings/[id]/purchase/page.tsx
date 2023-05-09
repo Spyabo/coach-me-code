@@ -1,7 +1,7 @@
 "use client"
 import format from "date-fns/format";
 import { useState } from "react";
-import ReactCalendar from "../components/Calendar/ReactCalendar";
+import ReactCalendar from "../../../components/Calendar/ReactCalendar";
 
 export default function Page() {
   const [date, setDate] = useState<Date | undefined>(new Date())
