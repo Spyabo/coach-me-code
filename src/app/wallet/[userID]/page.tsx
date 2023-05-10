@@ -1,11 +1,10 @@
 'use client'
 import { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
-import { useRouter } from "next/navigation";
 export default function money() {
   const [tokensToAdd, setTokensToAdd] = useState<number>(0);
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const { user } = useUser();
-  const router = useRouter();
 
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -18,7 +17,7 @@ export default function money() {
       body: JSON.stringify({ tokens: tokensToAdd }),
     });
     const data = await response.json();
-    router.push('/listings');
+    setIsSuccess(true);
   }
 
   return (
@@ -56,6 +55,11 @@ export default function money() {
                 Add Tokens
               </button>
             </div>
+            {isSuccess && (
+              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                <strong className="font-bold">Tokens added successfully!</strong>
+              </div>
+            )}
           </form>
         </div>
       </div>
