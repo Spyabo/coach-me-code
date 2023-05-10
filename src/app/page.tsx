@@ -22,7 +22,9 @@ export default function Landing() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex flex-col justify-center items-center bg-white shadow-lg rounded-lg p-8">
-          <h3 className="text-3xl font-bold text-gray-800 mb-2 ">Learning has never been easier</h3>
+          <h3 className="text-3xl font-bold text-gray-800 mt-4 mb-2 ">
+            Learning has never been easier
+          </h3>
           <p className="text-center text-gray-600 text-lg">
             Coach Me Code grants you access to a variety of courses, with all of the tools you need to reach your goals.
           </p>
