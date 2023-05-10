@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 type clerkID = {
     id: string | undefined
@@ -26,7 +27,14 @@ export default function MoneyNavSym(props: clerkID): JSX.Element {
 
 
     return (
-        <div>
+        <div className="flex justify-center items-center ">
+            <Image
+                className="float-right"
+                src="/wallet-gem.svg"
+                alt="a graphic of tokens"
+                width={40}
+                height={40}
+            />
             {tokens ? tokens : 0}
         </div>
     )

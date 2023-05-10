@@ -48,13 +48,7 @@ export default function Nav() {
                   >
                     Create Listing
                   </a>
-                  <SignedIn>
-                    <a
-                      href={`/wallet/${user?.id}`}
-                      className="text-white hover:bg-purple-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                    >
-                    </a>
-                  </SignedIn>
+
                 </div>
               </div>
             </div>

@@ -7,12 +7,18 @@ export default function Clerk() {
   const { user } = useUser();
 
 
+
   return (
     <>
       <SignedIn>
         <div className="flex justify-center items-center">
-          {/* @ts-ignore */}
-          <MoneyNavSym id={user?.id} />
+          <a
+            href={`/wallet/${user?.id}`}
+            className="text-white hover:bg-purple-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+          >
+            {/* @ts-ignore */}
+            <MoneyNavSym id={user?.id} />
+          </a>
           <MyDropdown userName={user?.firstName} userId={user?.id} />
         </div>
         <div className="flex justify-center items-center">
