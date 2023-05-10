@@ -26,7 +26,7 @@ export default function Welcome() {
                             width={300}
                             height={300}
                         />
-                        <button className="bg-orange-500 text-white text-lg font-bold py-3 px-6 rounded-full mt-6 hover:bg-orange-600 transition-colors duration-300 ease-in-out">
+                        <button className="bg-green-400 hover:bg-red-400 text-white text-lg text-center font-bold py-3 px-6 rounded-full hover:bg-orange-600 transition-colors duration-300 ease-in-out">
                             <a href="/listings">Explore Services</a>
                         </button>
                     </div>
@@ -38,7 +38,7 @@ export default function Welcome() {
                             width={300}
                             height={300}
                         />
-                        <button className="bg-orange-500 text-white text-lg font-bold py-3 px-6 rounded-full mt-6 hover:bg-orange-600 transition-colors duration-300 ease-in-out">
+                        <button className="bg-green-400 hover:bg-red-400 text-white text-lg text-center font-bold py-3 px-6 rounded-full hover:bg-orange-600 transition-colors duration-300 ease-in-out">
                             <a href="/listings/create-listing">Create a listing</a>
                         </button>
                     </div>
