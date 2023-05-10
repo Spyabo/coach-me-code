@@ -4,6 +4,7 @@ import { useUser } from "@clerk/nextjs";
 import { userType } from '@lib/types/users';
 import stringToArray from "@lib/utils/stringToArray";
 import { useState } from 'react';
+import Image from 'next/image';
 
 export default function UserForm() {
   const { isLoaded, isSignedIn, user } = useUser();
@@ -64,161 +65,167 @@ export default function UserForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex justify-center items-center flex-col m-8">
-      <div className="border-b">
-        <div className="header flex flex-col my-8">
-          <h1 className="text-base font-semibold leading-7 text-gray-900">
-            Nearly there!
-          </h1>
-          <p className="mt-1 text-sm leading-6 text-gray-600">
-            You just need to complete the below form:
-          </p>
-        </div>
-        <div className="sm:col-span-4">
-          <label
-            htmlFor="firstName"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
-            First Name
-          </label>
-          <div className="mt-2">
-            <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-              <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm"></span>
-              <input
-                type="text"
-                name="firstName"
-                id="firstName"
-                className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" value={firstName || ""}
-                onChange={(event) => setFirstName(event.target.value)}
-                required
-              />
+    <div className="flex flex-col justify-center container px-10 py-10 bg-slate-300 max-w-7xl mx-auto sm:px-6 lg:px-7">
+      <form onSubmit={handleSubmit} className="px-6 bg-purple-100 py-4 rounded">
+        <div className="flex justify-between md:justify-between lg:justify-between ">
+          <div className="flex flex-col md:flex-1 lg:flex-1">
+
+            <div className="header flex flex-col mb-2">
+              <h1 className="text-base font-semibold leading-7 text-gray-900">
+                Nearly there!
+              </h1>
+              <p className="mt-1 text-sm leading-6 text-gray-600">
+                You just need to complete the below form:
+              </p>
             </div>
-          </div>
-        </div>
-        <div className="sm:col-span-4">
-          <label
-            htmlFor="lastName"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
-            Last Name
-          </label>
-          <div className="mt-2">
-            <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-              <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm"></span>
-              <input
-                type="text"
-                name="lastName"
-                id="lastName"
-                className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" value={lastName || ""}
-                onChange={(event) => setLastName(event.target.value)}
-                required
-              />
+
+            <div className="">
+              <label
+                htmlFor="firstName"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                First Name
+              </label>
+              <div className="mt-2">
+                <input
+                  type="text"
+                  name="firstName"
+                  id="firstName"
+                  className="block w-full pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mb-3"
+                  value={firstName || ""}
+                  onChange={(event) => setFirstName(event.target.value)}
+                  required
+                />
+              </div>
+
+              <div className="">
+                <label
+                  htmlFor="lastName"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Last Name
+                </label>
+                <div className="mt-2">
+                  <input
+                    type="text"
+                    name="lastName"
+                    id="lastName"
+                    className="block w-full pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mb-3 "
+                    value={lastName || ""}
+                    onChange={(event) => setLastName(event.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="">
+                <label
+                  htmlFor="lastName"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Email address
+                </label>
+                <div className="mt-2">
+                  <input
+                    type="text"
+                    name="lastName"
+                    id="lastName"
+                    className="block w-full pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mb-3"
+                    value={emailAddress}
+                    onChange={(event) => setEmailAddress(event.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="">
+                <label
+                  htmlFor="phoneNumber"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Phone number (optional)
+                </label>
+                <div className="mt-2">
+                  <input
+                    type="tel"
+                    name="phoneNumber"
+                    id="phoneNumber"
+                    className="block w-full pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    value={phoneNumber}
+                    onChange={(event) => setPhoneNumber(event.target.value)}
+                    autoComplete="off"
+                  />
+                </div>
+              </div>
+
+              <div className="">
+                <label
+                  htmlFor="yearsExperience"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Years of experience
+                </label>
+                <div className="mt-2">
+                  <input
+                    type="text"
+                    name="yearsExperience"
+                    id="yearsExperience"
+                    className="block w-full pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mb-3"
+                    value={yearsExperience}
+                    onChange={(event) => setYearsExperience(event.target.value)}
+                    autoComplete="off"
+                    required
+                  />
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div className="sm:col-span-4">
-          <label
-            htmlFor="lastName"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
-            Email address
-          </label>
-          <div className="mt-2">
-            <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-              <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm"></span>
-              <input
-                type="text"
-                name="lastName"
-                id="lastName"
-                className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" value={emailAddress}
-                onChange={(event) => setEmailAddress(event.target.value)}
-                required
-              />
+
+            <div className="">
+              <label
+                htmlFor="programmingLanguages"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Programming languages
+              </label>
+              <div className="mt-2">
+                <input
+                  type="text"
+                  name="programmingLanguages"
+                  id="programmingLanguages"
+                  className="block w-full pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mb-3"
+                  value={programmingLanguages}
+                  onChange={(event) => setProgrammingLanguages(event.target.value)}
+                  autoComplete="off"
+                  required
+                />
+              </div>
             </div>
+
           </div>
+          <Image
+            src="/user-form.svg"
+            alt="A coding coach mentoring a student next to a whiteboard"
+            width={300}
+            height={300}
+            className="w-32 flex-1 hidden md:block lg:block"
+          />
         </div>
-        <div className="sm:col-span-4">
-          <label
-            htmlFor="phoneNumber"
-            className="block text-sm font-medium leading-6 text-gray-900"
+        <div className="mt-6 flex items-center justify-end gap-x-6">
+          <button
+            type="button"
+            className="mt-6 bg-red-500 hover:bg-yellow-400  text-white py-3 px-6 rounded font-bold transition-colors duration-300 ease-in-out"
           >
-            Phone number (optional)
-          </label>
-          <div className="mt-2">
-            <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-              <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm"></span>
-              <input
-                type="tel"
-                name="phoneNumber"
-                id="phoneNumber"
-                className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" value={phoneNumber}
-                onChange={(event) => setPhoneNumber(event.target.value)}
-                autoComplete="off"
-              />
-            </div>
-          </div>
-        </div>
-        <div className="sm:col-span-4">
-          <label
-            htmlFor="yearsExperience"
-            className="block text-sm font-medium leading-6 text-gray-900"
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="mt-6 hover:bg-green-300 bg-purple-700 text-white py-3 px-6 rounded font-bold transition-colors duration-300 ease-in-out"
+            onSubmit={handleSubmit}
           >
-            Years of experience
-          </label>
-          <div className="mt-2">
-            <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-              <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm"></span>
-              <input
-                type="text"
-                name="yearsExperience"
-                id="yearsExperience"
-                className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" value={yearsExperience}
-                onChange={(event) => setYearsExperience(event.target.value)}
-                autoComplete="off"
-                required
-              />
-            </div>
-          </div>
+            Submit
+          </button>
         </div>
-        <div className="sm:col-span-4">
-          <label
-            htmlFor="programmingLanguages"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
-            Programming languages
-          </label>
-          <div className="mt-2">
-            <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-              <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm"></span>
-              <input
-                type="text"
-                name="programmingLanguages"
-                id="programmingLanguages"
-                className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                placeholder="HTML, Javascript, PHP..." value={programmingLanguages}
-                onChange={(event) => setProgrammingLanguages(event.target.value)}
-                autoComplete="off"
-                required
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="mt-6 flex items-center justify-center gap-x-6">
-        <button
-          type="button"
-          className="text-sm font-semibold leading-6 text-gray-900"
-        >
-          Cancel
-        </button>
-        <button
-          type="submit"
-          className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          onSubmit={handleSubmit}
-        >
-          Submit
-        </button>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 }
