@@ -135,8 +135,7 @@ export default function Nav() {
                   Create Listing
                 </a>
                 <a
-                  onClick={handleMoneyClick}
-                  href={`${walletDirection}`}
+                  href={`/wallet/${user?.id}`}
                   className="hover:bg-purple-600 text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Money
