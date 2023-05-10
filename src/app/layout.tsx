@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className="flex h-full flex-col">
         <ClerkProvider>
           <Navbar />
-          <main className="grow">{children}</main>
+          <main className="grow mt-16">{children}</main>
           <Footer />
         </ClerkProvider>
       </body>

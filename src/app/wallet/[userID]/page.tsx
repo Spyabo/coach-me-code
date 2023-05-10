@@ -23,7 +23,7 @@ export default function money() {
   }
 
   return (
-    <div className=" max-w-7xl mx-auto container flex flex-col mt-12 py-12 px-6">
+    <div className=" max-w-7xl mx-auto container flex flex-col py-12 px-6">
       <div className="flex flex-col gap-4 sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="text-3xl font-extrabold text-gray-900">
           Add tokens to you wallet...
