@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="text-sm text-stone-400">
           Developed by{" "}
           <a
-            className="text-sky-600"
+            className="text-sky-600 underline"
             href="https://github.com/Spyabo/coach-me-code/graphs/contributors"
             rel="noreferrer"
             target="_blank"
@@ -18,7 +18,7 @@ export default function Footer() {
           </a>{" "}
           using{" "}
           <a
-            className="text-sky-600"
+            className="text-sky-600 underline"
             href="https://beta.nextjs.org/docs/getting-started"
             rel="noreferrer"
             target="_blank"
