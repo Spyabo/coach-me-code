@@ -92,6 +92,28 @@ export async function patchOrder(clerkID: string, order: []) {
     return { error: "Could not push order", msg: err };
   }
 }
+export async function patchListing(clerkID: string, order: []) {
+  try {
+    if (!users) await setup();
+    const result = await users.updateOne(
+      { clerk_id: clerkID },
+      // order: [{"listing_ID", "date"}]
+      { $push: { listing_ids: order } }
+    );
+
+    if (result.modifiedCount === 1) {
+      return { success: true };
+    } else if (result.modifiedCount === 0) {
+      return { error: "No matching document found to update" };
+    } else {
+      return {
+        error: "Multiple documents found - please check the query criteria",
+      };
+    }
+  } catch (err) {
+    return { error: "Could not push listing", msg: err };
+  }
+}
 
 export async function patchTokens(
   request: tokenRequest,
