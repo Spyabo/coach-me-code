@@ -39,7 +39,7 @@ export default function Landing() {
             List your own courses
           </h3>
           <p className="text-gray-600 text-lg">
-            Coach others to gain confidence in your skills and experience. It's also something nice to add to you resume as a mentor.
+            Coach others to gain confidence in your skills and experience. It's also something nice to add to your resume as a mentor.
           </p>
           <Image
             src="/landing-2.svg"
