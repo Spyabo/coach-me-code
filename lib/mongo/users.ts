@@ -89,7 +89,7 @@ export async function patchOrder(clerkID: string, order: []) {
       };
     }
   } catch (err) {
-    return { error: "Could not update tokens" };
+    return { error: "Could not push order", msg: err };
   }
 }
 
