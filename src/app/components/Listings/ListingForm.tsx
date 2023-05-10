@@ -4,6 +4,7 @@ import { useUser } from "@clerk/nextjs";
 import { listing } from "@lib/types/listings";
 import stringToArray from "@lib/utils/stringToArray";
 import { useState } from "react";
+import CancelButton from "../CancelButton";
 
 export default function ListingForm() {
   const [listingTitle, setListingTitle] = useState("");
@@ -209,6 +210,7 @@ export default function ListingForm() {
                   autoComplete="off"
                   className="block w-full pl-1 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   placeholder="50"
+                  min='1'
                   value={listingTokens}
                   onChange={(event) => setListingTokens(event.target.value)}
                   required
@@ -219,12 +221,7 @@ export default function ListingForm() {
         </div>
 
         <div className="mt-6 flex items-center justify-end gap-x-6">
-          <button
-            type="button"
-            className="mt-6 bg-red-500 hover:bg-yellow-400  text-white py-3 px-6 rounded font-bold"
-          >
-            Cancel
-          </button>
+          <CancelButton />
           <button
             className="mt-6 hover:bg-green-300 bg-purple-700 text-white py-3 px-6 rounded font-bold"
             type="submit"
