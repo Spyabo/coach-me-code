@@ -17,7 +17,7 @@ export default function Clerk() {
         </div>
       </SignedIn>
       <SignedOut>
-        <SignInButton mode="modal" redirectUrl="/welcome">
+        <SignInButton mode="modal" redirectUrl="/user-form">
           <button className="rounded border border-gray-400 px-3 py-0.5 text-yellow-50">
             Sign in
           </button>
