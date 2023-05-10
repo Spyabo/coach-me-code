@@ -141,14 +141,14 @@ export async function patchTokens(
   }
 }
 
-export async function getUsersById(id: string) {
+export async function getUsersByClerkId(id: string) {
   try {
     if (!users) await setup();
-    const result = await users.findOne({ _id: new ObjectId(id) });
+    const result = await users.findOne({ clerk_id: id });
     if (!result) return { error: "User not found" };
     return {
       _id: result._id.toString(),
-      clerkAuth: result.clerkAuth,
+      clerk_id: result.clerk_id,
       name: result.name,
       email: result.email,
       phone: result.phone,

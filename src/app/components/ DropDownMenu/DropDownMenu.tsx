@@ -26,9 +26,8 @@ export default function MyDropdown({ userName, userId }) {
             <Menu.Item>
               {({ active }) => (
                 <a
-                  className={`${active ? 'bg-violet-500 text-white' : 'text-gray-900'
-                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                  href={`/my-listings/${userId}`}
+                  className={`${active ? 'bg-violet-500 text-white' : 'text-gray-900'} group flex w-full items-center rounded-md px-2 py-2 text-sm`} 
+                  href={`/users/${userId}/my-listings`}
                 >
                   My Listings
                 </a>
@@ -40,7 +39,7 @@ export default function MyDropdown({ userName, userId }) {
               {({ active }) => (
                 <a
                   className={`${active ? 'bg-violet-500 text-white' : 'text-gray-900'
-                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`} href={`/my-orders/${userId}`}
+                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`} href={`/users/${userId}/my-orders`}
                 > My Orders</a>
               )}
             </Menu.Item>

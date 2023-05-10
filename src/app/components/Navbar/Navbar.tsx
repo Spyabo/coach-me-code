@@ -47,7 +47,6 @@ export default function Nav() {
                   >
                     Create Listing
                   </a>
-
                 </div>
               </div>
             </div>
