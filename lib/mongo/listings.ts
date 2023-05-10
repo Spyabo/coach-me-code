@@ -79,3 +79,26 @@ export async function getListingById(
     return { error: "Could not get listing" };
   }
 }
+
+export async function getListingByClerkId(clerk_id: string) {
+  try {
+    if (!listings) await setup();
+    const result = await listings.find({ clerk_id: clerk_id }).toArray();
+    if (!result) return { error: "Listing not found" };
+    const mappedResult: getListingsResponse[] = result.map((listing) => ({
+      _id: listing._id.toString(),
+      clerk_id: listing.clerk_id,
+      mentor_name: listing.mentor_name,
+      listing_title: listing.listing_title,
+      listing_image: listing.listing_image,
+      listing_description: listing.listing_description,
+      listing_rating: listing.mentor_rating,
+      token_rate: listing.token_rate,
+      programming_languages: listing.programming_languages,
+    }));
+
+    return { listings: mappedResult };
+  } catch (err) {
+    return { error: "Could not get listing" };
+  }
+}

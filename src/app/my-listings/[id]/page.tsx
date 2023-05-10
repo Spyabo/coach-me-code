@@ -1,13 +1,27 @@
-import { getUserByClerkId } from "@lib/mongo/users";
-import { getUsersResponse } from "@lib/types/users";
-import { user } from "@lib/types/users"
-
+import { getListingByClerkId } from "@lib/mongo/listings";
+import { getListingsResponse } from "@lib/types/listings";
 
 export default async function MyListings({ params }) {
-    console.log(params.id, "parms in [id]")
-    const user: getUsersResponse = await getUserByClerkId(params.id)
-    console.log(user, "userrr")
+    const { listings }: getListingsResponse = await getListingByClerkId(params.id)
     return (
-        <h1>lsitung in slug</h1>
+
+        listings.length === 0 ? <h1 className="flex justify-center text-4xl">No listing yet!</h1> :
+
+            <>
+                <div className="flex flex-row justify-center">
+                    <ul>
+                        {listings.map((listing) => {
+                            return (
+                                <li key={listing._id}>
+                                    <p>Listing title: {listing.listing_title}</p>
+                                    <p>Listing description: {listing.listing_description}</p>
+                                    <p>Programming languages: {(listing.programming_languages).map(item => item)}</p>
+                                    <p>Token rate: {listing.token_rate}</p>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
+            </>
     )
 }
