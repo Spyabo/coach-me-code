@@ -10,7 +10,7 @@ export default function Welcome() {
         return null;
     }
     return (
-        <div className=" height-full bg-scroll max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px- mt-20">
             <header>
                 <h1 className="text-lg font-bold my-4 ">Welcome, {user.firstName}!</h1>
             </header>
