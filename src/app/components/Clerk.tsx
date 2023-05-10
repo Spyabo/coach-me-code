@@ -1,7 +1,7 @@
 import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
 import { SignedIn, SignedOut } from "@clerk/nextjs/app-beta/client";
-import MyDropdown from "./ DropDownMenu/DropDownMenu";
 import Link from "next/link";
+import MyDropdown from "./ DropDownMenu/DropDownMenu";
 
 export default function Clerk() {
   const { user } = useUser();
@@ -19,16 +19,15 @@ export default function Clerk() {
       </SignedIn>
       <SignedOut>
         <SignInButton mode="modal" redirectUrl="/welcome">
-          <button className="rounded border border-gray-400 px-3 py-0.5 text-yellow-50 hover:bg-red-400 hover:text-gray-900">
+          <button className="rounded border border-gray-400 px-3 py-0.5 text-yellow-50 hover:bg-green-400 hover:text-gray-900">
             Sign in
           </button>
         </SignInButton>
-        <Link href={'/sign-up'}>
-          <button className="rounded border border-yellow-400 px-3 py-0.5 text-yellow-400 hover:bg-yellow-400 hover:text-gray-900">
+        <SignUpButton redirectUrl="/user-form">
+          <button className="rounded border border-gray-400 px-3 py-0.5 text-yellow-50 hover:bg-red-400 hover:text-gray-900">
             Register
-          </button>
-        </Link>
-      </SignedOut>
+          </button></SignUpButton>
+      </SignedOut >
     </>
   );
 }
