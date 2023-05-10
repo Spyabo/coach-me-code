@@ -1,11 +1,9 @@
 import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
 import { SignedIn, SignedOut } from "@clerk/nextjs/app-beta/client";
-import Link from "next/link";
 import MyDropdown from "./ DropDownMenu/DropDownMenu";
 
 export default function Clerk() {
   const { user } = useUser();
-
 
   return (
     <>
