@@ -50,8 +50,6 @@ export default function ListingForm() {
           bool: false
         })
       })
-      const updated = await userPatch.json();
-      console.log(updated);
 
       setListingTitle("");
       setListingDescription("");
