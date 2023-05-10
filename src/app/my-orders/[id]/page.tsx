@@ -3,14 +3,14 @@ import { getListings } from "@lib/mongo/listings";
 import { getUsersResponse } from "@lib/types/users";
 import { getListingsResponse } from "@lib/types/listings";
 
-export default async function MyOrders({ params }) {
+export default async function Page({ params }) {
     const user: getUsersResponse = await getUserByClerkId(params.id);
     const { listings } = await getListings();
     const orders = user.order_ids;
 
     return (
         <div className="flex flex-col justify-center">
-            <h1 className="text-2xl font-bold m-4 text-center p-4 bg-black">
+            <h1 className="text-2xl font-bold mt-16 text-center p-4">
                 Your Order History
             </h1>
             <div>
@@ -24,7 +24,7 @@ export default async function MyOrders({ params }) {
                             key={order}
                             className="bg-white rounded-lg shadow-lg mx-auto m-10 w-1/2 flex flex-col border-solid border-2 border-orange-600"
                         >
-                            <div className="bg-slate-300  flex-col justify-between p-2 rounded">
+                            <div className="bg-slate-400  flex-col justify-between p-2 rounded">
                                 <p>Order #{order}</p>
                                 <p>Total: {orderItem.token_rate}</p>
                             </div>
