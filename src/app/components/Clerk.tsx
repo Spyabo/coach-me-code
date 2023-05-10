@@ -24,7 +24,8 @@ export default function Clerk() {
         <SignUpButton redirectUrl="/user-form">
           <button className="rounded border border-gray-400 px-3 py-0.5 text-yellow-50 hover:bg-red-400 hover:text-gray-900">
             Register
-          </button></SignUpButton>
+          </button>
+        </SignUpButton>
       </SignedOut >
     </>
   );
