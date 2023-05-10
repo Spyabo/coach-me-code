@@ -10,7 +10,7 @@ export default function Welcome() {
         return null;
     }
     return (
-        <div className="max-w-7xl mx-auto px-6 container mt-28">
+        <div className="max-w-7xl mx-auto px-6 container mt-2">
             <header>
                 <h1 className="text-lg font-bold my-4 ">Welcome, {user.firstName}!</h1>
             </header>

@@ -3,10 +3,8 @@
 import { Transition } from "@headlessui/react";
 import Image from "next/image";
 import React, { useState } from "react";
-
 import { SignedIn, useUser } from "@clerk/nextjs";
 import Clerk from "../Clerk";
-import MoneyNavSym from "../MoneyNavSym";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,21 +41,12 @@ export default function Nav() {
                   >
                     Listings
                   </a>
-                  <SignedIn>
-                    <a
-                      href="/listings/create-listing"
-                      className=" hover:bg-purple-600 text-white px-3 py-2 rounded-md text-sm font-medium"
-                    >
-                      Create Listing
-                    </a>
-                    <a
-                      href={`/wallet/${user?.id}`}
-                      className="text-white hover:bg-purple-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                    >
-                      {/* @ts-ignore */}
-                      <MoneyNavSym id={user?.id} />
-                    </a>
-                  </SignedIn>
+                  <a
+                    href="/listings/create-listing"
+                    className=" hover:bg-purple-600 text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Create Listing
+                  </a>
                 </div>
               </div>
             </div>
@@ -135,10 +124,16 @@ export default function Nav() {
                   Create Listing
                 </a>
                 <a
-                  href={`/wallet/${user?.id}`}
                   className="hover:bg-purple-600 text-white block px-3 py-2 rounded-md text-base font-medium"
+                  href={`/users/${user?.id}/my-listings`}
                 >
-                  <MoneyNavSym id={user?.id} />
+                  My Listings
+                </a>
+                <a
+                  className="hover:bg-purple-600 text-white block px-3 py-2 rounded-md text-base font-medium"
+                  href={`/users/${user?.id}/my-orders`}
+                >
+                  My Orders
                 </a>
               </div>
             </div>

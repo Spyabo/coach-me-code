@@ -6,8 +6,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Landing() {
   return (
-    <main className="flex flex-col items-center gap-8 p-6 mt-50 md:mt-15 max-w-7xl mx-auto lg:px-7 ">
-      <div className="bg-gray-100 px-8 py-10 rounded-lg text-center mt-20 shadow-lg w-full bg-hero-pattern bg-cover bg-center">
+    <main className="flex flex-col items-center gap-8 p-6 md:mt-15 max-w-7xl mx-auto lg:px-7 ">
+      <div className="bg-gray-100 px-8 py-10 rounded-lg text-center shadow-lg w-full bg-hero-pattern bg-cover bg-center">
         <h1 className="text-3xl md:text-2xl font-bold text-gray-800 leading-tight md:leading-snug mb-2">
           Coach Me Code
         </h1>

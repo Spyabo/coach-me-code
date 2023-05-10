@@ -106,7 +106,7 @@ export default function ListingForm() {
                     type="text"
                     name="listingTitle"
                     id="listingTitle"
-                    className="block flex-1 border-solid border-1 border-gray-300 rounded-r-md py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    className="block flex-1 border-solid border-1 border-gray-300 rounded-r-md py-1.5 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     value={listingTitle}
                     onChange={(event) => setListingTitle(event.target.value)}
                     placeholder="Listing Title"
@@ -131,7 +131,7 @@ export default function ListingForm() {
                 <textarea
                   id="description"
                   name="description"
-                  className="block pl-1 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block pl-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   value={listingDescription}
                   onChange={(event) =>
                     setListingDescription(event.target.value)
@@ -181,7 +181,7 @@ export default function ListingForm() {
                   name="programming-languages"
                   id="programming-languages"
                   autoComplete="programming-languages"
-                  className="block w-full pl-1 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   placeholder="HTML, Javascript, PHP..."
                   value={programmingLanguages}
                   onChange={(event) =>
@@ -208,7 +208,7 @@ export default function ListingForm() {
                   name="token-rate"
                   id="token-rate"
                   autoComplete="off"
-                  className="block w-full pl-1 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   placeholder="50"
                   min='1'
                   value={listingTokens}
