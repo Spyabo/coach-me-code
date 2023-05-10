@@ -19,11 +19,15 @@ export default async function MyListings({ params }) {
                     {listings.map((listing) => {
                         return (
                             <div key={listing._id}
-                                className="bg-white rounded-lg shadow-lg mx-auto m-10 w-1/2 flex flex-col border-solid border-2 border-orange-600">
-                                <p>Listing title: {listing.listing_title}</p>
-                                <p>Listing description: {listing.listing_description}</p>
-                                <p>Programming languages: {(listing.programming_languages).map(item => item)}</p>
-                                <p>Token rate: {listing.token_rate}</p>
+                                className="flex align-center"
+                            >
+                                <div className="flex-col justify-between">
+                                    <p>Listing title: {listing.listing_title}</p>
+                                    <p>Listing description: {listing.listing_description}</p>
+                                    <p>Programming languages: {(listing.programming_languages).map(item => item)}</p>
+                                    <p>Token rate: {listing.token_rate}</p>
+
+                                </div>
                             </div>
                         )
                     })}
