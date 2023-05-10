@@ -5,7 +5,7 @@ export default function Page() {
     <section className="py-24 flex justify-center bg-neutral-50 h-full">
       <div className="container">
         <div className="flex justify-center">
-          <SignIn signUpUrl="/sign-up" redirectUrl={"/welcome"} />
+          <SignIn signUpUrl="/sign-up" redirectUrl={"/user-form"} />
         </div>
       </div>
     </section>
