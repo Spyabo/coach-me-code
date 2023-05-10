@@ -28,11 +28,11 @@ export default async function Page({ params }) {
                     return (
                         <div
                             key={listingId}
-                            className="bg-white rounded-lg shadow-lg mx-auto m-10 w-1/2 flex flex-col border-solid border-2 border-purple-600"
+                            className="bg-white rounded-lg shadow-lg mx-auto m-10 w-full  flex flex-col border-solid border-2 border-purple-600 overflow-x-auto whitespace-normal "
                         >
-                            <div className="bg-gray-300    p-2 rounded">
-                                <div className="flex flex-row justify-between">
-                                    <p>Order #{listingId}</p>
+                            <div className="bg-gray-300 p-2 rounded">
+                                <div className="flex flex-row justify-between sm: flex-col">
+                                    <p className="font-bold">Order #{listingId}</p>
                                     <p>Total: {orderItem.token_rate} tokens</p>
                                 </div>
                                 <p>Purchased on {date}</p>
@@ -50,7 +50,7 @@ export default async function Page({ params }) {
                                         <p>{orderItem.mentor_name}</p>
 
                                         <a href={`/listings/${order}`}>
-                                            <button className="bg-green-400 hover:bg-blue-700 text-white font-bold py-2 px-2 m-2 rounded-full">
+                                            <button className="bg-green-400 hover:bg-red-400 text-white font-bold py-2 px-2 m-2 rounded-full">
                                                 View Listing
                                             </button>
                                         </a>
