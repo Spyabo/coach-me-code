@@ -1,6 +1,8 @@
 import {
   getUserByClerkId,
   getUsers,
+  patchListing,
+  patchOrder,
   patchUser,
   postUser,
 } from "@lib/mongo/users";
@@ -33,6 +35,18 @@ export async function PUT(user: NextRequest) {
     if ("error" in result) {
       throw new Error(result.error);
     }
+    return NextResponse.json({ result });
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
+
+export async function PATCH(params: NextRequest) {
+  try {
+    const { clerkID, order, bool } = await params.json();
+    let result;
+    if (bool) result = await patchOrder(clerkID, order);
+    else result = await patchListing(clerkID, order);
     return NextResponse.json({ result });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });

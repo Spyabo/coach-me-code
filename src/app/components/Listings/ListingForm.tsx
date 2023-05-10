@@ -40,7 +40,16 @@ export default function ListingForm() {
         }
       })
       const { result } = await res.json();
-      console.log(result);
+
+      const userPatch = await fetch("http://localhost:3000/api/users", {
+        method: "PATCH",
+        //bool true = order, false = lising
+        body: JSON.stringify({
+          clerkID: user?.id,
+          order: result._id,
+          bool: false
+        })
+      })
 
       setListingTitle("");
       setListingDescription("");

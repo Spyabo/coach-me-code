@@ -1,10 +1,27 @@
 "use client"
+import { useUser } from "@clerk/nextjs";
 import format from "date-fns/format";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import ReactCalendar from "../../../components/Calendar/ReactCalendar";
 
 export default function Page() {
   const [date, setDate] = useState<Date | undefined>(new Date())
+  const listing_id = usePathname().split("/")[2];
+  const { user } = useUser();
+  const order = { [listing_id]: date!.toISOString() };
+
+  const handleOnClick = async () => {
+    const res = await fetch("/api/users", {
+      method: "PATCH",
+      //bool true = order, false = lising
+      body: JSON.stringify({
+        clerkID: user?.id,
+        order: order,
+        bool: true
+      })
+    })
+  }
 
   return (
     <div className="flex justify-center md:flex-row m-10 py-6 gap-6 ">
@@ -31,7 +48,7 @@ export default function Page() {
           </div>
         </div>
         <div className="flex justify-center items-center">
-          <button className="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded-full">
+          <button onClick={handleOnClick} className="bg-blue-400 hover:bg-blue-700 text-black font-bold py-2 px-4 m-2 rounded-full">
             Order now
           </button>
         </div>
