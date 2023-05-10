@@ -4,6 +4,7 @@ import { useUser } from "@clerk/nextjs";
 import { listing } from "@lib/types/listings";
 import stringToArray from "@lib/utils/stringToArray";
 import { useState } from "react";
+import CancelButton from "../CancelButton";
 
 export default function ListingForm() {
   const [listingTitle, setListingTitle] = useState("");
@@ -220,12 +221,7 @@ export default function ListingForm() {
         </div>
 
         <div className="mt-6 flex items-center justify-end gap-x-6">
-          <button
-            type="button"
-            className="mt-6 bg-red-500 hover:bg-yellow-400  text-white py-3 px-6 rounded font-bold"
-          >
-            Cancel
-          </button>
+          <CancelButton />
           <button
             className="mt-6 hover:bg-green-300 bg-purple-700 text-white py-3 px-6 rounded font-bold"
             type="submit"
