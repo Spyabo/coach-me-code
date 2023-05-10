@@ -118,7 +118,7 @@ export async function getUsersById(id: string) {
   }
 }
 
-export async function getUserByClerkId(clerk_id: string) {
+export async function getUserByClerkId(clerk_id: string | undefined) {
   try {
     if (!users) await setup();
     const result = await users.findOne({ clerk_id });
