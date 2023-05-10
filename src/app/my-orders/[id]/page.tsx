@@ -16,7 +16,10 @@ export default async function Page({ params }) {
             <div>
                 {orders.map((order) => {
                     const listingId = Object.keys(order)[0];
-                    const date = order[listingId];
+                    let date = new Date(Date.parse(order[listingId]) * 1000).toString()
+
+
+
                     let orderItem = listings.find(
                         (listing: getListingsResponse) =>
                             listing._id === Object.keys(order)[0]
@@ -25,11 +28,14 @@ export default async function Page({ params }) {
                     return (
                         <div
                             key={listingId}
-                            className="bg-white rounded-lg shadow-lg mx-auto m-10 w-1/2 flex flex-col border-solid border-2 border-orange-600"
+                            className="bg-white rounded-lg shadow-lg mx-auto m-10 w-1/2 flex flex-col border-solid border-2 border-purple-600"
                         >
-                            <div className="bg-slate-400  flex-col justify-between p-2 rounded">
-                                <p>Order #{listingId}</p>
-                                <p>Total: {orderItem.token_rate}</p>
+                            <div className="bg-gray-300    p-2 rounded">
+                                <div className="flex flex-row justify-between">
+                                    <p>Order #{listingId}</p>
+                                    <p>Total: {orderItem.token_rate} tokens</p>
+                                </div>
+                                <p>Purchased on {date}</p>
                             </div>
                             <div className="flex align-center flex-col">
                                 <div className="flex flex-row">
@@ -42,9 +48,9 @@ export default async function Page({ params }) {
                                     <div className="p-4">
                                         <p>{orderItem.listing_title}</p>
                                         <p>{orderItem.mentor_name}</p>
-                                        <p>{date}</p>
+
                                         <a href={`/listings/${order}`}>
-                                            <button className="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-2 m-2 rounded-full">
+                                            <button className="bg-green-400 hover:bg-blue-700 text-white font-bold py-2 px-2 m-2 rounded-full">
                                                 View Listing
                                             </button>
                                         </a>
