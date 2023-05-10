@@ -75,7 +75,7 @@ export async function patchOrder(clerkID: string, order: []) {
     if (!users) await setup();
     const result = await users.updateOne(
       { clerk_id: clerkID },
-      // order: [{"orderID", "date"}]
+      // order: [{"listing_ID", "date"}]
       { $push: { order_ids: order } }
     );
 
