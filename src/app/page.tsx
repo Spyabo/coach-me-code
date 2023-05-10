@@ -6,14 +6,17 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Landing() {
   return (
-    <main className="flex flex-col items-center gap-8 p-6 mt-50 md:mt-15">
-      <div className="bg-gray-100 px-8 py-10 rounded-lg text-center">
+    <main className="flex flex-col items-center gap-8 p-6 mt-50 md:mt-15 max-w-7xl mx-auto lg:px-7 ">
+      <div className="bg-gray-100 px-8 py-10 rounded-lg text-center mt-20 shadow-lg w-full bg-hero-pattern bg-cover bg-center">
         <h1 className="text-3xl md:text-2xl font-bold text-gray-800 leading-tight md:leading-snug mb-2">
-          Coach Me Code - Your one stop place to learn, collaborate and grow!
+          Coach Me Code
         </h1>
+        <h2 className="text-3xl md:text-2xl font-bold text-gray-800 leading-tight md:leading-snug mb-2">
+          Your one stop place to learn, collaborate and grow!
+        </h2>
         <a href="/sign-up">
-          <button className="bg-orange-500 text-white text-lg text-center font-bold py-3 px-6 rounded-full mt-6 hover:bg-orange-600 transition-colors duration-300 ease-in-out">
-            Join us
+          <button className="bg-green-400 hover:bg-red-400 text-white text-lg text-center font-bold py-3 px-6 rounded-full mt-6 hover:bg-orange-600 transition-colors duration-300 ease-in-out">
+            Join us today
           </button>
         </a>
       </div>

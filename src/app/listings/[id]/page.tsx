@@ -9,7 +9,7 @@ export default async function ListingByIDPage({ params }: { params: { id: string
     const listing: getListingsResponse = await getListingById(params.id);
 
     return (
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white rounded-lg shadow-lg max-w-7xl mx-auto sm:px-6 lg:px-7 mt-20">
             <Head>
                 <title className="mb-4">{listing.listing_title} | Code Mentor</title>
             </Head>
@@ -38,7 +38,7 @@ export default async function ListingByIDPage({ params }: { params: { id: string
                             </li>
                         </ul>
                         <Link href={`/listings/${params.id}/purchase`}>
-                            <button className="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded">
+                            <button className="mt-6 bg-red-500 hover:bg-purple-700 text-white py-3 px-6 rounded font-bold">
                                 Book Now
                             </button>
                         </Link>

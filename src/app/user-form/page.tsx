@@ -42,7 +42,15 @@ export default function UserForm() {
         }
       })
       const { result } = await res.json();
-      console.log(result);
+      const clerkRes = await fetch("http://localhost:3000/api/users/clerk", {
+        method: "PATCH",
+        body: JSON.stringify({
+          clerk_id: user.id,
+          firstName: firstName,
+          lastName: lastName,
+        })
+      })
+      const clerk = await clerkRes.json();
     } catch (error) {
       console.log(error);
     }
