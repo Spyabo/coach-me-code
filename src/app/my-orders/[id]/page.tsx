@@ -1,7 +1,7 @@
-import { getUserByClerkId } from "@lib/mongo/users";
 import { getListings } from "@lib/mongo/listings";
-import { getUsersResponse } from "@lib/types/users";
+import { getUserByClerkId } from "@lib/mongo/users";
 import { getListingsResponse } from "@lib/types/listings";
+import { getUsersResponse } from "@lib/types/users";
 
 export default async function Page({ params }) {
     const user: getUsersResponse = await getUserByClerkId(params.id);
@@ -28,10 +28,10 @@ export default async function Page({ params }) {
                     return (
                         <div
                             key={listingId}
-                            className="bg-white rounded-lg shadow-lg mx-auto m-10 w-full  flex flex-col border-solid border-2 border-purple-600 overflow-x-auto whitespace-normal "
+                            className="bg-white rounded-lg shadow-lg mx-auto m-10 flex flex-col border-solid border-2 border-purple-600 overflow-x-auto whitespace-normal "
                         >
                             <div className="bg-gray-300 p-2 rounded">
-                                <div className="flex flex-row justify-between sm: flex-col">
+                                <div className="flex flex-row justify-between sm:flex-col">
                                     <p className="font-bold">Order #{listingId}</p>
                                     <p>Total: {orderItem.token_rate} tokens</p>
                                 </div>
