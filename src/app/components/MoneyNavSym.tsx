@@ -27,7 +27,7 @@ export default function MoneyNavSym(props: clerkID): JSX.Element {
 
     return (
         <div>
-            {`Tokens: ${tokens ? tokens : 0}`}
+            {tokens ? tokens : 0}
         </div>
     )
 }
