@@ -9,7 +9,7 @@ export default function Page() {
   const [date, setDate] = useState<Date | undefined>(new Date())
   const listing_id = usePathname().split("/")[2];
   const { user } = useUser();
-  const order = [{ [listing_id]: date!.toISOString() }];
+  const order = { [listing_id]: date!.toISOString() };
 
   const handleOnClick = async () => {
     const res = await fetch("/api/users", {
