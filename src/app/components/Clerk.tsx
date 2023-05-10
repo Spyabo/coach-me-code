@@ -6,8 +6,6 @@ import MoneyNavSym from "./MoneyNavSym";
 export default function Clerk() {
   const { user } = useUser();
 
-
-
   return (
     <>
       <SignedIn>
