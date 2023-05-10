@@ -6,7 +6,6 @@ import React, { useState } from "react";
 import { SignedIn, useUser } from "@clerk/nextjs";
 import Clerk from "../Clerk";
 
-
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useUser();
@@ -124,6 +123,18 @@ export default function Nav() {
                   className="hover:bg-purple-600 text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Create Listing
+                </a>
+                <a
+                  className="hover:bg-purple-600 text-white block px-3 py-2 rounded-md text-base font-medium"
+                  href={`/users/${user?.id}/my-listings`}
+                >
+                  My Listings
+                </a>
+                <a
+                  className="hover:bg-purple-600 text-white block px-3 py-2 rounded-md text-base font-medium"
+                  href={`/users/${user?.id}/my-orders`}
+                >
+                  My Orders
                 </a>
               </div>
             </div>
