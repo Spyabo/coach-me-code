@@ -70,6 +70,29 @@ export async function patchUser(id: string, newUser: userType) {
   }
 }
 
+export async function patchOrders(clerkID: string, orders: []) {
+  try {
+    if (!users) await setup();
+    const result = await users.updateOne(
+      { clerk_id: clerkID },
+      // orders: [{"orderID", "date"}, {"orderID", "date"}]
+      { $push: { listing_ids: { $each: orders, $sort: { date: -1 } } } }
+    );
+
+    if (result.modifiedCount === 1) {
+      return { success: true };
+    } else if (result.modifiedCount === 0) {
+      return { error: "No matching document found to update" };
+    } else {
+      return {
+        error: "Multiple documents found - please check the query criteria",
+      };
+    }
+  } catch (err) {
+    return { error: "Could not update tokens" };
+  }
+}
+
 export async function patchTokens(
   request: tokenRequest,
   clerkID: string
