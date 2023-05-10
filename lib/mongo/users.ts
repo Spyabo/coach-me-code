@@ -70,13 +70,14 @@ export async function patchUser(id: string, newUser: userType) {
   }
 }
 
-export async function patchOrders(clerkID: string, orders: []) {
+export async function patchOrder(clerkID: string, order: []) {
   try {
     if (!users) await setup();
     const result = await users.updateOne(
       { clerk_id: clerkID },
-      // orders: [{"orderID", "date"}, {"orderID", "date"}]
-      { $push: { listing_ids: { $each: orders, $sort: { date: -1 } } } }
+      // order: [{"orderID", "date"}]
+      { $push: { listing_ids: order } }
+      // { $push: { listing_ids: order, $sort: { date: -1 }  } }
     );
 
     if (result.modifiedCount === 1) {
