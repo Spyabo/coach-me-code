@@ -14,9 +14,11 @@ export default function Page() {
   const handleOnClick = async () => {
     const res = await fetch("/api/users", {
       method: "PATCH",
+      //bool true = order, false = lising
       body: JSON.stringify({
         clerkID: user?.id,
-        order: order
+        order: order,
+        bool: true
       })
     })
   }
