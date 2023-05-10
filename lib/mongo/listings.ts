@@ -1,6 +1,5 @@
-import { getListingsResponse, listing } from '@lib/types/listings';
+import { getListingsResponse, listing } from "@lib/types/listings";
 import { Collection, Db, MongoClient, ObjectId } from "mongodb";
-import { NextRequest } from "next/server";
 import clientPromise from ".";
 
 let client: MongoClient;
@@ -12,7 +11,7 @@ async function setup() {
   try {
     client = await clientPromise;
     db = client.db("data");
-    listings = db.collection("listings")
+    listings = db.collection("listings");
   } catch (err) {
     throw new Error("Could not connect to MongoDB");
   }
@@ -47,7 +46,7 @@ export async function getListings(): Promise<
   }
 }
 
-export async function postListing(newListing: listing){
+export async function postListing(newListing: listing) {
   try {
     if (!listings) await setup();
     const result = await listings.insertOne(newListing);
