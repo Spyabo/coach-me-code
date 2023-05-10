@@ -1,6 +1,7 @@
 import { SignInButton, UserButton, useUser } from "@clerk/nextjs";
 import { SignedIn, SignedOut } from "@clerk/nextjs/app-beta/client";
 import MyDropdown from "./ DropDownMenu/DropDownMenu";
+import MoneyNavSym from "./MoneyNavSym";
 
 export default function Clerk() {
   const { user } = useUser();
@@ -10,6 +11,8 @@ export default function Clerk() {
     <>
       <SignedIn>
         <div className="flex justify-center items-center">
+          {/* @ts-ignore */}
+          <MoneyNavSym id={user?.id} />
           <MyDropdown userName={user?.firstName} userId={user?.id} />
         </div>
         <div className="flex justify-center items-center">

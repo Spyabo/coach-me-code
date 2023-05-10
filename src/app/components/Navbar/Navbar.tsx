@@ -3,10 +3,9 @@
 import { Transition } from "@headlessui/react";
 import Image from "next/image";
 import React, { useState } from "react";
-
 import { SignedIn, useUser } from "@clerk/nextjs";
 import Clerk from "../Clerk";
-import MoneyNavSym from "../MoneyNavSym";
+
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,8 +53,6 @@ export default function Nav() {
                       href={`/wallet/${user?.id}`}
                       className="text-white hover:bg-purple-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     >
-                      {/* @ts-ignore */}
-                      <MoneyNavSym id={user?.id} />
                     </a>
                   </SignedIn>
                 </div>
@@ -138,7 +135,7 @@ export default function Nav() {
                   href={`/wallet/${user?.id}`}
                   className="hover:bg-purple-600 text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
-                  <MoneyNavSym id={user?.id} />
+
                 </a>
               </div>
             </div>
