@@ -1,4 +1,5 @@
 "use client"
+import { useUser } from "@clerk/nextjs";
 import format from "date-fns/format";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -7,6 +8,7 @@ import ReactCalendar from "../../../components/Calendar/ReactCalendar";
 export default function Page() {
   const [date, setDate] = useState<Date | undefined>(new Date())
   const listing_id = usePathname().split("/")[2];
+  const { user } = useUser();
 
   return (
     <div className="flex justify-center md:flex-row m-10 py-6 gap-6 ">
