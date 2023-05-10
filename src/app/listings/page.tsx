@@ -7,9 +7,9 @@ export default async function ListingsPage() {
   const { listings }: { listings: getListingsResponse[] } = await res.json()
 
   return (
-    <div className="container max-w-7xl mx-auto sm:px-6 lg:px- mt-20">
+    <div className="container max-w-7xl mx-auto px-6 sm:px-6 lg:px-6 mb-10">
       <header>
-        <h1 className="text-2xl font-bold my-6">Explore the available services...</h1>
+        <h1 className="text-2xl font-bold my-6">Explore the courses currently available...</h1>
       </header>
       {/* <ListingFilterBy listingArray={listings} sort_by={"programming_languages"} /> */}
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-2 ">

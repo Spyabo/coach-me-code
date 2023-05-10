@@ -1,6 +1,8 @@
 'use client'
 import { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
+import Image from 'next/image';
+
 export default function money() {
   const [tokensToAdd, setTokensToAdd] = useState<number>(0);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
@@ -21,17 +23,19 @@ export default function money() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Add Tokens</h2>
+    <div className=" max-w-7xl mx-auto container flex flex-col py-12 px-6">
+      <div className="flex flex-col gap-4 sm:mx-auto sm:w-full sm:max-w-md">
+        <h2 className="text-3xl font-extrabold text-gray-900">
+          Add tokens to you wallet...
+        </h2>
+        <p>You can only purchase courses if you have enough tokens in your wallet!</p>
       </div>
-
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="tokensToAdd" className="block text-sm font-medium text-gray-700">
-                Tokens to add
+                Tokens to Add
               </label>
               <div className="mt-1">
                 <input
@@ -50,7 +54,7 @@ export default function money() {
             <div>
               <button
                 type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-400 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-600"
               >
                 Add Tokens
               </button>
@@ -62,6 +66,15 @@ export default function money() {
             )}
           </form>
         </div>
+      </div>
+      <div className="invisible md:visible lg:visible flex justify-end lg:-mt-14">
+        <Image
+          className="float-right"
+          src="/tokens.svg"
+          alt="a graphic of tokens"
+          width={300}
+          height={300}
+        />
       </div>
     </div>
   );
