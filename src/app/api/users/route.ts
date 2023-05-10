@@ -1,6 +1,7 @@
 import {
   getUserByClerkId,
   getUsers,
+  patchListing,
   patchOrder,
   patchUser,
   postUser,
@@ -42,8 +43,10 @@ export async function PUT(user: NextRequest) {
 
 export async function PATCH(params: NextRequest) {
   try {
-    const { clerkID, order } = await params.json();
-    const result = await patchOrder(clerkID, order);
+    const { clerkID, order, bool } = await params.json();
+    let result;
+    if (bool) result = await patchOrder(clerkID, order);
+    else result = await patchListing(clerkID, order);
     return NextResponse.json({ result });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
