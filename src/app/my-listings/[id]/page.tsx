@@ -1,5 +1,6 @@
 import { getListingByClerkId } from "@lib/mongo/listings";
 import { getListingsResponse } from "@lib/types/listings";
+import Link from "next/link";
 
 export default async function MyListings({ params }) {
     const { listings }: getListingsResponse = await getListingByClerkId(params.id)
@@ -11,27 +12,57 @@ export default async function MyListings({ params }) {
             </div>
             :
             <>
-                <div className="flex flex-row justify-center p-2 m-2">
-                    <h1 className="text-2xl font-bold mt-16 text-center p-4">
+
+                <div className="container max-w-7xl mx-auto sm:px-6 lg:px- mt-20">
+                    <header>
+                        <h1 className="text-2xl font-bold my-6">Your listings details:</h1>
+                    </header>
+                    <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-2 ">
+                        {listings.map((data: getListingsResponse) => {
+                            return (
+                                <li className="container bg-gray-200 shadow-md rounded border-solid border-2 border-purple-600 flex flex-col gap-4 py-4 md:flex-1 justify-between items-center" key={data._id}>
+                                    <img className="rounded border-solid border-2 border-orange-600" width={300} src={data.listing_image} alt={data.listing_title} />
+                                    <h3 className="font-bold text-lg flex flex-wrap items-center text-center">Listing title: {data.listing_title}</h3>
+                                    <p>Listing description: {data.listing_description}</p>
+                                    <p>Programming languages: {(data.programming_languages).map(item => item)}</p>
+                                    <p>{data.listing_rating / 10}</p>
+                                    <p>Token rate: {data.token_rate}</p>
+                                    <Link href={`/listings/${data._id}`}>
+                                        <button className="bg-green-400 hover:bg-red-400 text-white text-md text-center font-bold py-3 px-6 rounded-full hover:bg-orange-600 transition-colors duration-300 ease-in-out">
+                                            View listing details
+                                        </button>
+                                    </Link>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
+
+
+                {/* <div className="container max-w-7xl mx-auto sm:px-6 lg:px- mt-20">
+                    <h1 className="text-2xl font-bold my-6">
                         Your listings details:
                     </h1>
                 </div>
+                <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-2 ">
 
-                {listings.map((listing) => {
-                    return (
-                        <div key={listing._id}
-                            className="flex justify-center mx-auto mt-2 border-2 w-1/4 border-solid border-purple-600 rounded-lg p-2 m-2"
-                        >
-                            <div className="flex-col justify-center ">
-                                <p>Listing title: {listing.listing_title}</p>
-                                <p>Listing description: {listing.listing_description}</p>
-                                <p>Programming languages: {(listing.programming_languages).map(item => item)}</p>
-                                <p>Token rate: {listing.token_rate}</p>
-                                <a href={`/listings/${listing._id}`}><button className="bg-green-400 hover:bg-red-400 text-white text-sm text-center font-bold py-1 px-2 rounded-full hover:bg-orange-600 transition-colors duration-300 ease-in-out ">View listing details</button></a>
-                            </div>
-                        </div >
-                    )
-                })}
+                    <li className="container bg-gray-200 shadow-md rounded border-solid border-2 border-purple-600 flex flex-col gap-4 py-4 md:flex-1 justify-between items-center">
+                        {listings.map((listing) => {
+                            return (
+                                <li className="container bg-gray-200 shadow-md rounded border-solid border-2 border-purple-600 flex flex-col gap-4 py-4 md:flex-1 justify-between items-center" key={listing._id}>
+                                    <h3 className="font-bold text-lg flex flex-wrap items-center text-center">{listing.listing_title}</h3>
+                                    <p>Listing title: {listing.listing_title}</p>
+                                    <p>Listing description: {listing.listing_description}</p>
+                                    <p>Programming languages: {(listing.programming_languages).map(item => item)}</p>
+                                    <p>Token rate: {listing.token_rate}</p>
+                                    <a href={`/listings/${listing._id}`}><button className="bg-green-400 hover:bg-red-400 text-white text-sm text-center font-bold py-1 px-2 rounded-full hover:bg-orange-600 transition-colors duration-300 ease-in-out ">View listing details</button></a>
+
+                                </li>
+                            )
+                        })}
+
+                    </li>
+                </ul > */}
 
             </>
     )
