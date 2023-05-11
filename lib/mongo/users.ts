@@ -9,7 +9,7 @@ async function setup() {
   if (db) return;
   try {
     client = await clientPromise;
-    db = client.db("production");
+    db = client.db("data");
     users = db.collection("users");
   } catch (err) {
     throw new Error("Could not connect to MongoDB");
