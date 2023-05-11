@@ -16,7 +16,6 @@ export default async function ListingByIDPage({ params }: { params: { id: string
             <img className="rounded" width={400} src={listing.listing_image} alt={listing.listing_title} />
             <h2 className="text-xl font-bold">Description</h2>
             <p className="text-gray-700">{listing.listing_description}</p>
-
             <h2 className="text-xl font-bold">Details</h2>
             <ul className="text-gray-700">
                 <li>
@@ -36,7 +35,6 @@ export default async function ListingByIDPage({ params }: { params: { id: string
                         Book Now
                     </button>
                 </Link>
-
             </div>
         </div>
     );

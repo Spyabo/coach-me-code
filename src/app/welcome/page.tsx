@@ -1,5 +1,5 @@
 "use client";
-import { useAuth, useUser } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 import Image from 'next/image';
 
 export default function Welcome() {
@@ -13,9 +13,9 @@ export default function Welcome() {
     return (
         <div className="max-w-7xl mx-auto px-6 container mt-2">
             <header>
-                <h1 className="text-lg font-bold my-4 ">Welcome, {user.firstName}!</h1>
+                <h1 className="text-3xl font-bold my-10 ">Welcome, {user.firstName}!</h1>
             </header>
-            <section>
+            <section className="text-lg mb-20">
                 <p >You took the first step! 🎉 </p>
                 <p> Sharpen the tools in your coding belt through coaching others, or find a course to help you on your coding journey...</p>
             </section>

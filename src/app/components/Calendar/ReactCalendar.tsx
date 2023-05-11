@@ -14,7 +14,6 @@ export default function ReactCalendar({ date, setDate }: { date: Date | undefine
       selected={date}
       onSelect={setDate}
       className="rounded-md border"
-      footer={dateSelected}
     />
   );
 }

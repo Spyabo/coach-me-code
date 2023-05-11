@@ -3,8 +3,10 @@
 import { useUser } from "@clerk/nextjs";
 import { userType } from '@lib/types/users';
 import stringToArray from "@lib/utils/stringToArray";
-import { useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from "next/navigation";
+import { useState } from 'react';
+import CancelButton from "../components/CancelButton";
 
 export default function UserForm() {
   const { isLoaded, isSignedIn, user } = useUser();
@@ -19,6 +21,7 @@ export default function UserForm() {
   const [emailAddress, setEmailAddress] = useState(user?.primaryEmailAddress?.emailAddress);
   const [yearsExperience, setYearsExperience] = useState("");
   const [programmingLanguages, setProgrammingLanguages] = useState("");
+  const router = useRouter();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -62,6 +65,8 @@ export default function UserForm() {
     setEmailAddress("");
     setYearsExperience("");
     setProgrammingLanguages("");
+
+    router.push("/welcome");
   };
 
   return (
@@ -152,6 +157,7 @@ export default function UserForm() {
                     id="phoneNumber"
                     className="block w-full pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     value={phoneNumber}
+                    placeholder="07700 900984"
                     onChange={(event) => setPhoneNumber(event.target.value)}
                     autoComplete="off"
                   />
@@ -173,13 +179,13 @@ export default function UserForm() {
                     className="block w-full pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mb-3"
                     value={yearsExperience}
                     onChange={(event) => setYearsExperience(event.target.value)}
+                    placeholder="2"
                     autoComplete="off"
                     required
                   />
                 </div>
               </div>
             </div>
-
             <div className="">
               <label
                 htmlFor="programmingLanguages"
@@ -195,12 +201,12 @@ export default function UserForm() {
                   className="block w-full pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mb-3"
                   value={programmingLanguages}
                   onChange={(event) => setProgrammingLanguages(event.target.value)}
+                  placeholder="TypeScript, Python, Rust..."
                   autoComplete="off"
                   required
                 />
               </div>
             </div>
-
           </div>
           <Image
             src="/user-form.svg"
@@ -211,12 +217,7 @@ export default function UserForm() {
           />
         </div>
         <div className="mt-6 flex items-center justify-end gap-x-6">
-          <button
-            type="button"
-            className="mt-6 bg-red-500 hover:bg-yellow-400  text-white py-3 px-6 rounded font-bold transition-colors duration-300 ease-in-out"
-          >
-            Cancel
-          </button>
+          <CancelButton />
           <button
             type="submit"
             className="mt-6 hover:bg-green-300 bg-purple-700 text-white py-3 px-6 rounded font-bold transition-colors duration-300 ease-in-out"

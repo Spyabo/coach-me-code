@@ -3,7 +3,10 @@
 import { useUser } from "@clerk/nextjs";
 import { listing } from "@lib/types/listings";
 import stringToArray from "@lib/utils/stringToArray";
+import { UploadButton, UploadDropzone } from "@uploadthing/react";
+import "@uploadthing/react/styles.css";
 import { useState } from "react";
+import type { OurFileRouter } from "../../api/uploadthing/core";
 import CancelButton from "../CancelButton";
 
 export default function ListingForm() {
@@ -33,7 +36,7 @@ export default function ListingForm() {
     };
     // Send the form data to the Mongo server function in lib fix since can't be "use client"
     try {
-      const res = await fetch("http://localhost:3000/api/listings", {
+      const res = await fetch("/api/listings", {
         method: "POST",
         body: JSON.stringify(formData),
         headers: {
@@ -64,22 +67,22 @@ export default function ListingForm() {
   };
 
   return (
-    <>
+    <div >
       {error && <div className="px-6 pb-5" >
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
           <strong className="font-bold">Holy smokes!</strong>{" "}
           <span className="block sm:inline">Listing not created, please try again.</span>
           <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
-            <svg className="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
+            <svg className="fill-current h-6 w-6 text-red-500" role="button" onClick={() => setError(false)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
           </span>
         </div>
       </div>}
-      {submitted && <div className="px-6 pb-5" >
+      {submitted && <div className="px-6 pb-5 " >
         <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
           <strong className="font-bold">Holy guacamole!</strong>{" "}
           <span className="block sm:inline">Listing has been created.</span>
           <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
-            <svg className="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
+            <svg className="fill-current h-6 w-6 text-green-500" role="button" onClick={() => setSubmitted(false)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
           </span>
         </div>
       </div>}
@@ -142,27 +145,27 @@ export default function ListingForm() {
               </div>
             </div>
 
-            {/* <div className="col-span-full">
-            <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">Cover photo</label>
-            <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-              <div className="text-center">
-                <svg className="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
-                </svg>
-                <div className="mt-4 flex text-sm leading-6 text-gray-600">
-                  <label htmlFor="file-upload" className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                    <span>Upload a file</span>
-                    <input id="file-upload" name="file-upload" type="file" className="sr-only"/>
-                  </label>
-                  <p className="pl-1">or drag and drop</p>
+            <div className="col-span-full">
+              <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">Cover photo</label>
+              <div className="mt-2 flex justify-center flex-col rounded-lg border border-bold border-gray-900/25 px-6 py-10">
+                <UploadDropzone<OurFileRouter>
+                  endpoint="imageUploader"
+                  onClientUploadComplete={() => {
+                    alert("Upload Completed");
+                  }}
+                />
+                <div className="py-4">
+                  <UploadButton<OurFileRouter>
+                    endpoint="imageUploader"
+                    onClientUploadComplete={() => {
+                      alert("Upload Completed");
+                    }}
+                  />
                 </div>
-                <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
               </div>
             </div>
-          </div> */}
           </div>
         </div>
-
         <div className="border-b border-gray-900/10 pb-12">
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-3">
@@ -182,7 +185,7 @@ export default function ListingForm() {
                   id="programming-languages"
                   autoComplete="programming-languages"
                   className="block w-full pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  placeholder="HTML, Javascript, PHP..."
+                  placeholder="TypeScript, Python, Rust..."
                   value={programmingLanguages}
                   onChange={(event) =>
                     setProgrammingLanguages(event.target.value)
@@ -191,7 +194,6 @@ export default function ListingForm() {
                 />
               </div>
             </div>
-
             <div className="sm:col-span-3">
               <label
                 htmlFor="token-rate"
@@ -219,18 +221,19 @@ export default function ListingForm() {
             </div>
           </div>
         </div>
-
         <div className="mt-6 flex items-center justify-end gap-x-6">
           <CancelButton />
-          <button
-            className="mt-6 hover:bg-green-300 bg-purple-700 text-white py-3 px-6 rounded font-bold"
-            type="submit"
-            onSubmit={handleSubmit}
-          >
-            Post Listing
-          </button>
+          <div className="bg-purple-700 rounded mt-6">
+            <button
+              className=" hover:bg-green-300 bg-purple-700 text-white py-3 px-6 rounded font-bold"
+              type="submit"
+              onSubmit={handleSubmit}
+            >
+              Post Listing
+            </button>
+          </div>
         </div>
       </form>
-    </>
+    </div>
   );
 }
