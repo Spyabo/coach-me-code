@@ -157,6 +157,7 @@ export default function UserForm() {
                     id="phoneNumber"
                     className="block w-full pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     value={phoneNumber}
+                    placeholder="07700 900984"
                     onChange={(event) => setPhoneNumber(event.target.value)}
                     autoComplete="off"
                   />
@@ -178,6 +179,7 @@ export default function UserForm() {
                     className="block w-full pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mb-3"
                     value={yearsExperience}
                     onChange={(event) => setYearsExperience(event.target.value)}
+                    placeholder="2"
                     autoComplete="off"
                     required
                   />
@@ -199,6 +201,7 @@ export default function UserForm() {
                   className="block w-full pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mb-3"
                   value={programmingLanguages}
                   onChange={(event) => setProgrammingLanguages(event.target.value)}
+                  placeholder="TypeScript, Python, Rust..."
                   autoComplete="off"
                   required
                 />
