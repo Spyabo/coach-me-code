@@ -24,6 +24,7 @@ export default async function ListingsPage() {
                     <h3 className="font-bold text-xl mt-2 flex flex-wrap items-center text-center">{data.listing_title}</h3>
                     <p>{data.mentor_name}</p>
                     {/* <p>{data.listing_rating / 10}</p> */}
+                    <p>{data.programming_languages.join(", ")}</p>
                     <div className="flex flex-row items-center justify-center">
                       <p>{data.token_rate}</p>
                       <Image
