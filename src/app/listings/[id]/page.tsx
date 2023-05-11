@@ -37,7 +37,7 @@ export default async function ListingByIDPage({ params }: { params: { id: string
                                 <strong>Cost:</strong> {listing.token_rate} tokens
                             </li>
                         </ul>
-                        <Link href={`/listings/${params.id}/purchase`}>
+                        <Link href={{ pathname: `/listings/${params.id}/purchase` }} >
                             <button className="mt-6 bg-red-500 hover:bg-purple-700 text-white py-3 px-6 rounded font-bold">
                                 Book Now
                             </button>
