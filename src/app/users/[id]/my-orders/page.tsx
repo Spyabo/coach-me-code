@@ -10,14 +10,14 @@ export default async function Page({ params }) {
 
     return (
         orders.length === 0 ? <h1 className="flex justify-center text-4xl p-10 font-bold">No orders yet!</h1> :
-            <div className="flex flex-col justify-center">
+            <div className="flex flex-col justify-center items-center">
                 <h1 className="text-3xl font-bold mt-16 text-center p-4 underline">
                     Your Order History
                 </h1>
-                <div>
+                <div className="lg:w-1/2">
                     {orders.map((order) => {
                         const listingId = Object.keys(order)[0];
-                        const date = new Date(Date.parse(order[listingId]) * 1000).toString()
+                        const date = new Date(Date.parse(order[listingId])).toLocaleDateString();
                         const orderItem = listings.find(
                             (listing: getListingsResponse) =>
                                 listing._id === Object.keys(order)[0]
@@ -26,11 +26,11 @@ export default async function Page({ params }) {
                         return (
                             <div
                                 key={listingId}
-                                className="bg-gray-300 rounded-lg shadow-lg m-10 flex flex-col border-solid border-2 border-purple-600 overflow-x-auto whitespace-normal "
+                                className="bg-gray-300 rounded-lg shadow-lg m-10 flex flex-col border-solid border-2 border-purple-600 overflow-x-auto whitespace-normal"
                             >
-                                <div className=" bg-purple-800 text-white p-2 rounded">
-                                    <div className="flex flex-row justify-between sm:flex-col">
-                                        <p className="font-bold">Order #{listingId}</p>
+                                <div className="flex flex-col bg-purple-800 text-white p-2 rounded">
+                                    <div className="flex flex-col justify-between sm:flex-col">
+                                        <p className="font-bold">Order: #{listingId}</p>
                                         <p>Total Price: {orderItem?.token_rate} tokens</p>
                                     </div>
                                     <p>Booking Date: {date}</p>
@@ -49,7 +49,7 @@ export default async function Page({ params }) {
                                             <p>{orderItem?.mentor_name}</p>
 
                                             <a href={`/listings/${order}`}>
-                                                <button className="bg-green-400 hover:bg-red-400 text-white font-bold py-2 px-2 m-2 rounded-full">
+                                                <button className="bg-red-500 hover:bg-yellow-400 text-white font-bold py-2 px-2 m-2 rounded-full">
                                                     View Listing
                                                 </button>
                                             </a>
