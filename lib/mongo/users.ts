@@ -1,6 +1,5 @@
 import { getUsersResponse, tokenRequest, userType } from "@lib/types/users";
 import { Collection, Db, MongoClient, ObjectId } from "mongodb";
-import { NextRequest, NextResponse } from "next/server";
 import clientPromise from ".";
 let client: MongoClient;
 let db: Db;
@@ -10,7 +9,7 @@ async function setup() {
   if (db) return;
   try {
     client = await clientPromise;
-    db = client.db("data");
+    db = client.db("production");
     users = db.collection("users");
   } catch (err) {
     throw new Error("Could not connect to MongoDB");
