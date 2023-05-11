@@ -6,6 +6,7 @@ import stringToArray from "@lib/utils/stringToArray";
 import Image from 'next/image';
 import { useRouter } from "next/navigation";
 import { useState } from 'react';
+import CancelButton from "../components/CancelButton";
 
 export default function UserForm() {
   const { isLoaded, isSignedIn, user } = useUser();
@@ -183,7 +184,6 @@ export default function UserForm() {
                 </div>
               </div>
             </div>
-
             <div className="">
               <label
                 htmlFor="programmingLanguages"
@@ -204,7 +204,6 @@ export default function UserForm() {
                 />
               </div>
             </div>
-
           </div>
           <Image
             src="/user-form.svg"
@@ -215,12 +214,7 @@ export default function UserForm() {
           />
         </div>
         <div className="mt-6 flex items-center justify-end gap-x-6">
-          <button
-            type="button"
-            className="mt-6 bg-red-500 hover:bg-yellow-400  text-white py-3 px-6 rounded font-bold transition-colors duration-300 ease-in-out"
-          >
-            Cancel
-          </button>
+          <CancelButton />
           <button
             type="submit"
             className="mt-6 hover:bg-green-300 bg-purple-700 text-white py-3 px-6 rounded font-bold transition-colors duration-300 ease-in-out"
