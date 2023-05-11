@@ -3,8 +3,9 @@
 import { useUser } from "@clerk/nextjs";
 import { userType } from '@lib/types/users';
 import stringToArray from "@lib/utils/stringToArray";
-import { useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from "next/navigation";
+import { useState } from 'react';
 
 export default function UserForm() {
   const { isLoaded, isSignedIn, user } = useUser();
@@ -19,6 +20,7 @@ export default function UserForm() {
   const [emailAddress, setEmailAddress] = useState(user?.primaryEmailAddress?.emailAddress);
   const [yearsExperience, setYearsExperience] = useState("");
   const [programmingLanguages, setProgrammingLanguages] = useState("");
+  const router = useRouter();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -62,6 +64,8 @@ export default function UserForm() {
     setEmailAddress("");
     setYearsExperience("");
     setProgrammingLanguages("");
+
+    router.push("/welcome");
   };
 
   return (
