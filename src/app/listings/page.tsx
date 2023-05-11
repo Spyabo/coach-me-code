@@ -1,10 +1,10 @@
 import { getListingsResponse } from "@lib/types/listings";
+import Image from 'next/image';
 import Link from "next/link";
 import ListingFilterBy from "../components/listing-filterBy/listing-filterBy";
-import Image from 'next/image';
 
 export default async function ListingsPage() {
-  const res = await fetch("http://localhost:3000/api/listings")
+  const res = await fetch("http://localhost:3000/api/listings", { cache: "no-store" });
   const { listings }: { listings: getListingsResponse[] } = await res.json()
 
   return (
