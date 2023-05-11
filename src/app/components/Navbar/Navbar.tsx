@@ -1,9 +1,9 @@
 "use client";
 
+import { SignedIn, useUser } from "@clerk/nextjs";
 import { Transition } from "@headlessui/react";
 import Image from "next/image";
 import React, { useState } from "react";
-import { SignedIn, useUser } from "@clerk/nextjs";
 import Clerk from "../Clerk";
 
 export default function Nav() {
@@ -41,12 +41,14 @@ export default function Nav() {
                   >
                     Listings
                   </a>
-                  <a
-                    href="/listings/create-listing"
-                    className=" hover:bg-purple-600 text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Create Listing
-                  </a>
+                  <SignedIn>
+                    <a
+                      href="/listings/create-listing"
+                      className=" hover:bg-purple-600 text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Create Listing
+                    </a>
+                  </SignedIn>
                 </div>
               </div>
             </div>
@@ -117,12 +119,14 @@ export default function Nav() {
                 >
                   Listings
                 </a>
-                <a
-                  href="/listings/create-listing"
-                  className="hover:bg-purple-600 text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Create Listing
-                </a>
+                <SignedIn>
+                  <a
+                    href="/listings/create-listing"
+                    className="hover:bg-purple-600 text-white block px-3 py-2 rounded-md text-base font-medium"
+                  >
+                    Create Listing
+                  </a>
+                </SignedIn>
                 <a
                   className="hover:bg-purple-600 text-white block px-3 py-2 rounded-md text-base font-medium"
                   href={`/users/${user?.id}/my-listings`}
