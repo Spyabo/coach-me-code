@@ -21,7 +21,7 @@ export default async function ListingsPage() {
                 <div className="flex flex-col">
                   <div className="items-center justify-between gap-2 flex flex-col z-10">
                     <img className="rounded h-40 object-fill p-2 bg-purple-700" width={300} src={data.listing_image} alt={data.listing_title} />
-                    <h3 className="font-bold text-xl mt-2 flex flex-wrap items-center text-center">{data.listing_title}</h3>
+                    <h3 className="font-bold text-xl mt-2 flex flex-wrap items-center text-center px-2">{data.listing_title}</h3>
                     <p>{data.mentor_name}</p>
                     {/* <p>{data.listing_rating / 10}</p> */}
                     <p>{data.programming_languages.join(", ")}</p>
