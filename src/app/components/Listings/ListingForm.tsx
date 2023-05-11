@@ -87,12 +87,12 @@ export default function ListingForm() {
               </label>
               <div className="mt-2">
                 <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                  <span className="flex select-none items-center text-gray-500 sm:text-sm"></span>
+                  <span className="flex select-none items-center text-gray-500 sm:text-sm "></span>
                   <input
                     type="text"
                     name="listingTitle"
                     id="listingTitle"
-                    className="block flex-1 border-solid border-1 border-gray-300 rounded-r-md py-1.5 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    className="block flex-1 border-solid border-1 border-gray-300 rounded py-1.5 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     value={listingTitle}
                     onChange={(event) => setListingTitle(event.target.value)}
                     placeholder="Listing Title"
