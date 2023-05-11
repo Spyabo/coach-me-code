@@ -34,6 +34,12 @@ export default function Page() {
       })
     })
     if (date) setOrdered(true);
+    const tokens = await fetch(`/api/money/${user?.id}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        tokens: -listingData?.token_rate
+      })
+    })
   }
 
   return (ordered ?
