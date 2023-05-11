@@ -8,12 +8,9 @@ export default function Landing() {
   return (
     <main className="flex flex-col items-center gap-8 p-6 md:mt-15 max-w-7xl mx-auto lg:px-7 ">
       <div className="bg-gray-100 px-8 py-10 rounded-lg text-center shadow-lg w-full bg-hero-pattern bg-cover bg-center">
-        <h1 className="text-3xl md:text-2xl font-bold text-gray-800 leading-tight md:leading-snug mb-2">
-          Coach Me Code
-        </h1>
-        <h2 className="text-3xl md:text-2xl font-bold text-gray-800 leading-tight md:leading-snug mb-2">
+        <h1 className="text-2xl md:text-4xl font-bold text-gray-800 leading-tight md:leading-snug mb-2">
           Code smarter, not harder, with Coach Me Code!
-        </h2>
+        </h1>
         <a href="/sign-up">
           <button className="bg-green-400 hover:bg-red-400 text-white text-lg text-center font-bold py-3 px-6 rounded-full mt-6 hover:bg-orange-600 transition-colors duration-300 ease-in-out">
             Join us today
