@@ -9,6 +9,7 @@ export default function Welcome() {
     if (!isLoaded || !isSignedIn) {
         return null;
     }
+    console.log(user.id)
     return (
         <div className="max-w-7xl mx-auto px-6 container mt-2">
             <header>
