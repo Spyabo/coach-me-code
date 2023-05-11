@@ -30,8 +30,14 @@ export default function Money() {
         </h2>
         <p className="text-center">You can only purchase courses if you have enough tokens in your wallet!</p>
       </div>
+
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        {isSuccess && (
+          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative m-4" role="alert">
+            <strong className="font-bold">Tokens added successfully!</strong>
+          </div>
+        )}
+        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 mb-8">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="tokensToAdd" className="block text-sm font-medium text-gray-700">
@@ -51,7 +57,6 @@ export default function Money() {
                 />
               </div>
             </div>
-
             <div>
               <button
                 type="submit"
@@ -60,17 +65,12 @@ export default function Money() {
                 Add Tokens
               </button>
             </div>
-            {isSuccess && (
-              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-                <strong className="font-bold">Tokens added successfully!</strong>
-              </div>
-            )}
           </form>
         </div>
       </div>
-      <div className="invisible md:visible lg:visible flex justify-end lg:-mt-14">
+      <div className="invisible md:visible lg:visible flex justify-end lg:-mt-14 float-right">
         <Image
-          className="float-right"
+          className="float-right mt-20"
           src="/tokens.svg"
           alt="a graphic of tokens"
           width={300}
