@@ -221,16 +221,17 @@ export default function ListingForm() {
             </div>
           </div>
         </div>
-
         <div className="mt-6 flex items-center justify-end gap-x-6">
           <CancelButton />
-          <button
-            className="mt-6 hover:bg-green-300 bg-purple-700 text-white py-3 px-6 rounded font-bold"
-            type="submit"
-            onSubmit={handleSubmit}
-          >
-            Post Listing
-          </button>
+          <div className="bg-purple-700 rounded mt-6">
+            <button
+              className=" hover:bg-green-300 bg-purple-700 text-white py-3 px-6 rounded font-bold"
+              type="submit"
+              onSubmit={handleSubmit}
+            >
+              Post Listing
+            </button>
+          </div>
         </div>
       </form>
     </>
