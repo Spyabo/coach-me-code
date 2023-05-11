@@ -22,7 +22,7 @@ export default async function ListingsPage() {
                   <div className="items-center justify-between gap-2 flex flex-col z-10">
                     <img className="rounded h-40 object-fill p-2 bg-purple-700" width={300} src={data.listing_image} alt={data.listing_title} />
                     <h3 className="font-bold text-xl mt-2 flex flex-wrap items-center text-center">{data.listing_title}</h3>
-                    <p className="text-sm text-gray-500">{data.mentor_name}</p>
+                    <p>{data.mentor_name}</p>
                     {/* <p>{data.listing_rating / 10}</p> */}
                     <div className="flex flex-row items-center justify-center">
                       <p>{data.token_rate}</p>
