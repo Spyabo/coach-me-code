@@ -19,7 +19,6 @@ export default async function MyListings({ params }) {
                                     <h3 className="font-bold text-lg flex flex-wrap items-center text-center">Listing title: {data.listing_title}</h3>
                                     <p>Listing description: {data.listing_description}</p>
                                     <p>Programming languages: {(data.programming_languages).map(item => item)}</p>
-                                    <p>{data.listing_rating / 10}</p>
                                     <p>Token rate: {data.token_rate}</p>
                                     <Link href={`/listings/${data._id}`}>
                                         <button className="bg-green-400 hover:bg-red-400 text-white text-md text-center font-bold py-3 px-6 rounded-full hover:bg-orange-600 transition-colors duration-300 ease-in-out">
