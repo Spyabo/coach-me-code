@@ -12,7 +12,7 @@ export default function Landing() {
           Coach Me Code
         </h1>
         <h2 className="text-3xl md:text-2xl font-bold text-gray-800 leading-tight md:leading-snug mb-2">
-          Your one stop place to learn, collaborate and grow!
+          Code smarter, not harder, with Coach Me Code!
         </h2>
         <a href="/sign-up">
           <button className="bg-green-400 hover:bg-red-400 text-white text-lg text-center font-bold py-3 px-6 rounded-full mt-6 hover:bg-orange-600 transition-colors duration-300 ease-in-out">
