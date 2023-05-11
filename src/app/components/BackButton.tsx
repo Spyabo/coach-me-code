@@ -7,7 +7,7 @@ function BackButton() {
         <div className="flex justify-end">
             <button
                 onClick={() => router.back()}
-                className="bg-green-400 hover:bg-red-400 text-white text-lg text-center font-bold py-3 px-6 rounded-full hover:bg-orange-600 transition-colors duration-300 ease-in-out"
+                className="mt-6 bg-green-400 hover:bg-purple-700 text-white py-3 px-6 rounded font-bold"
             >
                 ← Back
             </button>
