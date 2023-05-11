@@ -4,7 +4,6 @@ import { useUser } from "@clerk/nextjs";
 import format from "date-fns/format";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { listing } from '../../../../../lib/types/listings';
 import ReactCalendar from "../../../components/Calendar/ReactCalendar";
 
 export default function Page() {
@@ -54,27 +53,23 @@ export default function Page() {
       <div className="flex flex-col justify-around items-center max-w-md rounded shadow-lg bg-white ">
         <div className="px-6 py-6 text-gray-700 text-base">
           <h1 className="font-bold text-xl mb-2">Order Summary</h1>
-          <p>{listingData?.listing_title}</p>
-          <p>{listingData?.listing_description.split(" ").slice(0, 20).join(" ").concat("...")}</p>
-          <div className="flex flex-row justify-between py-2">
-            <p className="font-bold">Token Balance</p>
-            <p>50</p>
-          </div>
+          <p className="font-bold text-lg py-2">{listingData?.listing_title}</p>
+          <p className="py-2">{listingData?.listing_description.split(" ").slice(0, 20).join(" ").concat("...")}</p>
           <div className="flex flex-row justify-between">
-            <p className="font-bold">Listing price</p>
-            <p>50</p>
+            <p className="font-bold">Token Rate:</p>
+            <p>{listingData?.token_rate}</p>
           </div>
-          <div className="flex flex-row justify-between">
+          <div className="flex flex-row justify-between mt-2">
             <p className="font-bold">Date:</p>
-            <p>{date ? format(date!, "PP") : "Please pick a day"}</p>
+            <p >{date ? format(date!, "PP") : "Please pick a day"}</p>
           </div>
         </div>
         <div className="flex justify-center items-center">
-          <button onClick={handleOnClick} className="bg-blue-400 hover:bg-blue-700 text-black font-bold py-2 px-4 m-2 rounded-full">
+          <button onClick={handleOnClick} className=" bg-red-500 hover:bg-yellow-400 text-black font-bold py-2 px-4 m-2 rounded-full">
             Order now
           </button>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
