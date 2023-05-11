@@ -25,10 +25,10 @@ export default function Money() {
   return (
     <div className=" max-w-7xl mx-auto container flex flex-col py-12 px-6">
       <div className="flex flex-col gap-4 sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="text-3xl font-extrabold text-gray-900">
+        <h2 className="text-center text-3xl font-extrabold text-gray-900">
           Add tokens to you wallet...
         </h2>
-        <p>You can only purchase courses if you have enough tokens in your wallet!</p>
+        <p className="text-center">You can only purchase courses if you have enough tokens in your wallet!</p>
       </div>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
