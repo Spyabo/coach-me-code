@@ -12,7 +12,7 @@ export default function Nav() {
 
   return (
     <div>
-      <nav className="bg-purple-800 text-white fixed top-0 w-full mb-5">
+      <nav className="bg-purple-800 text-white fixed top-0 w-full mb-5 z-40">
         <div className="max-w-7xl mx-auto lg:px-7  text-white">
           <div className="flex items-center justify-between h-16 md:px-6 px-6">
             <div className="flex items-center justify-center">
@@ -109,7 +109,7 @@ export default function Nav() {
           leaveTo="opacity-0 scale-95"
         >
           {(ref) => (
-            <div className="md:hidden" id="mobile-menu">
+            <div className="md:hidden" id="mobile-menu z-40">
               <div ref={ref} className="px-2 pb-3 space-y-1 sm:px-3 flex flex-col">
                 <a
                   href="/listings"
