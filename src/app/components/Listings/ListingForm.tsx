@@ -34,6 +34,12 @@ export default function ListingForm() {
       programming_languages: stringToArray(programmingLanguages),
       token_rate: parseInt(listingTokens)
     };
+    // Add listing image conditional to make them have to upload a file
+    if (listingImage === "") {
+      setError(true);
+      return;
+    }
+
     // Send the form data to the Mongo server function in lib fix since can't be "use client"
     try {
       const res = await fetch("/api/listings", {
@@ -68,7 +74,6 @@ export default function ListingForm() {
 
   return (
     <div >
-
       <form onSubmit={handleSubmit} className="px-6 bg-purple-100 py-4 rounded">
         <div className="">
           <h1 className="text-2xl font-semibold leading-7 text-gray-900 mb-2">
@@ -132,7 +137,9 @@ export default function ListingForm() {
               <div className="mt-2 flex justify-center flex-col rounded-lg border border-bold border-gray-900/25 px-6 py-10">
                 <UploadDropzone<OurFileRouter>
                   endpoint="imageUploader"
-                  onClientUploadComplete={() => {
+                  onClientUploadComplete={(res) => {
+                    setListingImage(res![0].fileUrl);
+                    setError(false);
                     alert("Upload Completed");
                   }}
                 />
@@ -141,6 +148,7 @@ export default function ListingForm() {
                     endpoint="imageUploader"
                     onClientUploadComplete={(res) => {
                       setListingImage(res![0].fileUrl);
+                      setError(false);
                       alert("Upload Completed");
                     }}
                   />
@@ -220,7 +228,7 @@ export default function ListingForm() {
       {error && <div className="px-6 pb-5" >
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
           <strong className="font-bold">Holy smokes!</strong>{" "}
-          <span className="block sm:inline">Listing not created, please try again.</span>
+          <span className="block sm:inline">Listing not created, make sure to add and image.</span>
           <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
             <svg className="fill-current h-6 w-6 text-red-500" role="button" onClick={() => setError(false)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
           </span>
