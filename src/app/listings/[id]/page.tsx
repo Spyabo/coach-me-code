@@ -1,6 +1,7 @@
 import BackButton from "@/app/components/BackButton";
 import { getListingById } from "@lib/mongo/listings";
 import { getListingsResponse } from "@lib/types/listings";
+import Image from "next/image";
 import Link from "next/link";
 
 export default async function ListingByIDPage({ params }: { params: { id: string } }) {
@@ -11,7 +12,7 @@ export default async function ListingByIDPage({ params }: { params: { id: string
             <div className=" bg-purple-800 rounded p-4">
                 <h1 className="text-3xl font-bold text-white underline">{listing.listing_title}</h1>
             </div>
-            <img className="rounded" width={400} src={listing.listing_image} alt={listing.listing_title} />
+            <Image className="rounded" width={600} height={600} src={listing.listing_image} alt={listing.listing_title} />
             <h2 className="text-xl font-bold">Description</h2>
             <p className="text-gray-700">{listing.listing_description}</p>
             <h2 className="text-xl font-bold">Details</h2>

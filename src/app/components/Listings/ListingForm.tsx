@@ -127,7 +127,6 @@ export default function ListingForm() {
                 ></textarea>
               </div>
             </div>
-
             <div className="col-span-full">
               <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">Cover photo</label>
               <div className="mt-2 flex justify-center flex-col rounded-lg border border-bold border-gray-900/25 px-6 py-10">
@@ -140,7 +139,8 @@ export default function ListingForm() {
                 <div className="py-4">
                   <UploadButton<OurFileRouter>
                     endpoint="imageUploader"
-                    onClientUploadComplete={() => {
+                    onClientUploadComplete={(res) => {
+                      setListingImage(res![0].fileUrl);
                       alert("Upload Completed");
                     }}
                   />
