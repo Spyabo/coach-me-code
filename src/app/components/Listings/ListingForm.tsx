@@ -140,7 +140,7 @@ export default function ListingForm() {
                   <UploadButton<OurFileRouter>
                     endpoint="imageUploader"
                     onClientUploadComplete={(res) => {
-                      console.log(res)
+                      setListingImage(res![0].fileUrl);
                       alert("Upload Completed");
                     }}
                   />
