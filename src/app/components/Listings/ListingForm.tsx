@@ -139,7 +139,8 @@ export default function ListingForm() {
                 <div className="py-4">
                   <UploadButton<OurFileRouter>
                     endpoint="imageUploader"
-                    onClientUploadComplete={() => {
+                    onClientUploadComplete={(res) => {
+                      console.log(res)
                       alert("Upload Completed");
                     }}
                   />
