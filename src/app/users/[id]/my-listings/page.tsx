@@ -8,9 +8,10 @@ export default async function MyListings({
 }: {
   params: { id: string };
 }) {
-  const { listings }: getListingsResponse = await getListingByClerkId(
-    params.id
-  );
+  const { listings } = await getListingByClerkId(params.id);
+
+  if (!listings) return null;
+
   return listings.length === 0 ? (
     <h1 className="flex justify-center text-4xl">No listing yet!</h1>
   ) : (
