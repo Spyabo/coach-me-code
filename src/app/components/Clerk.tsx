@@ -1,6 +1,6 @@
 import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
 import { SignedIn, SignedOut } from "@clerk/nextjs/app-beta/client";
-import MyDropdown from "./ DropDownMenu/DropDownMenu";
+import MyDropdown from "./DropDownMenu/DropDownMenu";
 import MoneyNavSym from "./MoneyNavSym";
 
 export default function Clerk() {
