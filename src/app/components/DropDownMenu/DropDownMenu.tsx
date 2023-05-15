@@ -1,10 +1,14 @@
-
-import { Menu, Transition } from '@headlessui/react'
-import { Fragment } from 'react'
+import { Menu, Transition } from "@headlessui/react";
+import { Fragment } from "react";
 // import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
-export default function MyDropdown({ userName, userId }: { userName: string, userId: string }) {
-
+export default function MyDropdown({
+  userName,
+  userId,
+}: {
+  userName: string;
+  userId: string | undefined;
+}) {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -26,7 +30,11 @@ export default function MyDropdown({ userName, userId }: { userName: string, use
             <Menu.Item>
               {({ active }) => (
                 <a
-                  className={`${active ? 'bg-purple-700 text-white bg-opacity-30' : 'text-gray-900'} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                  className={`${
+                    active
+                      ? "bg-purple-700 text-white bg-opacity-30"
+                      : "text-gray-900"
+                  } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   href={`/users/${userId}/my-listings`}
                 >
                   My Listings
@@ -38,24 +46,21 @@ export default function MyDropdown({ userName, userId }: { userName: string, use
             <Menu.Item>
               {({ active }) => (
                 <a
-                  className={`${active ? 'bg-purple-700 text-white bg-opacity-30' : 'text-gray-900'
-                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`} href={`/users/${userId}/my-orders`}
-                > My Orders</a>
+                  className={`${
+                    active
+                      ? "bg-purple-700 text-white bg-opacity-30"
+                      : "text-gray-900"
+                  } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                  href={`/users/${userId}/my-orders`}
+                >
+                  {" "}
+                  My Orders
+                </a>
               )}
             </Menu.Item>
           </div>
         </Menu.Items>
       </Transition>
-    </Menu >
-
-  )
+    </Menu>
+  );
 }
-
-
-
-
-
-
-
-
-
