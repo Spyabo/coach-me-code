@@ -21,9 +21,7 @@ async () => {
   await setup();
 };
 
-export async function getListings(): Promise<
-  { listings: getListingsResponse[] } | { error: string }
-> {
+export async function getListings() {
   try {
     if (!listings) await setup();
     const result = await listings.find().toArray();
