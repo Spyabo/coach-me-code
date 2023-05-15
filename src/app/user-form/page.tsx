@@ -40,7 +40,7 @@ export default function UserForm() {
       tokens: 0,
     };
     try {
-      const res = await fetch("http://localhost:3000/api/users", {
+      const res = await fetch(`${process.env.FETCH_URL}/api/users`, {
         method: "PUT",
         body: JSON.stringify(newUser),
         headers: {
@@ -48,7 +48,7 @@ export default function UserForm() {
         },
       });
       const { result } = await res.json();
-      const clerkRes = await fetch("http://localhost:3000/api/users/clerk", {
+      const clerkRes = await fetch(`${process.env.FETCH_URL}/api/users/clerk`, {
         method: "PATCH",
         body: JSON.stringify({
           clerk_id: user.id,

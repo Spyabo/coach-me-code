@@ -17,7 +17,7 @@ export default function Page() {
   useEffect(() => {
     async function fetchListing() {
       const res = await fetch(
-        `http://localhost:3000/api/${listing_id}/listing`
+        `${process.env.FETCH_URL}/api/${listing_id}/listing`
       );
       const { listing } = await res.json();
       setListingData(listing);
@@ -26,7 +26,7 @@ export default function Page() {
   }, [listing_id]);
 
   const handleOnClick = async () => {
-    const res = await fetch("/api/users", {
+    const res = await fetch(`${process.env.FETCH_URL}/api/users`, {
       method: "PATCH",
       //bool true = order, false = lising
       body: JSON.stringify({
@@ -36,12 +36,15 @@ export default function Page() {
       }),
     });
     if (date) setOrdered(true);
-    const tokens = await fetch(`/api/money/${user?.id}`, {
-      method: "PATCH",
-      body: JSON.stringify({
-        tokens: -listingData?.token_rate,
-      }),
-    });
+    const tokens = await fetch(
+      `${process.env.FETCH_URL}/api/money/${user?.id}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify({
+          tokens: -listingData?.token_rate,
+        }),
+      }
+    );
   };
 
   return ordered ? (
