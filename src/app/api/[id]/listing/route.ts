@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   request: NextRequest,
-  { params }
+  { params }: { params: { id: string } }
 ): Promise<NextResponse> {
   try {
     console.log(params);
