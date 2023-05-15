@@ -20,7 +20,7 @@ export default function ListingForm() {
   const { user, isSignedIn, isLoaded } = useUser();
 
   if (!isLoaded || !isSignedIn) {
-    return null
+    return null;
   }
 
   const handleSubmit = async (e: any) => {
@@ -32,7 +32,7 @@ export default function ListingForm() {
       listing_image: listingImage,
       listing_description: listingDescription,
       programming_languages: stringToArray(programmingLanguages),
-      token_rate: parseInt(listingTokens)
+      token_rate: parseInt(listingTokens),
     };
     // Add listing image conditional to make them have to upload a file
     if (listingImage === "") {
@@ -46,20 +46,20 @@ export default function ListingForm() {
         method: "POST",
         body: JSON.stringify(formData),
         headers: {
-          "Content-Type": "application/json"
-        }
-      })
+          "Content-Type": "application/json",
+        },
+      });
       const { result } = await res.json();
 
-      const userPatch = await fetch("http://localhost:3000/api/users", {
+      const userPatch = await fetch(`${process.env.FETCH_URL}/api/users`, {
         method: "PATCH",
         //bool true = order, false = lising
         body: JSON.stringify({
           clerkID: user?.id,
           order: result._id,
-          bool: false
-        })
-      })
+          bool: false,
+        }),
+      });
 
       setListingTitle("");
       setListingDescription("");
@@ -73,14 +73,15 @@ export default function ListingForm() {
   };
 
   return (
-    <div >
+    <div>
       <form onSubmit={handleSubmit} className="px-6 bg-purple-100 py-4 rounded">
         <div className="">
           <h1 className="text-2xl font-semibold leading-7 text-gray-900 mb-2">
             Create a new listing
           </h1>
           <p className="text-sm leading-6 text-gray-600">
-            Fill in the form to list your course. Click your profile name to view your current listings
+            Fill in the form to list your course. Click your profile name to
+            view your current listings
           </p>
           <div className="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-4">
@@ -133,7 +134,12 @@ export default function ListingForm() {
               </div>
             </div>
             <div className="col-span-full">
-              <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 text-gray-900">Cover photo</label>
+              <label
+                htmlFor="cover-photo"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Cover photo
+              </label>
               <div className="mt-2 flex justify-center flex-col rounded-lg border border-bold border-gray-900/25 px-6 py-10">
                 <UploadDropzone<OurFileRouter>
                   endpoint="imageUploader"
@@ -203,7 +209,7 @@ export default function ListingForm() {
                   autoComplete="off"
                   className="block w-full pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   placeholder="50"
-                  min='1'
+                  min="1"
                   value={listingTokens}
                   onChange={(event) => setListingTokens(event.target.value)}
                   required
@@ -225,30 +231,60 @@ export default function ListingForm() {
           </div>
         </div>
       </form>
-      {error && <div className="p-5" >
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-4 rounded relative" role="alert">
-          <strong className="font-bold">Holy smokes!</strong>{" "}
-          <span className="block sm:inline">Listing not created, make sure to add and image.</span>
-          <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
-            <svg className="fill-current h-6 w-6 text-red-500" role="button" onClick={() => setError(false)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
-          </span>
-        </div>
-      </div>}
-      {submitted && <div className="px-6 pb-5" >
-        <div className="mt-10 bg-green-100 flex sm:flex-row flex-col text-center justify-center items-center gap-4 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-          <strong className="font-bold">Holy guacamole!</strong>{" "}
-          <span className="block sm:inline">Listing has been created.</span>
-          <a
-            href="/listings"
-            className="hover:bg-purple-600 bg-purple-800 text-white block px-3 py-2 rounded-md text-base font-medium"
+      {error && (
+        <div className="p-5">
+          <div
+            className="bg-red-100 border border-red-400 text-red-700 px-4 py-4 rounded relative"
+            role="alert"
           >
-            View all Listings!
-          </a>
-          <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
-            <svg className="fill-current h-6 w-6 text-green-500" role="button" onClick={() => setSubmitted(false)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
-          </span>
+            <strong className="font-bold">Holy smokes!</strong>{" "}
+            <span className="block sm:inline">
+              Listing not created, make sure to add and image.
+            </span>
+            <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
+              <svg
+                className="fill-current h-6 w-6 text-red-500"
+                role="button"
+                onClick={() => setError(false)}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <title>Close</title>
+                <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+              </svg>
+            </span>
+          </div>
         </div>
-      </div>}
+      )}
+      {submitted && (
+        <div className="px-6 pb-5">
+          <div
+            className="mt-10 bg-green-100 flex sm:flex-row flex-col text-center justify-center items-center gap-4 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+            role="alert"
+          >
+            <strong className="font-bold">Holy guacamole!</strong>{" "}
+            <span className="block sm:inline">Listing has been created.</span>
+            <a
+              href="/listings"
+              className="hover:bg-purple-600 bg-purple-800 text-white block px-3 py-2 rounded-md text-base font-medium"
+            >
+              View all Listings!
+            </a>
+            <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
+              <svg
+                className="fill-current h-6 w-6 text-green-500"
+                role="button"
+                onClick={() => setSubmitted(false)}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <title>Close</title>
+                <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+              </svg>
+            </span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
