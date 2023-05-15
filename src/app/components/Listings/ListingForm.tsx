@@ -42,7 +42,7 @@ export default function ListingForm() {
 
     // Send the form data to the Mongo server function in lib fix since can't be "use client"
     try {
-      const res = await fetch(`${process.env.FETCH_URL}/api/listings`, {
+      const res = await fetch(`/api/listings`, {
         method: "POST",
         body: JSON.stringify(formData),
         headers: {
@@ -51,7 +51,7 @@ export default function ListingForm() {
       });
       const { result } = await res.json();
 
-      const userPatch = await fetch(`${process.env.FETCH_URL}/api/users`, {
+      const userPatch = await fetch(`/api/users`, {
         method: "PATCH",
         //bool true = order, false = lising
         body: JSON.stringify({
