@@ -12,7 +12,7 @@ export default function MoneyNavSym(props: clerkID): JSX.Element {
   useEffect(() => {
     async function fetchTokens() {
       try {
-        const res = await fetch(`${process.env.FETCH_URL}/api/users/${id}`);
+        const res = await fetch(`/api/users/${id}`);
         const result = await res.json();
         if (result && result.user && result.user.tokens) {
           setTokens(result.user.tokens);
