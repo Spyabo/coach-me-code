@@ -4,20 +4,23 @@ import MyDropdown from "./DropDownMenu/DropDownMenu";
 import MoneyNavSym from "./MoneyNavSym";
 
 export default function Clerk() {
-  const { user } = useUser();
+  const { user, isSignedIn } = useUser();
+
+  if (!isSignedIn) {
+    return null;
+  }
 
   return (
     <>
       <SignedIn>
         <div className="flex justify-center items-center">
           <a
-            href={`/wallet/${user?.id}`}
+            href={`/wallet/${user.id}`}
             className="text-white hover:bg-purple-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
           >
-            {/* @ts-ignore */}
-            <MoneyNavSym id={user?.id} />
+            <MoneyNavSym id={user.id} />
           </a>
-          <MyDropdown userName={user?.firstName} userId={user?.id} />
+          <MyDropdown userName={user.firstName!} userId={user.id} />
         </div>
         <div className="flex justify-center items-center">
           <UserButton />
@@ -34,7 +37,7 @@ export default function Clerk() {
             Register
           </button>
         </SignUpButton>
-      </SignedOut >
+      </SignedOut>
     </>
   );
 }
