@@ -1,9 +1,9 @@
 
 import { Menu, Transition } from '@headlessui/react'
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { Fragment } from 'react'
 // import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
-export default function MyDropdown({ userName, userId }) {
+export default function MyDropdown({ userName, userId }: { userName: string, userId: string }) {
 
   return (
     <Menu as="div" className="relative inline-block text-left">

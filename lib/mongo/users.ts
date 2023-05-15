@@ -169,7 +169,7 @@ export async function getUserByClerkId(clerk_id: string | undefined) {
     if (!result) return { error: "User not found" };
     return {
       _id: result._id.toString(),
-      clerkAuth: result.clerkAuth,
+      clerk_id: result.clerkAuth,
       name: result.name,
       email: result.email,
       phone: result.phone,

@@ -3,10 +3,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   request: NextRequest,
-  { params }
+  { params }: { params: { id: string } }
 ): Promise<NextResponse> {
   try {
-    console.log(params);
     const listingID = params.id;
     const listing = await getListingById(listingID);
     if ("error" in listing) {
