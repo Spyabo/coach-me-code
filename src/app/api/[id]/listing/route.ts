@@ -6,7 +6,6 @@ export async function GET(
   { params }: { params: { id: string } }
 ): Promise<NextResponse> {
   try {
-    console.log(params);
     const listingID = params.id;
     const listing = await getListingById(listingID);
     if ("error" in listing) {
