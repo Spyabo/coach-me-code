@@ -1,13 +1,12 @@
-'use client'
+"use client";
 import { useUser } from "@clerk/clerk-react";
-import Image from 'next/image';
+import Image from "next/image";
 import { useState } from "react";
 
 export default function Money() {
   const [tokensToAdd, setTokensToAdd] = useState<number>(0);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const { user } = useUser();
-
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -20,7 +19,7 @@ export default function Money() {
     });
     const data = await response.json();
     setIsSuccess(true);
-  }
+  };
 
   return (
     <div className=" max-w-7xl mx-auto container flex flex-col py-12 px-6">
@@ -28,19 +27,28 @@ export default function Money() {
         <h2 className="text-center text-3xl font-extrabold text-gray-900">
           Add tokens to you wallet...
         </h2>
-        <p className="text-center">You can only purchase courses if you have enough tokens in your wallet!</p>
+        <p className="text-center">
+          You can only purchase courses if you have enough tokens in your
+          wallet!
+        </p>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         {isSuccess && (
-          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative m-4" role="alert">
+          <div
+            className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative m-4"
+            role="alert"
+          >
             <strong className="font-bold">Tokens added successfully!</strong>
           </div>
         )}
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 mb-8">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="tokensToAdd" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="tokensToAdd"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Tokens to Add
               </label>
               <div className="mt-1">
@@ -51,9 +59,11 @@ export default function Money() {
                   autoComplete="off"
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   value={tokensToAdd}
-                  min='1'
-                  max='500'
-                  onChange={(event) => setTokensToAdd(parseInt(event.target.value))}
+                  min="1"
+                  max="500"
+                  onChange={(event) =>
+                    setTokensToAdd(parseInt(event.target.value))
+                  }
                 />
               </div>
             </div>

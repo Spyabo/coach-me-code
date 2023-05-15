@@ -23,7 +23,8 @@ export default function Landing() {
             Learning has never been easier
           </h3>
           <p className="text-center text-gray-600 text-lg">
-            Coach Me Code grants you access to a variety of courses, with all of the tools you need to reach your goals.
+            Coach Me Code grants you access to a variety of courses, with all of
+            the tools you need to reach your goals.
           </p>
           <Image
             src="/landing-1.svg"
@@ -38,7 +39,8 @@ export default function Landing() {
             List your own courses
           </h3>
           <p className="text-center text-gray-600 text-lg">
-            Coach others to gain confidence in your skills and experience. It's also something nice to add to your resume as a mentor.
+            Coach others to gain confidence in your skills and experience. It's
+            also something nice to add to your resume as a mentor.
           </p>
           <Image
             src="/landing-2.svg"
@@ -55,11 +57,11 @@ export default function Landing() {
           Token System
         </h3>
         <p className="text-gray-600 text-lg mb-8">
-          Our flagship platform uses a token system to provide
-          benefits to our members. Members can earn tokens by participating in
-          coaching sessions, attending events, and workshops. These tokens can be redeemed for various rewards, such
-          as exclusive workshops, coaching sessions, and networking
-          opportunities.
+          Our flagship platform uses a token system to provide benefits to our
+          members. Members can earn tokens by participating in coaching
+          sessions, attending events, and workshops. These tokens can be
+          redeemed for various rewards, such as exclusive workshops, coaching
+          sessions, and networking opportunities.
         </p>
       </div>
 
@@ -80,7 +82,11 @@ export default function Landing() {
               Unlimited Course Access
             </h4>
             <p className="text-gray-600 text-sm text-center">
-              Browse through a range of courses and book you session at a time that's right for you. You'll never feel alone on your coding journey again. Coaching sessions are available 24/7 and are tailored to your needs. Simply book a session with the course provider and get started.
+              Browse through a range of courses and book you session at a time
+              that's right for you. You'll never feel alone on your coding
+              journey again. Coaching sessions are available 24/7 and are
+              tailored to your needs. Simply book a session with the course
+              provider and get started.
             </p>
           </div>
           <div className="flex flex-col items-center">
@@ -95,7 +101,10 @@ export default function Landing() {
               Skills Development
             </h4>
             <p className="text-gray-600 text-sm text-center">
-              This platform is designed to help you develop your skills and stay up-to-date with the latest trends in tech. Courses are up to date with industry standards and are designed to be practical and relevant to your needs.
+              This platform is designed to help you develop your skills and stay
+              up-to-date with the latest trends in tech. Courses are up to date
+              with industry standards and are designed to be practical and
+              relevant to your needs.
             </p>
           </div>
           <div className="flex flex-col items-center">

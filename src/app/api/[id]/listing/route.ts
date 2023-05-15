@@ -1,4 +1,4 @@
-import { getListingById, getListings } from "@lib/mongo/listings";
+import { getListingById } from "@lib/mongo/listings";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(

@@ -1,7 +1,13 @@
 import { format } from "date-fns";
 import { Calendar } from "./calendar";
 
-export default function ReactCalendar({ date, setDate }: { date: Date | undefined; setDate: any }) {
+export default function ReactCalendar({
+  date,
+  setDate,
+}: {
+  date: Date | undefined;
+  setDate: any;
+}) {
   let dateSelected = <p>Please pick a day.</p>;
 
   if (date) {

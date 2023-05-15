@@ -112,7 +112,10 @@ export default function Nav() {
         >
           {(ref) => (
             <div className="md:hidden" id="mobile-menu z-40">
-              <div ref={ref} className="px-2 pb-3 space-y-1 sm:px-3 flex flex-col">
+              <div
+                ref={ref}
+                className="px-2 pb-3 space-y-1 sm:px-3 flex flex-col"
+              >
                 <a
                   href="/listings"
                   className="hover:bg-purple-600 text-white block px-3 py-2 rounded-md text-base font-medium"
