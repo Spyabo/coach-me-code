@@ -80,7 +80,7 @@ export default function Page() {
             <p>{listingData?.token_rate}</p>
           </div>
           <div className="flex flex-row justify-between mt-2">
-            <p className="font-bold">Booking Date:</p>
+            <p className="font-bold">Booking Date: </p>
             <p>{date ? format(date!, "PP") : "Please pick a day"}</p>
           </div>
         </div>
